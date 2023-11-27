@@ -36,7 +36,7 @@ services:
 
   mongodb:
     image: mongo:latest
-    container_name: mongodb-dev
+    container_name: mongodb
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: 1234
@@ -59,6 +59,21 @@ services:
       - "4000:4000"
     networks:
       - GOnet
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: rabbitmq
+
+    ports:
+      - 5672:5672
+      - 15672:15672
+   
+    networks:
+      - GOnet
+    
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
 
 volumes:
   mongodb_data_container:

@@ -34,6 +34,16 @@ docker build -t auctionservice_image -f Dockerfile .
 docker tag auctionservice_image asnielsen789/auctionservice
 docker push asnielsen789/auctionservice
 
+### rabbitMQ
+docker pull rabbitmq:management
+
+- local test: 
+docker run -d --name dev-rabbit --hostname rabbitmq-dev -p 15672:15672 -p 5672:5672 rabbitmq:management
+
+- otherwise add to docker compose
+
+(tutorial for code: https://www.rabbitmq.com/tutorials/tutorial-one-python.html)
+
 ## dotnet
 ### logging
 dotnet add package NLog
