@@ -1,3 +1,4 @@
+## git
 ### opret feature branch
 git flow feature start <branchname>
 
@@ -11,6 +12,9 @@ git push
 
 ### afslut feature branch
 git flow feature finish <branchname>
-(skifter automatisk tilbage til develop branch)
-git pull
+(merger ind i, og skifter automatisk tilbage til develop branch)
+git push
 
+## docker
+### network
+docker network create GOnet
