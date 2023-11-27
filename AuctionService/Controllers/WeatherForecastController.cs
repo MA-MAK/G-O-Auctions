@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AuctionService.Controllers;
 
+/// <summary>
+/// 
+/// </summary>
 [ApiController]
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase

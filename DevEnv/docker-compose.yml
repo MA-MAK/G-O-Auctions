@@ -1,4 +1,22 @@
+
+
 services:
+  AuctionService:
+    image: mortenlundmikkelsen/vehicleservice:latest
+    environment:
+    - rabbitmqHost=dev-rabbit
+    - connectionString=mongodb://admin:1234@mongodb-dev:27017
+    - databaseName=TaxaDB
+    - collectionName=vehicles
+   
+    ports:
+    - 5001:80
+    volumes:
+    - mongodb_data_container:/data/db
+
+    networks:
+    - GOnet
+
   mongodb:
     image: mongo:latest
     container_name: mongodb-dev
@@ -14,10 +32,22 @@ services:
     networks:
     - GOnet
 
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - AuctionService
+    ports:
+      - "4000:4000"
+
+
 volumes:
   mongodb_data_container:
   images_data:
     external: false
+
+  
 
 networks:
   GOnet:
