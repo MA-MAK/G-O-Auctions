@@ -1,0 +1,50 @@
+2023-11-27 12:28:04.7207|DEBUG|Program|init main
+2023-11-27 12:28:05.0802|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactory|Registered model binder providers, in the following order: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider
+2023-11-27 12:28:05.1053|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting starting
+2023-11-27 12:28:05.1466|INFO|Microsoft.Hosting.Lifetime|Now listening on: http://localhost:5064
+2023-11-27 12:28:05.1466|DEBUG|Microsoft.AspNetCore.Hosting.Diagnostics|Loaded hosting startup assembly AuctionService
+2023-11-27 12:28:05.1466|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2023-11-27 12:28:05.1466|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2023-11-27 12:28:05.1466|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\git\sem4\GO Auctions\AuctionService
+2023-11-27 12:28:05.1466|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting started
+2023-11-27 12:28:34.0085|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVF7FUPPMML" received FIN.
+2023-11-27 12:28:34.0142|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVF7FUPPMML" accepted.
+2023-11-27 12:28:34.0142|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVF7FUPPMML" started.
+2023-11-27 12:28:34.0142|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVF7FUPPMMM" accepted.
+2023-11-27 12:28:34.0142|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVF7FUPPMMM" started.
+2023-11-27 12:28:34.0290|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVF7FUPPMML" sending FIN because: "The client closed the connection."
+2023-11-27 12:28:34.0290|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVF7FUPPMML" disconnecting.
+2023-11-27 12:28:34.0290|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVF7FUPPMML" stopped.
+2023-11-27 12:28:34.0537|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/1.1 GET http://localhost:5064/weatherforecast - -
+2023-11-27 12:28:34.0537|DEBUG|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|Wildcard detected, all requests with hosts will be allowed.
+2023-11-27 12:28:34.0716|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|1 candidate(s) found for the request path '/weatherforecast'
+2023-11-27 12:28:34.0716|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|Endpoint 'AuctionService.Controllers.WeatherForecastController.Get (AuctionService)' with route pattern 'WeatherForecast' is valid for the request path '/weatherforecast'
+2023-11-27 12:28:34.0716|DEBUG|Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware|Request matched endpoint 'AuctionService.Controllers.WeatherForecastController.Get (AuctionService)'
+2023-11-27 12:28:34.0896|DEBUG|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Static files was skipped as the request already matched an endpoint.
+2023-11-27 12:28:34.0896|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2023-11-27 12:28:34.0896|INFO|Microsoft.AspNetCore.Routing.EndpointMiddleware|Executing endpoint 'AuctionService.Controllers.WeatherForecastController.Get (AuctionService)'
+2023-11-27 12:28:34.0896|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[AuctionService.WeatherForecast] Get() on controller AuctionService.Controllers.WeatherForecastController (AuctionService).
+2023-11-27 12:28:34.1059|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of authorization filters (in the following order): None
+2023-11-27 12:28:34.1059|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of resource filters (in the following order): None
+2023-11-27 12:28:34.1059|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of action filters (in the following order): Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000), Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)
+2023-11-27 12:28:34.1059|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of exception filters (in the following order): None
+2023-11-27 12:28:34.1059|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of result filters (in the following order): Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)
+2023-11-27 12:28:34.1059|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executing controller factory for controller AuctionService.Controllers.WeatherForecastController (AuctionService)
+2023-11-27 12:28:34.1059|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executed controller factory for controller AuctionService.Controllers.WeatherForecastController (AuctionService)
+2023-11-27 12:28:34.1059|INFO|AuctionService.Controllers.WeatherForecastController|getting weatherforecast...
+2023-11-27 12:28:34.1059|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.DefaultOutputFormatterSelector|List of registered output formatters, in the following order: Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter, Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter, Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter, Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter
+2023-11-27 12:28:34.1059|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.DefaultOutputFormatterSelector|No information found on request to perform content negotiation.
+2023-11-27 12:28:34.1059|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.DefaultOutputFormatterSelector|Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2023-11-27 12:28:34.1059|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.DefaultOutputFormatterSelector|Attempting to select the first formatter in the output formatters list which can write the result.
+2023-11-27 12:28:34.1059|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.DefaultOutputFormatterSelector|Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2023-11-27 12:28:34.1059|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor|Executing ObjectResult, writing value of type 'AuctionService.WeatherForecast[]'.
+2023-11-27 12:28:34.1476|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executed action AuctionService.Controllers.WeatherForecastController.Get (AuctionService) in 38.8513ms
+2023-11-27 12:28:34.1476|INFO|Microsoft.AspNetCore.Routing.EndpointMiddleware|Executed endpoint 'AuctionService.Controllers.WeatherForecastController.Get (AuctionService)'
+2023-11-27 12:28:34.1476|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVF7FUPPMMM" completed keep alive response.
+2023-11-27 12:28:34.1476|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/1.1 GET http://localhost:5064/weatherforecast - - - 200 - application/json;+charset=utf-8 98.4509ms
+2023-11-27 12:29:32.5738|INFO|Microsoft.Hosting.Lifetime|Application is shutting down...
+2023-11-27 12:29:32.5750|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting stopping
+2023-11-27 12:29:32.5901|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVF7FUPPMMM" disconnecting.
+2023-11-27 12:29:32.5901|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVF7FUPPMMM" stopped.
+2023-11-27 12:29:32.5901|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVF7FUPPMMM" sending FIN because: "The Socket transport's send loop completed gracefully."
+2023-11-27 12:29:32.5901|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting stopped
