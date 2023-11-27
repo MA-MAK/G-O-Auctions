@@ -1,16 +1,13 @@
-
-
 services:
   AuctionService:
-    image: mortenlundmikkelsen/vehicleservice:latest
+    image: asnielsen789/auctionservice:latest
     environment:
-    - rabbitmqHost=dev-rabbit
     - connectionString=mongodb://admin:1234@mongodb-dev:27017
-    - databaseName=TaxaDB
-    - collectionName=vehicles
+    - databaseName=GODB
+    - collectionName=auctions
    
-    ports:
-    - 5001:80
+    expose:
+    - "80"
     volumes:
     - mongodb_data_container:/data/db
 
@@ -40,7 +37,8 @@ services:
       - AuctionService
     ports:
       - "4000:4000"
-
+    networks:
+      - GOnet
 
 volumes:
   mongodb_data_container:
