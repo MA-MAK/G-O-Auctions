@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "PAUGC4ZbCQvywsutV8ZfJuevZxvHJgnWePh/itSIahD2Kmt0EiND4UMhz4h6c4FJk+wp/EvyuukgpppRLkmuOg==",
+  "dgSpecHash": "T/GhYfk+rN5GvF84Tj8jFhtemL/pxVeHZSlLpNQivleMtflf+vXcfud2drhrULQ7LWefIPHlWPnGNxpCLb3NrQ==",
   "success": true,
   "projectFilePath": "/Users/karolineqvick/ITAI/GO-Auctions/AuctionServiceTest/AuctionServiceTest.csproj",
   "expectedPackageFiles": [
@@ -165,6 +165,8 @@
     "/Users/karolineqvick/.nuget/packages/system.linq/4.3.0/system.linq.4.3.0.nupkg.sha512",
     "/Users/karolineqvick/.nuget/packages/system.linq.expressions/4.3.0/system.linq.expressions.4.3.0.nupkg.sha512",
     "/Users/karolineqvick/.nuget/packages/system.memory/4.5.1/system.memory.4.5.1.nupkg.sha512",
+    "/Users/karolineqvick/.nuget/packages/system.net.http/2.0.20126.16343/system.net.http.2.0.20126.16343.nupkg.sha512",
+    "/Users/karolineqvick/.nuget/packages/system.net.http.formatting.extension/5.2.3/system.net.http.formatting.extension.5.2.3.nupkg.sha512",
     "/Users/karolineqvick/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
     "/Users/karolineqvick/.nuget/packages/system.objectmodel/4.3.0/system.objectmodel.4.3.0.nupkg.sha512",
     "/Users/karolineqvick/.nuget/packages/system.reflection/4.3.0/system.reflection.4.3.0.nupkg.sha512",
@@ -212,5 +214,36 @@
     "/Users/karolineqvick/.nuget/packages/system.xml.xpath/4.3.0/system.xml.xpath.4.3.0.nupkg.sha512",
     "/Users/karolineqvick/.nuget/packages/system.xml.xpath.xdocument/4.3.0/system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1602",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "System.Net.Http.Formatting.Extension 5.2.3 does not provide an inclusive lower bound for dependency System.Net.Http. An approximate best match of System.Net.Http 2.0.20126.16343 was resolved.",
+      "libraryId": "System.Net.Http",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.Net.Http 2.0.20126.16343' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "System.Net.Http",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.Net.Http.Formatting.Extension 5.2.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "System.Net.Http.Formatting.Extension",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }

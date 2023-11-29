@@ -30,10 +30,20 @@ public class Tests
     [Test]
     public void GetAuctionByIDTest()
     {
-        var stubRepo = new Mock<IAuctionRepository>();
-        stubRepo.Setup(svc => svc.GetAuctionById(1))
-            .Returns(Task.FromException<Auction?>(new Exception()));
-        var controller = new AuctionController(_logger, _configuration, stubRepo.Object);
+        Customer customer = new Customer { Id = 1, Name = "Johnny Doe", Email = "g@gmail" };
+
+        Item item = new Item { Id = 1, Title = "Chair", Description = "The best chair", Category = Category.Home, Condition = Condition.Good, Location = "Amsterdam", Seller = customer, StartPrice = 10, AssesmentPrice = 20, Year = 2021, Status = Status.Registered};
+
+        Auction auction = new Auction { Id = 1, StartTime = DateTime.Now, EndTime = DateTime.Now, Status = AuctionStatus.Active, Type = AuctionType.Dutch, Item = item};
+
+        var ItemRepositoryMock = new Mock<IItemRepository>();
+        ItemRepositoryMock.Setup(svc => svc.GetItemById(1))
+            .Returns(Task.FromResult<Item?>(item));
+
+        var AuctionRepositoryMock = new Mock<IAuctionRepository>();
+        AuctionRepositoryMock.Setup(svc => svc.GetAuctionById(1))
+            .Returns(Task.FromResult<Auction?>(auction));
+        var controller = new AuctionController(_logger, _configuration, AuctionRepositoryMock.Object, ItemRepositoryMock.Object);
         //Test if we can get an auction by ID - Use mock objects for ILogger and IConfiguration
 
         var result = controller.GetAuctionById(1);
@@ -41,9 +51,11 @@ public class Tests
         // Assert
         Assert.That(result, Is.TypeOf<OkObjectResult>());
         Assert.That((result as OkObjectResult)?.Value, Is.TypeOf<Auction>());
-        //Assert.That((result as OkObjectResult)?.Value, Is.EqualTo(1));
+        Assert.That(((result as OkObjectResult)?.Value as Auction).Id, Is.EqualTo(1));
+        Assert.That(((result as OkObjectResult)?.Value as Auction).Item, Is.TypeOf<Item>());
+        Assert.That(((result as OkObjectResult)?.Value as Auction).Item.Id, Is.EqualTo(1));
+        
 
-        Assert.Pass();
     }
 
 

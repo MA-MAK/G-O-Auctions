@@ -8,6 +8,8 @@ namespace AuctionService.Models
         public DateTime EndTime { get; set; }
         public AuctionStatus Status { get; set; }
         public AuctionType Type { get; set; }
+        public Item Item { get; set; }
+        public int ItemId { get; set; }
     }
     public enum AuctionStatus
     {

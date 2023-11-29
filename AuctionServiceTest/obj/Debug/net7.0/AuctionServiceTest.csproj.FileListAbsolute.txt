@@ -128,3 +128,7 @@
 /Users/karolineqvick/ITAI/GO-Auctions/AuctionServiceTest/obj/Debug/net7.0/AuctionServiceTest.pdb
 /Users/karolineqvick/ITAI/GO-Auctions/AuctionServiceTest/obj/Debug/net7.0/AuctionServiceTest.genruntimeconfig.cache
 /Users/karolineqvick/ITAI/GO-Auctions/AuctionServiceTest/obj/Debug/net7.0/ref/AuctionServiceTest.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionServiceTest/bin/Debug/net7.0/System.Net.Http.WebRequest.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionServiceTest/bin/Debug/net7.0/System.Net.Http.Extensions.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionServiceTest/bin/Debug/net7.0/System.Net.Http.Formatting.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionServiceTest/bin/Debug/net7.0/System.Net.Http.Primitives.dll

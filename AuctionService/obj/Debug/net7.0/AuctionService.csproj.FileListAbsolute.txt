@@ -73,3 +73,7 @@ C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/ref/AuctionService.dll
 /Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/AuctionService.csproj.CopyComplete
 /Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/AuctionService.genruntimeconfig.cache
 /Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/ref/AuctionService.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/System.Net.Http.WebRequest.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/System.Net.Http.Extensions.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/System.Net.Http.Formatting.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/System.Net.Http.Primitives.dll
