@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using AuctionService.Models;
+using AuctionService.Services;
 
 namespace AuctionService.Controllers
 {
@@ -8,11 +10,19 @@ namespace AuctionService.Controllers
     public class AuctionController : ControllerBase
     {
         private readonly List<Auction> _auctions;
+        private readonly ILogger<AuctionController> _logger;
+        private readonly IAuctionRepository _auctionRepository;
 
         public AuctionController()
         {
             _auctions = new List<Auction>();
         }
+
+        public AuctionController(ILogger<AuctionController> logger, IConfiguration configuration, IAuctionRepository auctionRepository)
+    {
+        _logger = logger;
+        _auctionRepository = auctionRepository;
+    }
 
         // GET: api/auction
         [HttpGet]
@@ -23,7 +33,7 @@ namespace AuctionService.Controllers
 
         // GET: api/auction/{id}
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult GetAuctionById(int id)
         {
             var auction = _auctions.Find(a => a.Id == id);
             if (auction == null)
@@ -50,8 +60,8 @@ namespace AuctionService.Controllers
             {
                 return NotFound();
             }
-            existingAuction.Name = auction.Name;
-            existingAuction.Description = auction.Description;
+            //existingAuction.Name = auction.Name;
+            //existingAuction.Description = auction.Description;
             return NoContent();
         }
 

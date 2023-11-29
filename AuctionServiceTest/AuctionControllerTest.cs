@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
+using AuctionService.Controllers;
 using Moq;
 using Microsoft.AspNetCore.Mvc;
-using RabbitMQ.Client.Exceptions;
+using AuctionService.Models;
+using AuctionService.Services;
 
 namespace AuctionServiceTest;
 
@@ -28,11 +30,22 @@ public class Tests
     [Test]
     public void GetAuctionByIDTest()
     {
-         //Test if we can get an auction by ID - Use mock objects for ILogger and IConfiguration
-       
+        var stubRepo = new Mock<IAuctionRepository>();
+        stubRepo.Setup(svc => svc.GetAuctionById(1))
+            .Returns(Task.FromException<Auction?>(new Exception()));
+        var controller = new AuctionController(_logger, _configuration, stubRepo.Object);
+        //Test if we can get an auction by ID - Use mock objects for ILogger and IConfiguration
+
+        var result = controller.GetAuctionById(1);
+
+        // Assert
+        Assert.That(result, Is.TypeOf<OkObjectResult>());
+        Assert.That((result as OkObjectResult)?.Value, Is.TypeOf<Auction>());
+        //Assert.That((result as OkObjectResult)?.Value, Is.EqualTo(1));
+
         Assert.Pass();
     }
 
-    
+
 
 }

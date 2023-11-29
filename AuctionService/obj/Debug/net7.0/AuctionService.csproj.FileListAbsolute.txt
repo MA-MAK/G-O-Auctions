@@ -1,37 +1,75 @@
-C:\git\sem4\GO Auctions\AuctionService\bin\Debug\net7.0\NLog.config
-C:\git\sem4\GO Auctions\AuctionService\bin\Debug\net7.0\appsettings.Development.json
-C:\git\sem4\GO Auctions\AuctionService\bin\Debug\net7.0\appsettings.json
-C:\git\sem4\GO Auctions\AuctionService\bin\Debug\net7.0\AuctionService.exe
-C:\git\sem4\GO Auctions\AuctionService\bin\Debug\net7.0\AuctionService.deps.json
-C:\git\sem4\GO Auctions\AuctionService\bin\Debug\net7.0\AuctionService.runtimeconfig.json
-C:\git\sem4\GO Auctions\AuctionService\bin\Debug\net7.0\AuctionService.dll
-C:\git\sem4\GO Auctions\AuctionService\bin\Debug\net7.0\AuctionService.pdb
-C:\git\sem4\GO Auctions\AuctionService\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
-C:\git\sem4\GO Auctions\AuctionService\bin\Debug\net7.0\Microsoft.OpenApi.dll
-C:\git\sem4\GO Auctions\AuctionService\bin\Debug\net7.0\NLog.dll
-C:\git\sem4\GO Auctions\AuctionService\bin\Debug\net7.0\NLog.Extensions.Logging.dll
-C:\git\sem4\GO Auctions\AuctionService\bin\Debug\net7.0\NLog.Web.AspNetCore.dll
-C:\git\sem4\GO Auctions\AuctionService\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\git\sem4\GO Auctions\AuctionService\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\git\sem4\GO Auctions\AuctionService\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\AuctionService.csproj.AssemblyReference.cache
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\AuctionService.GeneratedMSBuildEditorConfig.editorconfig
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\AuctionService.AssemblyInfoInputs.cache
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\AuctionService.AssemblyInfo.cs
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\AuctionService.csproj.CoreCompileInputs.cache
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\AuctionService.MvcApplicationPartsAssemblyInfo.cs
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\AuctionService.MvcApplicationPartsAssemblyInfo.cache
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\staticwebassets\msbuild.AuctionService.Microsoft.AspNetCore.StaticWebAssets.props
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\staticwebassets\msbuild.build.AuctionService.props
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.AuctionService.props
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.AuctionService.props
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\staticwebassets.pack.json
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\staticwebassets.build.json
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\staticwebassets.development.json
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\scopedcss\bundle\AuctionService.styles.css
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\AuctionService.csproj.CopyComplete
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\AuctionService.dll
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\refint\AuctionService.dll
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\AuctionService.pdb
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\AuctionService.genruntimeconfig.cache
-C:\git\sem4\GO Auctions\AuctionService\obj\Debug\net7.0\ref\AuctionService.dll
+C:/git/sem4/GO Auctions/AuctionService/bin/Debug/net7.0/NLog.config
+C:/git/sem4/GO Auctions/AuctionService/bin/Debug/net7.0/appsettings.Development.json
+C:/git/sem4/GO Auctions/AuctionService/bin/Debug/net7.0/appsettings.json
+C:/git/sem4/GO Auctions/AuctionService/bin/Debug/net7.0/AuctionService.exe
+C:/git/sem4/GO Auctions/AuctionService/bin/Debug/net7.0/AuctionService.deps.json
+C:/git/sem4/GO Auctions/AuctionService/bin/Debug/net7.0/AuctionService.runtimeconfig.json
+C:/git/sem4/GO Auctions/AuctionService/bin/Debug/net7.0/AuctionService.dll
+C:/git/sem4/GO Auctions/AuctionService/bin/Debug/net7.0/AuctionService.pdb
+C:/git/sem4/GO Auctions/AuctionService/bin/Debug/net7.0/Microsoft.AspNetCore.OpenApi.dll
+C:/git/sem4/GO Auctions/AuctionService/bin/Debug/net7.0/Microsoft.OpenApi.dll
+C:/git/sem4/GO Auctions/AuctionService/bin/Debug/net7.0/NLog.dll
+C:/git/sem4/GO Auctions/AuctionService/bin/Debug/net7.0/NLog.Extensions.Logging.dll
+C:/git/sem4/GO Auctions/AuctionService/bin/Debug/net7.0/NLog.Web.AspNetCore.dll
+C:/git/sem4/GO Auctions/AuctionService/bin/Debug/net7.0/Swashbuckle.AspNetCore.Swagger.dll
+C:/git/sem4/GO Auctions/AuctionService/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+C:/git/sem4/GO Auctions/AuctionService/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/AuctionService.csproj.AssemblyReference.cache
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/AuctionService.GeneratedMSBuildEditorConfig.editorconfig
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/AuctionService.AssemblyInfoInputs.cache
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/AuctionService.AssemblyInfo.cs
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/AuctionService.csproj.CoreCompileInputs.cache
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/AuctionService.MvcApplicationPartsAssemblyInfo.cs
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/AuctionService.MvcApplicationPartsAssemblyInfo.cache
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/staticwebassets/msbuild.AuctionService.Microsoft.AspNetCore.StaticWebAssets.props
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/staticwebassets/msbuild.build.AuctionService.props
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.AuctionService.props
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.AuctionService.props
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/staticwebassets.pack.json
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/staticwebassets.build.json
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/staticwebassets.development.json
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/scopedcss/bundle/AuctionService.styles.css
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/AuctionService.csproj.CopyComplete
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/AuctionService.dll
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/refint/AuctionService.dll
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/AuctionService.pdb
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/AuctionService.genruntimeconfig.cache
+C:/git/sem4/GO Auctions/AuctionService/obj/Debug/net7.0/ref/AuctionService.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/AuctionService.csproj.AssemblyReference.cache
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/AuctionService.GeneratedMSBuildEditorConfig.editorconfig
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/AuctionService.AssemblyInfoInputs.cache
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/AuctionService.AssemblyInfo.cs
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/AuctionService.csproj.CoreCompileInputs.cache
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/AuctionService.MvcApplicationPartsAssemblyInfo.cs
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/AuctionService.MvcApplicationPartsAssemblyInfo.cache
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/AuctionService.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/refint/AuctionService.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/AuctionService.pdb
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/NLog.config
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/appsettings.Development.json
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/appsettings.json
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/AuctionService
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/AuctionService.deps.json
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/AuctionService.runtimeconfig.json
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/AuctionService.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/AuctionService.pdb
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/Microsoft.AspNetCore.OpenApi.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/Microsoft.OpenApi.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/NLog.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/NLog.Extensions.Logging.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/NLog.Loki.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/NLog.Web.AspNetCore.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/staticwebassets/msbuild.AuctionService.Microsoft.AspNetCore.StaticWebAssets.props
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/staticwebassets/msbuild.build.AuctionService.props
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.AuctionService.props
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.AuctionService.props
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/staticwebassets.pack.json
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/staticwebassets.build.json
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/staticwebassets.development.json
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/scopedcss/bundle/AuctionService.styles.css
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/AuctionService.csproj.CopyComplete
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/AuctionService.genruntimeconfig.cache
+/Users/karolineqvick/ITAI/GO-Auctions/AuctionService/obj/Debug/net7.0/ref/AuctionService.dll
