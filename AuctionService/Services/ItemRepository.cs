@@ -9,9 +9,9 @@ namespace AuctionService.Services
     {
         private readonly HttpClient _httpClient;
 
-        public ItemRepository()//HttpClient httpClient)
+        public ItemRepository(HttpClient httpClient)
         {
-            //_httpClient = httpClient;
+            _httpClient = httpClient;
         }
 
         public async Task<Item> GetItemById(int itemId)

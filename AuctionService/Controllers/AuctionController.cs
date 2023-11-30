@@ -12,7 +12,7 @@ namespace AuctionService.Controllers
         private readonly List<Auction> _auctions;
         private readonly ILogger<AuctionController> _logger;
         private readonly IAuctionRepository _auctionRepository;
-
+        private readonly IBidRepository _bidRepository;
         private readonly IItemRepository _itemRepository;
 
         public AuctionController()
@@ -20,12 +20,13 @@ namespace AuctionService.Controllers
             _auctions = new List<Auction>();
         }
 
-        public AuctionController(ILogger<AuctionController> logger, IConfiguration configuration, IAuctionRepository auctionRepository, IItemRepository itemRepository)
-    {
-        _logger = logger;
-        _auctionRepository = auctionRepository;
-        _itemRepository = itemRepository;
-    }
+        public AuctionController(ILogger<AuctionController> logger, IConfiguration configuration, IAuctionRepository auctionRepository, IItemRepository itemRepository, IBidRepository bidRepository)
+        {
+            _logger = logger;
+            _auctionRepository = auctionRepository;
+            _itemRepository = itemRepository;
+            _bidRepository = bidRepository;
+        }
 
         // GET: api/auction
         [HttpGet]
@@ -40,6 +41,7 @@ namespace AuctionService.Controllers
         {
             Auction auction = _auctionRepository.GetAuctionById(id).Result;
             auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
+            auction.Bids = _bidRepository.GetBidsForAuction(auction.Id).Result.ToList();
             return Ok(auction);
         }
 

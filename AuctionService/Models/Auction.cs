@@ -10,6 +10,7 @@ namespace AuctionService.Models
         public AuctionType Type { get; set; }
         public Item Item { get; set; }
         public int ItemId { get; set; }
+        public List<Bid> Bids { get; set; }
     }
     public enum AuctionStatus
     {

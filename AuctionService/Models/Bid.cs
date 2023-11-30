@@ -1,10 +1,13 @@
 
+using AuctionService.Models;
+
 public class Bid
 {
     public int Id { get; set; }
     public Customer Bidder { get; set; }
     public decimal Amount { get; set; }
     public DateTime Time { get; set; }
+    public int AuctionId { get; set; }
 
 
 /*
