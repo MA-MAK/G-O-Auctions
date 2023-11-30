@@ -5,7 +5,7 @@
   },
   "projects": {
     "C:\\git\\sem4\\GO-Auctions\\AuctionServiceTest\\AuctionServiceTest.csproj": {
-      "version": "0.1.1",
+      "version": "0.1.2",
       "restore": {
         "projectUniqueName": "C:\\git\\sem4\\GO-Auctions\\AuctionServiceTest\\AuctionServiceTest.csproj",
         "projectName": "AuctionServiceTest",
@@ -103,7 +103,7 @@
       }
     },
     "C:\\git\\sem4\\GO-Auctions\\AuctionService\\AuctionService.csproj": {
-      "version": "0.1.1",
+      "version": "0.1.2",
       "restore": {
         "projectUniqueName": "C:\\git\\sem4\\GO-Auctions\\AuctionService\\AuctionService.csproj",
         "projectName": "AuctionService",

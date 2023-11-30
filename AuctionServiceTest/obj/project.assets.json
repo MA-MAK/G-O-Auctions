@@ -3815,7 +3815,7 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
-      "AuctionService/0.1.1": {
+      "AuctionService/0.1.2": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
@@ -10493,7 +10493,7 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
-    "AuctionService/0.1.1": {
+    "AuctionService/0.1.2": {
       "type": "project",
       "path": "../AuctionService/AuctionService.csproj",
       "msbuildProject": "../AuctionService/AuctionService.csproj"
@@ -10501,7 +10501,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "AuctionService >= 0.1.1",
+      "AuctionService >= 0.1.2",
       "Microsoft.AspNetCore >= 2.2.0",
       "Microsoft.AspNetCore.Mvc >= 2.2.0",
       "Microsoft.NET.Test.Sdk >= 17.3.2",
@@ -10517,7 +10517,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "0.1.1",
+    "version": "0.1.2",
     "restore": {
       "projectUniqueName": "C:\\git\\sem4\\GO-Auctions\\AuctionServiceTest\\AuctionServiceTest.csproj",
       "projectName": "AuctionServiceTest",
