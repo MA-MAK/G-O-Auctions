@@ -12,7 +12,7 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("GO Auctions")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyDescriptionAttribute("\n      Service handling actions.\n    ")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("\r\n      Service handling actions.\r\n    ")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("0.1.1.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.1.1")]
 [assembly: System.Reflection.AssemblyProductAttribute("AuctionService")]
