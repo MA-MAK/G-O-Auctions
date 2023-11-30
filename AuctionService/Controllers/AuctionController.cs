@@ -45,10 +45,11 @@ namespace AuctionService.Controllers
 
         // POST: api/auction
         [HttpPost]
-        public IActionResult Post([FromBody] Auction auction)
+        public async Task<ActionResult> CreateAuction([FromBody] Auction auction)
         {
-            _auctions.Add(auction);
-            return CreatedAtAction(nameof(Get), new { id = auction.Id }, auction);
+            await _auctionRepository.AddAuction(auction);
+            _logger.LogInformation("posting..");
+            return CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction);
         }
 
         // PUT: api/auction/{id}
