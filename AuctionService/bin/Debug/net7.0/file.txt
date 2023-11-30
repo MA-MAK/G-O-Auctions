@@ -48,3 +48,70 @@
 2023-11-27 12:29:32.5901|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVF7FUPPMMM" stopped.
 2023-11-27 12:29:32.5901|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVF7FUPPMMM" sending FIN because: "The Socket transport's send loop completed gracefully."
 2023-11-27 12:29:32.5901|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting stopped
+2023-11-30 09:24:21.2467|DEBUG|Program|init main
+2023-11-30 09:24:21.7730|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactory|Registered model binder providers, in the following order: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider
+2023-11-30 09:24:21.8125|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting starting
+2023-11-30 09:24:21.8847|INFO|Microsoft.Hosting.Lifetime|Now listening on: http://localhost:5064
+2023-11-30 09:24:21.8918|DEBUG|Microsoft.AspNetCore.Hosting.Diagnostics|Loaded hosting startup assembly AuctionService
+2023-11-30 09:24:21.8924|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2023-11-30 09:24:21.8924|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2023-11-30 09:24:21.8924|INFO|Microsoft.Hosting.Lifetime|Content root path: /Users/karolineqvick/ITAI/GO-Auctions/AuctionService
+2023-11-30 09:24:21.8924|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting started
+2023-11-30 09:24:22.1170|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGED" accepted.
+2023-11-30 09:24:22.1183|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGED" started.
+2023-11-30 09:24:22.1666|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/1.1 GET http://localhost:5064/swagger - -
+2023-11-30 09:24:22.1688|DEBUG|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|Wildcard detected, all requests with hosts will be allowed.
+2023-11-30 09:24:22.2031|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|No candidates found for the request path '/swagger'
+2023-11-30 09:24:22.2033|DEBUG|Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware|Request did not match any endpoints
+2023-11-30 09:24:22.2394|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGED" completed keep alive response.
+2023-11-30 09:24:22.2471|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/1.1 GET http://localhost:5064/swagger - - - 301 0 - 76.5019ms
+2023-11-30 09:24:22.2749|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/1.1 GET http://localhost:5064/swagger/index.html - -
+2023-11-30 09:24:22.2754|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|No candidates found for the request path '/swagger/index.html'
+2023-11-30 09:24:22.2754|DEBUG|Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware|Request did not match any endpoints
+2023-11-30 09:24:22.3943|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGED" completed keep alive response.
+2023-11-30 09:24:22.3943|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/1.1 GET http://localhost:5064/swagger/index.html - - - 200 - text/html;charset=utf-8 119.6599ms
+2023-11-30 09:24:22.4173|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/1.1 GET http://localhost:5064/swagger/swagger-ui.css - -
+2023-11-30 09:24:22.4173|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|No candidates found for the request path '/swagger/swagger-ui.css'
+2023-11-30 09:24:22.4173|DEBUG|Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware|Request did not match any endpoints
+2023-11-30 09:24:22.4229|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGEE" accepted.
+2023-11-30 09:24:22.4256|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGEE" started.
+2023-11-30 09:24:22.4271|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/1.1 GET http://localhost:5064/swagger/swagger-ui-bundle.js - -
+2023-11-30 09:24:22.4272|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|No candidates found for the request path '/swagger/swagger-ui-bundle.js'
+2023-11-30 09:24:22.4272|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGEF" accepted.
+2023-11-30 09:24:22.4272|DEBUG|Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware|Request did not match any endpoints
+2023-11-30 09:24:22.4285|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGEF" started.
+2023-11-30 09:24:22.4319|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/1.1 GET http://localhost:5064/swagger/swagger-ui-standalone-preset.js - -
+2023-11-30 09:24:22.4319|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|No candidates found for the request path '/swagger/swagger-ui-standalone-preset.js'
+2023-11-30 09:24:22.4319|DEBUG|Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware|Request did not match any endpoints
+2023-11-30 09:24:22.8300|INFO|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-11-30 09:24:22.8300|INFO|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-11-30 09:24:22.8570|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGEF" completed keep alive response.
+2023-11-30 09:24:22.8570|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGED" completed keep alive response.
+2023-11-30 09:24:22.8572|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/1.1 GET http://localhost:5064/swagger/swagger-ui-standalone-preset.js - - - 200 312163 text/javascript 425.2903ms
+2023-11-30 09:24:22.8572|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/1.1 GET http://localhost:5064/swagger/swagger-ui.css - - - 200 144929 text/css 439.9491ms
+2023-11-30 09:24:22.8823|INFO|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-11-30 09:24:22.8823|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGEE" completed keep alive response.
+2023-11-30 09:24:22.8823|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/1.1 GET http://localhost:5064/swagger/swagger-ui-bundle.js - - - 200 1061536 text/javascript 455.7279ms
+2023-11-30 09:24:23.1327|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/1.1 GET http://localhost:5064/swagger/v1/swagger.json - -
+2023-11-30 09:24:23.1327|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|No candidates found for the request path '/swagger/v1/swagger.json'
+2023-11-30 09:24:23.1327|DEBUG|Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware|Request did not match any endpoints
+2023-11-30 09:24:23.1698|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/1.1 GET http://localhost:5064/swagger/favicon-32x32.png - -
+2023-11-30 09:24:23.1698|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|No candidates found for the request path '/swagger/favicon-32x32.png'
+2023-11-30 09:24:23.1698|DEBUG|Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware|Request did not match any endpoints
+2023-11-30 09:24:23.1698|INFO|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2023-11-30 09:24:23.1698|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGEF" completed keep alive response.
+2023-11-30 09:24:23.1702|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/1.1 GET http://localhost:5064/swagger/favicon-32x32.png - - - 200 628 image/png 0.4906ms
+2023-11-30 09:24:23.2221|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGEE" completed keep alive response.
+2023-11-30 09:24:23.2222|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/1.1 GET http://localhost:5064/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 89.5086ms
+2023-11-30 09:24:26.3758|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVHFN0MIGED" received FIN.
+2023-11-30 09:24:26.3758|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVHFN0MIGEF" received FIN.
+2023-11-30 09:24:26.3758|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVHFN0MIGEE" received FIN.
+2023-11-30 09:24:26.3773|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGEF" disconnecting.
+2023-11-30 09:24:26.3773|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGED" disconnecting.
+2023-11-30 09:24:26.3773|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVHFN0MIGEF" sending FIN because: "The client closed the connection."
+2023-11-30 09:24:26.3773|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVHFN0MIGED" sending FIN because: "The client closed the connection."
+2023-11-30 09:24:26.3773|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVHFN0MIGEE" sending FIN because: "The client closed the connection."
+2023-11-30 09:24:26.3841|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGEE" disconnecting.
+2023-11-30 09:24:26.3852|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGEE" stopped.
+2023-11-30 09:24:26.3852|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGED" stopped.
+2023-11-30 09:24:26.3852|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGEF" stopped.

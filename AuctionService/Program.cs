@@ -1,5 +1,6 @@
 using NLog;
 using NLog.Web;
+using AuctionService.Services;
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 logger.Debug("init main");
@@ -16,6 +17,7 @@ try
     builder.Services.AddSwaggerGen();
     builder.Logging.ClearProviders();
     builder.Host.UseNLog();
+    builder.Services.AddSingleton<IAuctionRepository, AuctionRepository>();
 
     var app = builder.Build();
 

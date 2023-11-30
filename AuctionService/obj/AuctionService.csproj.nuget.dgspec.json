@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\git\\sem4\\GO Auctions\\AuctionService\\AuctionService.csproj": {}
+    "C:\\git\\sem4\\GO-Auctions\\AuctionService\\AuctionService.csproj": {}
   },
   "projects": {
-    "C:\\git\\sem4\\GO Auctions\\AuctionService\\AuctionService.csproj": {
-      "version": "0.1.1",
+    "C:\\git\\sem4\\GO-Auctions\\AuctionService\\AuctionService.csproj": {
+      "version": "0.1.2",
       "restore": {
-        "projectUniqueName": "C:\\git\\sem4\\GO Auctions\\AuctionService\\AuctionService.csproj",
+        "projectUniqueName": "C:\\git\\sem4\\GO-Auctions\\AuctionService\\AuctionService.csproj",
         "projectName": "AuctionService",
-        "projectPath": "C:\\git\\sem4\\GO Auctions\\AuctionService\\AuctionService.csproj",
+        "projectPath": "C:\\git\\sem4\\GO-Auctions\\AuctionService\\AuctionService.csproj",
         "packagesPath": "C:\\Users\\asnie\\.nuget\\packages\\",
-        "outputPath": "C:\\git\\sem4\\GO Auctions\\AuctionService\\obj\\",
+        "outputPath": "C:\\git\\sem4\\GO-Auctions\\AuctionService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -65,6 +65,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "System.Net.Http.Formatting.Extension": {
+              "target": "Package",
+              "version": "[5.2.3, )"
             }
           },
           "imports": [

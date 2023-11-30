@@ -10,8 +10,10 @@
         "dependencies": {
           "Microsoft.AspNetCore.OpenApi": "7.0.7",
           "NLog": "5.2.6",
+          "NLog.Targets.Loki": "2.1.1",
           "NLog.Web.AspNetCore": "5.3.5",
-          "Swashbuckle.AspNetCore": "6.5.0"
+          "Swashbuckle.AspNetCore": "6.5.0",
+          "System.Net.Http.Formatting.Extension": "5.2.3"
         },
         "runtime": {
           "AuctionService.dll": {}
@@ -91,6 +93,17 @@
           }
         }
       },
+      "NLog.Targets.Loki/2.1.1": {
+        "dependencies": {
+          "NLog": "5.2.6"
+        },
+        "runtime": {
+          "lib/net7.0/NLog.Loki.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "NLog.Web.AspNetCore/5.3.5": {
         "dependencies": {
           "NLog.Extensions.Logging": "5.3.5"
@@ -143,6 +156,33 @@
       "System.Diagnostics.DiagnosticSource/6.0.0": {
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        }
+      },
+      "System.Net.Http/2.0.20126.16343": {
+        "runtime": {
+          "lib/net40/System.Net.Http.WebRequest.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "System.Net.Http.Formatting.Extension/5.2.3": {
+        "dependencies": {
+          "System.Net.Http": "2.0.20126.16343"
+        },
+        "runtime": {
+          "lib/System.Net.Http.Extensions.dll": {
+            "assemblyVersion": "2.2.29.0",
+            "fileVersion": "2.2.29.0"
+          },
+          "lib/System.Net.Http.Formatting.dll": {
+            "assemblyVersion": "5.2.3.0",
+            "fileVersion": "5.2.30128.0"
+          },
+          "lib/System.Net.Http.Primitives.dll": {
+            "assemblyVersion": "4.2.29.0",
+            "fileVersion": "4.2.29.0"
+          }
         }
       },
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {}
@@ -238,6 +278,13 @@
       "path": "nlog.extensions.logging/5.3.5",
       "hashPath": "nlog.extensions.logging.5.3.5.nupkg.sha512"
     },
+    "NLog.Targets.Loki/2.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0k3Te1MhyUgYCR84O0gAwkuCJKDGr9qHwtVwNc6otrg2AwBVBIBjGF1VmeJcmj+chCGMYQwxJ3cz551eF+XN/A==",
+      "path": "nlog.targets.loki/2.1.1",
+      "hashPath": "nlog.targets.loki.2.1.1.nupkg.sha512"
+    },
     "NLog.Web.AspNetCore/5.3.5": {
       "type": "package",
       "serviceable": true,
@@ -279,6 +326,20 @@
       "sha512": "sha512-frQDfv0rl209cKm1lnwTgFPzNigy2EKk1BS3uAvHvlBVKe5cymGyHO+Sj+NLv5VF/AhHsqPIUUwya5oV4CHMUw==",
       "path": "system.diagnostics.diagnosticsource/6.0.0",
       "hashPath": "system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512"
+    },
+    "System.Net.Http/2.0.20126.16343": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-d/7SOttVRBIMJPpdZ8XIMthRNvYcBmRHzV54+z0LTp/W+h2ZIfxnMefECZSQsNtclcBoUbpFVWdpr45DwUC9FA==",
+      "path": "system.net.http/2.0.20126.16343",
+      "hashPath": "system.net.http.2.0.20126.16343.nupkg.sha512"
+    },
+    "System.Net.Http.Formatting.Extension/5.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BlYwj3Mbgc2i+NqtBZ+bea3LiN9WuGpE8PCylBvhxV0wBs0XTkXJmDuzkNnUyPhDBqKMBwDK0ZCnwJ8LpQ0aEg==",
+      "path": "system.net.http.formatting.extension/5.2.3",
+      "hashPath": "system.net.http.formatting.extension.5.2.3.nupkg.sha512"
     },
     "System.Runtime.CompilerServices.Unsafe/6.0.0": {
       "type": "package",

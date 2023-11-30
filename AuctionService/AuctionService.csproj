@@ -8,7 +8,7 @@
     <Company>GO Auctions</Company>
     <Authors>MAMAK</Authors>
 
-    <Version>0.1.1</Version>
+    <Version>0.1.2</Version>
     <Description>
       Service handling actions.
     </Description>
@@ -23,6 +23,7 @@
     <None Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <PackageReference Include="System.Net.Http.Formatting.Extension" Version="5.2.3" />
   </ItemGroup>
 
 </Project>
