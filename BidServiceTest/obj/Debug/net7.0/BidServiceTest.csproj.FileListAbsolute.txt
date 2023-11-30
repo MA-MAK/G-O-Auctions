@@ -1,0 +1,5 @@
+C:\git\sem4\GO-Auctions\BidServiceTest\obj\Debug\net7.0\BidServiceTest.csproj.AssemblyReference.cache
+C:\git\sem4\GO-Auctions\BidServiceTest\obj\Debug\net7.0\BidServiceTest.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\sem4\GO-Auctions\BidServiceTest\obj\Debug\net7.0\BidServiceTest.AssemblyInfoInputs.cache
+C:\git\sem4\GO-Auctions\BidServiceTest\obj\Debug\net7.0\BidServiceTest.AssemblyInfo.cs
+C:\git\sem4\GO-Auctions\BidServiceTest\obj\Debug\net7.0\BidServiceTest.csproj.CoreCompileInputs.cache
