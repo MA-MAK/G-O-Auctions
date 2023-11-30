@@ -11,7 +11,7 @@ public interface IAuctionRepository
    
     Task<IEnumerable<Auction>> GetAuctionsByUser(string userId);
     */
-    public Task AddAuction(Auction auction);
+    public Task PostAuction(Auction auction);
     public Task UpdateAuction(Auction auction);
     public Task DeleteAuction(Auction auction);
 }

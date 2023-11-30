@@ -11,11 +11,13 @@ public class AuctionRepository : IAuctionRepository
         auctions = new List<Auction>();
     }
 
-    public Task AddAuction(Auction auction)
+    public Task PostAuction(Auction auction)
     {
         auctions.Add(auction);
         return Task.CompletedTask;
     }
+
+    
 
     public Task DeleteAuction(Auction auction)
     {

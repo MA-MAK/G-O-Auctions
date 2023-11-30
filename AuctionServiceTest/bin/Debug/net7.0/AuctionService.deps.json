@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v7.0": {
-      "AuctionService/0.1.1": {
+      "AuctionService/0.1.2": {
         "dependencies": {
           "Microsoft.AspNetCore.OpenApi": "7.0.7",
           "NLog": "5.2.6",
@@ -189,7 +189,7 @@
     }
   },
   "libraries": {
-    "AuctionService/0.1.1": {
+    "AuctionService/0.1.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

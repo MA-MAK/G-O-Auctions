@@ -15,6 +15,7 @@ namespace AuctionService.Controllers
         private readonly IBidRepository _bidRepository;
         private readonly IItemRepository _itemRepository;
 
+
         public AuctionController()
         {
             _auctions = new List<Auction>();
@@ -26,6 +27,13 @@ namespace AuctionService.Controllers
             _auctionRepository = auctionRepository;
             _itemRepository = itemRepository;
             _bidRepository = bidRepository;
+        }
+
+        public AuctionController(ILogger<AuctionController> logger, IConfiguration configuration, IAuctionRepository auctionRepository, IItemRepository itemRepository)
+        {
+            _logger = logger;
+            _auctionRepository = auctionRepository;
+            _itemRepository = itemRepository;
         }
 
         // GET: api/auction
@@ -47,16 +55,17 @@ namespace AuctionService.Controllers
 
         // POST: api/auction
         [HttpPost]
-        public async Task<ActionResult> CreateAuction([FromBody] Auction auction)
+        public async Task<ActionResult> PostAuction([FromBody] Auction auction)
         {
-            await _auctionRepository.AddAuction(auction);
+            auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
+            await _auctionRepository.PostAuction(auction);
             _logger.LogInformation("posting..");
             return CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction);
         }
 
         // PUT: api/auction/{id}
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Auction auction)
+        public IActionResult PutAuction(int id, [FromBody] Auction auction)
         {
             var existingAuction = _auctions.Find(a => a.Id == id);
             if (existingAuction == null)
