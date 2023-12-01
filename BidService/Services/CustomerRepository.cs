@@ -14,7 +14,6 @@ namespace BidService.Services
         {
             _httpClient = httpClient;
         }
-
         public async Task<Customer> GetCustomerForBid(int bidId)
         {
             // Make a GET request to the API endpoint with the item ID
@@ -23,8 +22,8 @@ namespace BidService.Services
             if (response.IsSuccessStatusCode)
             {
                 // Deserialize the response content to an Item object
-                Customer customer = await response.Content.ReadAsAsync<Customer>();
-                return Customer;
+                var result = await response.Content.ReadAsAsync<Customer>();
+                return result;
             }
             else
             {

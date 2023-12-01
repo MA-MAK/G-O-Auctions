@@ -6,9 +6,9 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v7.0": {
-      "AuctionServiceTest/0.1.1": {
+      "AuctionServiceTest/0.1.2": {
         "dependencies": {
-          "AuctionService": "0.1.1",
+          "AuctionService": "0.1.2",
           "Microsoft.AspNetCore": "2.2.0",
           "Microsoft.AspNetCore.Mvc": "2.2.0",
           "Microsoft.NET.Test.Sdk": "17.3.2",
@@ -1880,7 +1880,7 @@
           "System.Xml.XPath": "4.3.0"
         }
       },
-      "AuctionService/0.1.1": {
+      "AuctionService/0.1.2": {
         "dependencies": {
           "Microsoft.AspNetCore.OpenApi": "7.0.7",
           "NLog": "5.2.6",
@@ -1896,7 +1896,7 @@
     }
   },
   "libraries": {
-    "AuctionServiceTest/0.1.1": {
+    "AuctionServiceTest/0.1.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -3364,7 +3364,7 @@
       "path": "system.xml.xpath.xdocument/4.3.0",
       "hashPath": "system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
     },
-    "AuctionService/0.1.1": {
+    "AuctionService/0.1.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

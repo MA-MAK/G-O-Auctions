@@ -60,7 +60,7 @@ public class Tests
         var controller = new AuctionController(_logger, _configuration, AuctionRepositoryMock.Object, ItemRepositoryMock.Object, BidRepositoryMock.Object);
         //Test if we can get an auction by ID - Use mock objects for ILogger and IConfiguration
 
-        var result = controller.GetAuctionById(1);
+        var result = controller.GetAuctionById(1).Result;
 
         // Assert
         Assert.That(result, Is.TypeOf<OkObjectResult>());

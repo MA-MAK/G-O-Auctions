@@ -28,15 +28,12 @@ namespace BidService.Controllers
         }
 */
         [HttpGet("{id}")]
-        public ActionResult<Bid> GetBidsForAuction(int id)
+        public Task<IActionResult> GetBidsForAuction(int id)
         {
-            var bid = _bidRepository.GetBidsForAuction(id);
-            if (bid == null)
-            {
-                return NotFound();
-            }
-            return Ok(bid);
+            var bids = _bidRepository.GetBidsForAuction(id).Result.ToList();
+            return Task.FromResult<IActionResult>(Ok(bids));
         }
+
 /*
         [HttpPost]
         public ActionResult<Bid> CreateBid(Bid bid)

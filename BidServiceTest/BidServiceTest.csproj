@@ -5,17 +5,18 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
+    <Company>GO Auctions</Company>
+    <Authors>MAMAK</Authors>
+
+    <Version>0.1.1</Version>
+    <Description>
+      Test project for BidService
+    </Description>
+
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
-  <Company>GO Auctions</Company>
-  <Authors>MAMAK</Authors>
-
-  <Version>0.1.1</Version>
-  <Description>
-    Test project for BidService
-  </Description>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />

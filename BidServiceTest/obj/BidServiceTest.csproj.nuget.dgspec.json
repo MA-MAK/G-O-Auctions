@@ -5,7 +5,7 @@
   },
   "projects": {
     "C:\\git\\sem4\\GO-Auctions\\BidServiceTest\\BidServiceTest.csproj": {
-      "version": "1.0.0",
+      "version": "0.1.1",
       "restore": {
         "projectUniqueName": "C:\\git\\sem4\\GO-Auctions\\BidServiceTest\\BidServiceTest.csproj",
         "projectName": "BidServiceTest",
@@ -95,7 +95,7 @@
       }
     },
     "C:\\git\\sem4\\GO-Auctions\\BidService\\BidService.csproj": {
-      "version": "1.0.0",
+      "version": "0.1.1",
       "restore": {
         "projectUniqueName": "C:\\git\\sem4\\GO-Auctions\\BidService\\BidService.csproj",
         "projectName": "BidService",
@@ -143,6 +143,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "System.Net.Http.Formatting.Extension": {
+              "target": "Package",
+              "version": "[5.2.3, )"
             }
           },
           "imports": [
