@@ -6,13 +6,13 @@ namespace BidService.Services;
 public class BidRepository : IBidRepository
 {
     private List<Bid> bids;
-    
+
     public BidRepository()
     {
         bids = new List<Bid>();
     }
 
-    public Task<IEnumerable<Bid>> GetBidsByAuctionId(int auctionId)
+    public Task<IEnumerable<Bid>> GetBidsForAuction(int auctionId)
     {
         return Task.FromResult<IEnumerable<Bid>>(bids.Where(b => b.AuctionId == auctionId));
     }

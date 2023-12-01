@@ -34,14 +34,14 @@ public class Tests
         Bid bid = new Bid { Id = 1, Bidder = customer, Amount = 1000, Time = DateTime.Now, AuctionId = 1 };
 
         var BidRepositoryMock = new Mock<IBidRepository>();
-        BidRepositoryMock.Setup(svc => svc.GetBidsForAuction(1))
+        BidRepositoryMock.Setup(svc => svc.GetBidsByAuctionId(1))
             .Returns(Task.FromResult<IEnumerable<Bid>?>(new List<Bid> { bid }));
 
         var CustomerRepositoryMock = new Mock<ICustomerRepository>();
-        CustomerRepositoryMock.Setup(svc => svc.GetCustomerByForBid(1))
+        CustomerRepositoryMock.Setup(svc => svc.GetCustomerForBid(1))
             .Returns(Task.FromResult<Customer?>(customer));
 
-        var controller = new BidController(_logger, _configuration, BidRepositoryMock.Object);
+        var controller = new BidController(BidRepositoryMock.Object, _logger, _configuration);
 
         var result = controller.GetBidsForAuction(1);
         

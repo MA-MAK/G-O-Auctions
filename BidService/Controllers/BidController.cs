@@ -10,37 +10,42 @@ namespace BidService.Controllers
     public class BidController : ControllerBase
     {
         private readonly IBidRepository _bidRepository;
+        private readonly ILogger<BidController> _logger;
+        private readonly IConfiguration _configuration;
 
-        public BidController(IBidRepository bidRepository)
+        public BidController(IBidRepository bidRepository, ILogger<BidController> logger, IConfiguration configuration)
         {
             _bidRepository = bidRepository;
+            _logger = logger;
+            _configuration = configuration;
         }
-
+/*
         [HttpGet]
         public ActionResult<IEnumerable<Bid>> GetAllBids()
         {
             var bids = _bidRepository.GetAllBids();
             return Ok(bids);
         }
-
+*/
         [HttpGet("{id}")]
-        public ActionResult<Bid> GetBidById(int id)
+        public ActionResult<Bid> GetBidsForAuction(int id)
         {
-            var bid = _bidRepository.GetBidById(id);
+            var bid = _bidRepository.GetBidsForAuction(id);
             if (bid == null)
             {
                 return NotFound();
             }
             return Ok(bid);
         }
-
+/*
         [HttpPost]
         public ActionResult<Bid> CreateBid(Bid bid)
         {
             _bidRepository.CreateBid(bid);
             return CreatedAtAction(nameof(GetBidById), new { id = bid.Id }, bid);
         }
-
+*/
+/*
         [HttpPut("{id}")]
         public IActionResult UpdateBid(int id, Bid bid)
         {
@@ -51,7 +56,8 @@ namespace BidService.Controllers
             _bidRepository.UpdateBid(bid);
             return NoContent();
         }
-
+*/
+/*
         [HttpDelete("{id}")]
         public IActionResult DeleteBid(int id)
         {
@@ -63,5 +69,6 @@ namespace BidService.Controllers
             _bidRepository.DeleteBid(bid);
             return NoContent();
         }
+        */
     }
 }

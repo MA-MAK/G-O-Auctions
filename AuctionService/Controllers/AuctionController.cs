@@ -37,21 +37,21 @@ namespace AuctionService.Controllers
 
         // GET: api/auction/{id}
         [HttpGet("{id}")]
-        public IActionResult GetAuctionById(int id)
+        public Task<IActionResult> GetAuctionById(int id)
         {
             Auction auction = _auctionRepository.GetAuctionById(id).Result;
             auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
             auction.Bids = _bidRepository.GetBidsForAuction(auction.Id).Result.ToList();
-            return Ok(auction);
+            return Task.FromResult<IActionResult>(Ok(auction));
         }
 
         // POST: api/auction
         [HttpPost]
-        public async Task<ActionResult> CreateAuction([FromBody] Auction auction)
+        public Task<IActionResult> CreateAuction([FromBody] Auction auction)
         {
-            await _auctionRepository.AddAuction(auction);
+            _auctionRepository.AddAuction(auction);
             _logger.LogInformation("posting..");
-            return CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction);
+            return Task.FromResult<IActionResult>(CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction));
         }
 
         // PUT: api/auction/{id}
