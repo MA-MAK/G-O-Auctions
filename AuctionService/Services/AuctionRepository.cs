@@ -17,8 +17,6 @@ public class AuctionRepository : IAuctionRepository
         return Task.CompletedTask;
     }
 
-    
-
     public Task DeleteAuction(Auction auction)
     {
         auctions.Remove(auction);

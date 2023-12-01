@@ -64,18 +64,43 @@ namespace AuctionService.Controllers
         }
 
         // PUT: api/auction/{id}
+
+        // PUT: api/auction/{id}
         [HttpPut("{id}")]
-        public IActionResult PutAuction(int id, [FromBody] Auction auction)
+        public async Task<ActionResult> PutAuction(int id, [FromBody] Auction auction)
         {
-            var existingAuction = _auctions.Find(a => a.Id == id);
+            var existingAuction = await _auctionRepository.GetAuctionById(id);
             if (existingAuction == null)
             {
                 return NotFound();
             }
-            //existingAuction.Name = auction.Name;
-            //existingAuction.Description = auction.Description;
-            return NoContent();
+
+            existingAuction.Title = auction.Title;
+            existingAuction.Description = auction.Description;
+
+            // Opdater auktionen, hvis metoden ikke returnerer noget (void)
+            await _auctionRepository.UpdateAuction(existingAuction);
+            return NoContent(); // Returnerer NoContent uanset hvad
+
+            //return NoContent(); // Returnerer NoContent uanset hvad
         }
+
+
+        /*
+                [HttpPut("{id}")]
+                public IActionResult PutAuction(int id, [FromBody] Auction auction)
+                {
+                    var existingAuction = _auctions.Find(a => a.Id == id);
+                    if (existingAuction == null)
+                    {
+                        return NotFound();
+                    }
+                    existingAuction.Title = auction.Title;
+                    existingAuction.Description = auction.Description;
+                    return NoContent();
+                }
+                */
+
 
         // DELETE: api/auction/{id}
         [HttpDelete("{id}")]

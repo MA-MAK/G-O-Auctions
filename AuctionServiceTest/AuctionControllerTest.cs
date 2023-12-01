@@ -127,6 +127,30 @@ public class Tests
 
     }
 
+
+
+[Test]
+public void PutAuctionTest()
+{
+    // Arrange
+    int id = 1;
+    Auction auction = new Auction { Id = 1, Title = "Updated Auction", Description = "Updated Description" };
+    var existingAuction = new Auction { Id = 1, Title = "Existing Auction", Description = "Existing Description" };
+    var AuctionRepositoryMock = new Mock<IAuctionRepository>();
+    AuctionRepositoryMock.Setup(svc => svc.GetAuctionById(id))
+        .Returns(Task.FromResult<Auction?>(existingAuction));
+    var ItemRepositoryMock = new Mock<IItemRepository>();
+    var BidRepositoryMock = new Mock<IBidRepository>();
+    var controller = new AuctionController(_logger, _configuration, AuctionRepositoryMock.Object, ItemRepositoryMock.Object, BidRepositoryMock.Object);
+
+    // Act
+    var result = controller.PutAuction(id, auction).Result;
+
+    // Assert
+    Assert.That(result, Is.TypeOf<NoContentResult>());
+    Assert.That(existingAuction.Title, Is.EqualTo(auction.Title));
+    Assert.That(existingAuction.Description, Is.EqualTo(auction.Description));
+}
 }
 
 /*
@@ -135,20 +159,21 @@ public void PutAuctionTest()
 {
     // Arrange
     int id = 1;
-    Auction auction = new Auction { Id = 1, Name = "Updated Auction", Description = "Updated Description" };
-    var existingAuction = new Auction { Id = 1, Name = "Existing Auction", Description = "Existing Description" };
+    Auction auction = new Auction { Id = 1, Title = "Updated Auction", Description = "Updated Description" };
+    var existingAuction = new Auction { Id = 1, Title = "Existing Auction", Description = "Existing Description" };
     var auctions = new List<Auction> { existingAuction };
     var AuctionRepositoryMock = new Mock<IAuctionRepository>();
     AuctionRepositoryMock.Setup(svc => svc.GetAuctionById(id))
         .Returns(Task.FromResult<Auction?>(existingAuction));
     var controller = new AuctionController(_logger, _configuration, AuctionRepositoryMock.Object);
 
+
     // Act
     var result = controller.PutAuction(id, auction);
 
     // Assert
     Assert.That(result, Is.TypeOf<NoContentResult>());
-    Assert.That(existingAuction.Name, Is.EqualTo(auction.Name));
+    Assert.That(existingAuction.Title, Is.EqualTo(auction.Title));
     Assert.That(existingAuction.Description, Is.EqualTo(auction.Description));
 }
 */
