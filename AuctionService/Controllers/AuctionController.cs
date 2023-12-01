@@ -15,6 +15,7 @@ namespace AuctionService.Controllers
         private readonly IBidRepository _bidRepository;
         private readonly IItemRepository _itemRepository;
 
+
         public AuctionController()
         {
             _auctions = new List<Auction>();
@@ -26,6 +27,13 @@ namespace AuctionService.Controllers
             _auctionRepository = auctionRepository;
             _itemRepository = itemRepository;
             _bidRepository = bidRepository;
+        }
+
+        public AuctionController(ILogger<AuctionController> logger, IConfiguration configuration, IAuctionRepository auctionRepository, IItemRepository itemRepository)
+        {
+            _logger = logger;
+            _auctionRepository = auctionRepository;
+            _itemRepository = itemRepository;
         }
 
         // GET: api/auction
@@ -47,26 +55,52 @@ namespace AuctionService.Controllers
 
         // POST: api/auction
         [HttpPost]
-        public async Task<ActionResult> CreateAuction([FromBody] Auction auction)
+        public async Task<ActionResult> PostAuction([FromBody] Auction auction)
         {
-            await _auctionRepository.AddAuction(auction);
+            auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
+            await _auctionRepository.PostAuction(auction);
             _logger.LogInformation("posting..");
             return CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction);
         }
 
         // PUT: api/auction/{id}
+
+        // PUT: api/auction/{id}
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Auction auction)
+        public async Task<ActionResult> PutAuction(int id, [FromBody] Auction auction)
         {
-            var existingAuction = _auctions.Find(a => a.Id == id);
+            var existingAuction = await _auctionRepository.GetAuctionById(id);
             if (existingAuction == null)
             {
                 return NotFound();
             }
-            //existingAuction.Name = auction.Name;
-            //existingAuction.Description = auction.Description;
-            return NoContent();
+
+            existingAuction.Title = auction.Title;
+            existingAuction.Description = auction.Description;
+
+            // Opdater auktionen, hvis metoden ikke returnerer noget (void)
+            await _auctionRepository.UpdateAuction(existingAuction);
+            return NoContent(); // Returnerer NoContent uanset hvad
+
+            //return NoContent(); // Returnerer NoContent uanset hvad
         }
+
+
+        /*
+                [HttpPut("{id}")]
+                public IActionResult PutAuction(int id, [FromBody] Auction auction)
+                {
+                    var existingAuction = _auctions.Find(a => a.Id == id);
+                    if (existingAuction == null)
+                    {
+                        return NotFound();
+                    }
+                    existingAuction.Title = auction.Title;
+                    existingAuction.Description = auction.Description;
+                    return NoContent();
+                }
+                */
+
 
         // DELETE: api/auction/{id}
         [HttpDelete("{id}")]
