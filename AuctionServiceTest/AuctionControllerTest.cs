@@ -60,7 +60,7 @@ public class Tests
         var controller = new AuctionController(_logger, _configuration, AuctionRepositoryMock.Object, ItemRepositoryMock.Object, BidRepositoryMock.Object);
         //Test if we can get an auction by ID - Use mock objects for ILogger and IConfiguration
 
-        var result = controller.GetAuctionById(1);
+        var result = controller.GetAuctionById(1).Result;
 
         // Assert
         Assert.That(result, Is.TypeOf<OkObjectResult>());
@@ -124,33 +124,30 @@ public class Tests
         Assert.That(((result as CreatedAtActionResult)?.Value as Auction).Id, Is.EqualTo(1));
         Assert.That(((result as CreatedAtActionResult)?.Value as Auction).Item, Is.TypeOf<Item>());
         Assert.That(((result as CreatedAtActionResult)?.Value as Auction).Item.Id, Is.EqualTo(1));
-
     }
 
+    [Test]
+    public void PutAuctionTest()
+    {
+        // Arrange
+        int id = 1;
+        Auction auction = new Auction { Id = 1, Title = "Updated Auction", Description = "Updated Description" };
+        var existingAuction = new Auction { Id = 1, Title = "Existing Auction", Description = "Existing Description" };
+        var AuctionRepositoryMock = new Mock<IAuctionRepository>();
+        AuctionRepositoryMock.Setup(svc => svc.GetAuctionById(id))
+            .Returns(Task.FromResult<Auction?>(existingAuction));
+        var ItemRepositoryMock = new Mock<IItemRepository>();
+        var BidRepositoryMock = new Mock<IBidRepository>();
+        var controller = new AuctionController(_logger, _configuration, AuctionRepositoryMock.Object, ItemRepositoryMock.Object, BidRepositoryMock.Object);
 
+        // Act
+        var result = controller.PutAuction(id, auction).Result;
 
-[Test]
-public void PutAuctionTest()
-{
-    // Arrange
-    int id = 1;
-    Auction auction = new Auction { Id = 1, Title = "Updated Auction", Description = "Updated Description" };
-    var existingAuction = new Auction { Id = 1, Title = "Existing Auction", Description = "Existing Description" };
-    var AuctionRepositoryMock = new Mock<IAuctionRepository>();
-    AuctionRepositoryMock.Setup(svc => svc.GetAuctionById(id))
-        .Returns(Task.FromResult<Auction?>(existingAuction));
-    var ItemRepositoryMock = new Mock<IItemRepository>();
-    var BidRepositoryMock = new Mock<IBidRepository>();
-    var controller = new AuctionController(_logger, _configuration, AuctionRepositoryMock.Object, ItemRepositoryMock.Object, BidRepositoryMock.Object);
-
-    // Act
-    var result = controller.PutAuction(id, auction).Result;
-
-    // Assert
-    Assert.That(result, Is.TypeOf<NoContentResult>());
-    Assert.That(existingAuction.Title, Is.EqualTo(auction.Title));
-    Assert.That(existingAuction.Description, Is.EqualTo(auction.Description));
-}
+        // Assert
+        Assert.That(result, Is.TypeOf<NoContentResult>());
+        Assert.That(existingAuction.Title, Is.EqualTo(auction.Title));
+        Assert.That(existingAuction.Description, Is.EqualTo(auction.Description));
+    }
 }
 
 /*
