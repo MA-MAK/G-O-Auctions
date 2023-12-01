@@ -55,16 +55,10 @@ namespace AuctionService.Controllers
 
         // POST: api/auction
         [HttpPost]
-<<<<<<< HEAD
-        public Task<IActionResult> CreateAuction([FromBody] Auction auction)
-        {
-            _auctionRepository.AddAuction(auction);
-=======
-        public async Task<ActionResult> PostAuction([FromBody] Auction auction)
+        public Task<IActionResult> PostAuction([FromBody] Auction auction)
         {
             auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
-            await _auctionRepository.PostAuction(auction);
->>>>>>> c82b24715003574910b03cc0a46b2e9b43cc4609
+            //await _auctionRepository.PostAuction(auction);
             _logger.LogInformation("posting..");
             return Task.FromResult<IActionResult>(CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction));
         }
@@ -73,7 +67,7 @@ namespace AuctionService.Controllers
 
         // PUT: api/auction/{id}
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutAuction(int id, [FromBody] Auction auction)
+        public async Task<IActionResult> PutAuction(int id, [FromBody] Auction auction)
         {
             var existingAuction = await _auctionRepository.GetAuctionById(id);
             if (existingAuction == null)
