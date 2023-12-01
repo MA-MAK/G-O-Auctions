@@ -1,46 +1,50 @@
 using System.Collections.Generic;
 using AuctionService.Models;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace AuctionService.Services{
 public class AuctionRepository : IAuctionRepository
 {
-    private List<Auction> auctions;
+    
+    private readonly IMongoCollection<Auction> _auctions;
 
-    public AuctionRepository()
+    public AuctionRepository(MongoDBContext dbContext)
     {
-        auctions = new List<Auction>();
+        _auctions = dbContext.Auctions;
     }
 
-    public Task PostAuction(Auction auction)
+    public  Task PostAuction(Auction auction)
     {
-        auctions.Add(auction);
+        _auctions.InsertOneAsync(auction);
         return Task.CompletedTask;
     }
 
     public Task DeleteAuction(Auction auction)
     {
-        auctions.Remove(auction);
+        _auctions.DeleteOneAsync(a => a.Id == auction.Id);
         return Task.CompletedTask;
     }
 
-    public Task<IEnumerable<Auction>> GetAllAuctions()
+   /*  public Task<IEnumerable<Auction>> GetAllAuctions()
     {
-        return Task.FromResult<IEnumerable<Auction>>(auctions);
+         var auctions =  _auctions.Find(_ => true).ToListAsync();
+         return Task.FromResult<IEnumerable<Auction>>(auctions.Result);
     }
-
+    
+    */  
     public Task <Auction> GetAuctionById(int id)
     {
-        return Task.FromResult(auctions.Find(a => a.Id == id));
+        var auction =  _auctions.Find(a => a.Id == id).FirstOrDefaultAsync();
+        return Task.FromResult<Auction>(auction.Result);
     }
 
     public Task UpdateAuction(Auction auction)
     {
-        int index = auctions.FindIndex(a => a.Id == auction.Id);
-        if (index != -1)
-        {
-            auctions[index] = auction;
-        }
+        
+        _auctions.ReplaceOneAsync(a => a.Id == auction.Id, auction);
         return Task.CompletedTask;
+
     }
 }
 }

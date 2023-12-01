@@ -1,6 +1,11 @@
 using NLog;
 using NLog.Web;
 using AuctionService.Services;
+using MongoDB.Driver;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
+using AuctionService.Models; 
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 logger.Debug("init main");
@@ -18,6 +23,13 @@ try
     builder.Logging.ClearProviders();
     builder.Host.UseNLog();
     builder.Services.AddSingleton<IAuctionRepository, AuctionRepository>();
+
+    // MongoDB configuration
+    var connectionString = builder.Configuration.GetConnectionString("MongoDBConnection");
+    var databaseName = builder.Configuration.GetSection("MongoDBSettings:DatabaseName").Value;
+    // builder.Services.AddSingleton<MongoDBContext>(provider => new MongoDBContext(logger, builder.Configuration));
+    builder.Services.AddSingleton<MongoDBContext>(provider => new MongoDBContext(logger,builder.Configuration));
+
 
     var app = builder.Build();
 
