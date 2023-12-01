@@ -115,3 +115,190 @@
 2023-11-30 09:24:26.3852|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGEE" stopped.
 2023-11-30 09:24:26.3852|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGED" stopped.
 2023-11-30 09:24:26.3852|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVHFN0MIGEF" stopped.
+2023-12-01 10:21:46.8854|DEBUG|Program|init main
+2023-12-01 10:21:47.0648|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactory|Registered model binder providers, in the following order: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider
+2023-12-01 10:21:47.0898|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting starting
+2023-12-01 10:21:47.1285|ERROR|Program|Stopped program because of exception|System.IO.IOException: Failed to bind to address http://127.0.0.1:5064: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass30_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Program.<Main>$(String[] args) in /Users/karolineqvick/ITAI/GO-Auctions/AuctionService/Program.cs:line 37
+2023-12-01 10:25:11.5186|DEBUG|Program|init main
+2023-12-01 10:25:11.6523|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactory|Registered model binder providers, in the following order: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider
+2023-12-01 10:25:11.6753|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting starting
+2023-12-01 10:25:11.7070|ERROR|Program|Stopped program because of exception|System.IO.IOException: Failed to bind to address http://127.0.0.1:5064: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass30_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Program.<Main>$(String[] args) in /Users/karolineqvick/ITAI/GO-Auctions/AuctionService/Program.cs:line 37
+2023-12-01 10:27:00.4669|DEBUG|Program|init main
+2023-12-01 10:27:00.7245|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactory|Registered model binder providers, in the following order: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider
+2023-12-01 10:27:00.7634|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting starting
+2023-12-01 10:27:00.8351|ERROR|Program|Stopped program because of exception|System.IO.IOException: Failed to bind to address http://127.0.0.1:5064: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass30_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at Program.<Main>$(String[] args) in /Users/karolineqvick/ITAI/GO-Auctions/AuctionService/Program.cs:line 37
+2023-12-01 10:32:21.9124|DEBUG|Program|init main
+2023-12-01 10:32:22.0906|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactory|Registered model binder providers, in the following order: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider
+2023-12-01 10:32:22.1147|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting starting
+2023-12-01 10:32:22.1404|INFO|Microsoft.Hosting.Lifetime|Now listening on: http://localhost:5064
+2023-12-01 10:32:22.1456|DEBUG|Microsoft.AspNetCore.Hosting.Diagnostics|Loaded hosting startup assembly AuctionService
+2023-12-01 10:32:22.1458|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2023-12-01 10:32:22.1458|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2023-12-01 10:32:22.1458|INFO|Microsoft.Hosting.Lifetime|Content root path: /Users/karolineqvick/ITAI/GO-Auctions/AuctionService
+2023-12-01 10:32:22.1458|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting started
+2023-12-01 10:32:36.5410|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQL" accepted.
+2023-12-01 10:32:36.5426|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQL" started.
+2023-12-01 10:32:36.5953|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/1.1 GET http://localhost:5064/ - -
+2023-12-01 10:32:36.5976|DEBUG|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|Wildcard detected, all requests with hosts will be allowed.
+2023-12-01 10:32:36.6233|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|No candidates found for the request path '/'
+2023-12-01 10:32:36.6233|DEBUG|Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware|Request did not match any endpoints
+2023-12-01 10:32:36.6507|DEBUG|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|The request path  does not match the path filter
+2023-12-01 10:32:36.6530|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2023-12-01 10:32:36.6637|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQL" completed keep alive response.
+2023-12-01 10:32:36.6653|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/1.1 GET http://localhost:5064/ - - - 404 0 - 71.7634ms
+2023-12-01 10:32:40.3471|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVIA1Q4KQQL" received FIN.
+2023-12-01 10:32:40.3525|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVIA1Q4KQQL" sending FIN because: "The client closed the connection."
+2023-12-01 10:32:40.3578|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQL" disconnecting.
+2023-12-01 10:32:40.3678|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQL" stopped.
+2023-12-01 10:36:02.0261|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVIA1Q4KQQM" received FIN.
+2023-12-01 10:36:02.0292|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQM" accepted.
+2023-12-01 10:36:02.0292|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQM" started.
+2023-12-01 10:36:02.0298|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQN" accepted.
+2023-12-01 10:36:02.0298|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQN" started.
+2023-12-01 10:36:02.0298|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVIA1Q4KQQM" sending FIN because: "The client closed the connection."
+2023-12-01 10:36:02.0306|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQM" disconnecting.
+2023-12-01 10:36:02.0306|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQM" stopped.
+2023-12-01 10:36:02.0328|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/1.1 GET http://localhost:5064/api/auction application/json 111
+2023-12-01 10:36:02.0378|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|1 candidate(s) found for the request path '/api/auction'
+2023-12-01 10:36:02.0398|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|Endpoint 'AuctionService.Controllers.AuctionController.Get (AuctionService)' with route pattern 'api/Auction' is valid for the request path '/api/auction'
+2023-12-01 10:36:02.0408|DEBUG|Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware|Request matched endpoint 'AuctionService.Controllers.AuctionController.Get (AuctionService)'
+2023-12-01 10:36:02.0433|DEBUG|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Static files was skipped as the request already matched an endpoint.
+2023-12-01 10:36:02.0449|INFO|Microsoft.AspNetCore.Routing.EndpointMiddleware|Executing endpoint 'AuctionService.Controllers.AuctionController.Get (AuctionService)'
+2023-12-01 10:36:02.0530|INFO|Microsoft.AspNetCore.Routing.EndpointMiddleware|Executed endpoint 'AuctionService.Controllers.AuctionController.Get (AuctionService)'
+2023-12-01 10:36:02.0537|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.|System.InvalidOperationException: Multiple constructors accepting all given argument types have been found in type 'AuctionService.Controllers.AuctionController'. There should only be one applicable constructor.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.TryFindMatchingConstructor(Type instanceType, Type[] argumentTypes, ConstructorInfo& matchingConstructor, Nullable`1[]& parameterMap)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.FindApplicableConstructor(Type instanceType, Type[] argumentTypes, ConstructorInfo& matchingConstructor, Nullable`1[]& matchingParameterMap)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateFactory(Type instanceType, Type[] argumentTypes)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.CreateActivator(ControllerActionDescriptor descriptor)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.CreateControllerFactory(ControllerActionDescriptor descriptor)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2023-12-01 10:36:02.0714|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQN" completed keep alive response.
+2023-12-01 10:36:02.0714|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/1.1 GET http://localhost:5064/api/auction application/json 111 - 500 - text/plain;+charset=utf-8 38.8351ms
+2023-12-01 10:36:02.0720|DEBUG|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HMVIA1Q4KQQN", Request id "0HMVIA1Q4KQQN:00000001": started reading request body.
+2023-12-01 10:36:02.0720|DEBUG|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HMVIA1Q4KQQN", Request id "0HMVIA1Q4KQQN:00000001": done reading request body.
+2023-12-01 10:38:12.4921|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQN" disconnecting.
+2023-12-01 10:38:12.4936|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQN" stopped.
+2023-12-01 10:38:12.4936|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVIA1Q4KQQN" sending FIN because: "The Socket transport's send loop completed gracefully."
+2023-12-01 10:46:37.7247|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVIA1Q4KQQO" received FIN.
+2023-12-01 10:46:37.7262|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQO" accepted.
+2023-12-01 10:46:37.7262|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQP" accepted.
+2023-12-01 10:46:37.7262|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQO" started.
+2023-12-01 10:46:37.7262|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQP" started.
+2023-12-01 10:46:37.7262|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVIA1Q4KQQO" sending FIN because: "The client closed the connection."
+2023-12-01 10:46:37.7262|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQO" disconnecting.
+2023-12-01 10:46:37.7270|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQO" stopped.
+2023-12-01 10:46:37.7270|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/1.1 GET http://localhost:5064/api/auction/1 application/json 111
+2023-12-01 10:46:37.7270|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|1 candidate(s) found for the request path '/api/auction/1'
+2023-12-01 10:46:37.7270|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|Endpoint 'AuctionService.Controllers.AuctionController.GetAuctionById (AuctionService)' with route pattern 'api/Auction/{id}' is valid for the request path '/api/auction/1'
+2023-12-01 10:46:37.7270|DEBUG|Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware|Request matched endpoint 'AuctionService.Controllers.AuctionController.GetAuctionById (AuctionService)'
+2023-12-01 10:46:37.7301|DEBUG|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Static files was skipped as the request already matched an endpoint.
+2023-12-01 10:46:37.7301|INFO|Microsoft.AspNetCore.Routing.EndpointMiddleware|Executing endpoint 'AuctionService.Controllers.AuctionController.GetAuctionById (AuctionService)'
+2023-12-01 10:46:37.7350|INFO|Microsoft.AspNetCore.Routing.EndpointMiddleware|Executed endpoint 'AuctionService.Controllers.AuctionController.GetAuctionById (AuctionService)'
+2023-12-01 10:46:37.7350|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.|System.InvalidOperationException: Multiple constructors accepting all given argument types have been found in type 'AuctionService.Controllers.AuctionController'. There should only be one applicable constructor.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.TryFindMatchingConstructor(Type instanceType, Type[] argumentTypes, ConstructorInfo& matchingConstructor, Nullable`1[]& parameterMap)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.FindApplicableConstructor(Type instanceType, Type[] argumentTypes, ConstructorInfo& matchingConstructor, Nullable`1[]& matchingParameterMap)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateFactory(Type instanceType, Type[] argumentTypes)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.CreateActivator(ControllerActionDescriptor descriptor)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.CreateControllerFactory(ControllerActionDescriptor descriptor)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2023-12-01 10:46:37.7377|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQP" completed keep alive response.
+2023-12-01 10:46:37.7377|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/1.1 GET http://localhost:5064/api/auction/1 application/json 111 - 500 - text/plain;+charset=utf-8 10.7385ms
+2023-12-01 10:46:37.7380|DEBUG|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HMVIA1Q4KQQP", Request id "0HMVIA1Q4KQQP:00000001": started reading request body.
+2023-12-01 10:46:37.7380|DEBUG|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HMVIA1Q4KQQP", Request id "0HMVIA1Q4KQQP:00000001": done reading request body.
+2023-12-01 10:48:48.1299|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQP" disconnecting.
+2023-12-01 10:48:48.1312|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMVIA1Q4KQQP" stopped.
+2023-12-01 10:48:48.1316|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMVIA1Q4KQQP" sending FIN because: "The Socket transport's send loop completed gracefully."
