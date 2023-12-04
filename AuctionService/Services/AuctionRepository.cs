@@ -3,8 +3,7 @@ using AuctionService.Models;
 using MongoDB.Driver;
 using MongoDB.Bson;
 
-namespace AuctionService.Services{
-public class AuctionRepository : IAuctionRepository
+namespace AuctionService.Services
 {
     
     private readonly IMongoCollection<Auction> _auctions;
@@ -47,9 +46,3 @@ public class AuctionRepository : IAuctionRepository
 
     }
 }
-}
-
-    
-
-
-

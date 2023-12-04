@@ -15,7 +15,6 @@ namespace AuctionService.Controllers
         private readonly IBidRepository _bidRepository;
         private readonly IItemRepository _itemRepository;
 
-
         public AuctionController()
         {
             _auctions = new List<Auction>();
@@ -45,17 +44,17 @@ namespace AuctionService.Controllers
 
         // GET: api/auction/{id}
         [HttpGet("{id}")]
-        public IActionResult GetAuctionById(int id)
+        public Task<IActionResult> GetAuctionById(int id)
         {
             Auction auction = _auctionRepository.GetAuctionById(id).Result;
             auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
             auction.Bids = _bidRepository.GetBidsForAuction(auction.Id).Result.ToList();
-            return Ok(auction);
+            return Task.FromResult<IActionResult>(Ok(auction));
         }
 
         // POST: api/auction
         [HttpPost]
-        public async Task<ActionResult> PostAuction([FromBody] Auction auction)
+        public Task<IActionResult> PostAuction([FromBody] Auction auction)
         {
             var item = await _itemRepository.GetItemById(auction.ItemId);
             if (item == null)
@@ -65,7 +64,7 @@ namespace AuctionService.Controllers
             auction.ItemId = item.Id;
             await _auctionRepository.PostAuction(auction);
             _logger.LogInformation("posting..");
-            return CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction);
+            return Task.FromResult<IActionResult>(CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction));
         }
 
 
@@ -73,7 +72,7 @@ namespace AuctionService.Controllers
 
         // PUT: api/auction/{id}
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutAuction(int id, [FromBody] Auction auction)
+        public async Task<IActionResult> PutAuction(int id, [FromBody] Auction auction)
         {
             var existingAuction = await _auctionRepository.GetAuctionById(id);
             if (existingAuction == null)
