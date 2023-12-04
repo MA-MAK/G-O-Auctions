@@ -3,7 +3,7 @@ using AuctionService.Models;
 namespace AuctionService.Services{
 public interface IAuctionRepository
 {
-    public Task<Auction> GetAuctionById(int auctionId);
+    public Task<Auction> GetAuctionById(string auctionId);
     // public Task<IEnumerable<Auction>> GetAllAuctions();
     /*
     Task<IEnumerable<Auction>> GetAuctionsByCategory(string category);

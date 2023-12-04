@@ -1,0 +1,12 @@
+
+{
+    "Id": 1,
+    "StartTime": "2022-01-01T10:00:00",
+    "EndTime": "2022-01-01T12:00:00",
+    "Status": 1,
+    "Title": "Example Auction",
+    "Type": 1,
+    "ItemId": 1,
+    "Description": "This is an example auction"
+}
+

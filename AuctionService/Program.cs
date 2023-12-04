@@ -23,6 +23,8 @@ try
     builder.Logging.ClearProviders();
     builder.Host.UseNLog();
     builder.Services.AddSingleton<IAuctionRepository, AuctionRepository>();
+    builder.Services.AddSingleton<IItemRepository, ItemRepository>();
+    builder.Services.AddSingleton<IBidRepository, BidRepository>();
 
     // MongoDB configuration
     var connectionString = builder.Configuration.GetConnectionString("MongoDBConnection");

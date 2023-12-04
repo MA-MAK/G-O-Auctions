@@ -15,12 +15,14 @@ namespace AuctionService.Controllers
         private readonly IBidRepository _bidRepository;
         private readonly IItemRepository _itemRepository;
 
-
+/*
         public AuctionController()
         {
             _auctions = new List<Auction>();
         }
-
+        */
+        
+       [ActivatorUtilitiesConstructor]
         public AuctionController(ILogger<AuctionController> logger, IConfiguration configuration, IAuctionRepository auctionRepository, IItemRepository itemRepository, IBidRepository bidRepository)
         {
             _logger = logger;
@@ -45,7 +47,7 @@ namespace AuctionService.Controllers
 
         // GET: api/auction/{id}
         [HttpGet("{id}")]
-        public IActionResult GetAuctionById(int id)
+        public IActionResult GetAuctionById(string id)
         {
             Auction auction = _auctionRepository.GetAuctionById(id).Result;
             auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
@@ -57,7 +59,7 @@ namespace AuctionService.Controllers
         [HttpPost]
         public async Task<ActionResult> PostAuction([FromBody] Auction auction)
         {
-            auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
+            //auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
             await _auctionRepository.PostAuction(auction);
             _logger.LogInformation("posting..");
             return CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction);
@@ -67,7 +69,7 @@ namespace AuctionService.Controllers
 
         // PUT: api/auction/{id}
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutAuction(int id, [FromBody] Auction auction)
+        public async Task<ActionResult> PutAuction(string id, [FromBody] Auction auction)
         {
             var existingAuction = await _auctionRepository.GetAuctionById(id);
             if (existingAuction == null)
@@ -104,7 +106,7 @@ namespace AuctionService.Controllers
 
         // DELETE: api/auction/{id}
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(string id)
         {
             var auction = _auctions.Find(a => a.Id == id);
             if (auction == null)

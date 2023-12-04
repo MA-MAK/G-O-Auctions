@@ -8,15 +8,21 @@ public class AuctionRepository : IAuctionRepository
 {
     
     private readonly IMongoCollection<Auction> _auctions;
+    private readonly ILogger<AuctionRepository> _logger;
 
-    public AuctionRepository(MongoDBContext dbContext)
+    public AuctionRepository(MongoDBContext dbContext, ILogger<AuctionRepository> logger)
     {
         _auctions = dbContext.Auctions;
+        _logger = logger;
     }
 
     public  Task PostAuction(Auction auction)
     {
-        _auctions.InsertOneAsync(auction);
+        _logger.LogInformation($"count: {_auctions.CountDocuments(a => true)}");
+        _logger.LogInformation("AuctionRepository.PostAuction");
+        _auctions.InsertOne(auction);
+        _logger.LogInformation($"count: {_auctions.CountDocuments(a => true)}");
+        _logger.LogInformation("AuctionRepository.PostAuction - Auction inserted");
         return Task.CompletedTask;
     }
 
@@ -33,7 +39,7 @@ public class AuctionRepository : IAuctionRepository
     }
     
     */  
-    public Task <Auction> GetAuctionById(int id)
+    public Task <Auction> GetAuctionById(string id)
     {
         var auction =  _auctions.Find(a => a.Id == id).FirstOrDefaultAsync();
         return Task.FromResult<Auction>(auction.Result);

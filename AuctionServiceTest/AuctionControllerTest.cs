@@ -35,37 +35,37 @@ public class Tests
         Customer bidder2 = new Customer { Id = 3, Name = "Peter Bennington", Email = "p@gmail" };
         Customer bidder3 = new Customer { Id = 4, Name = "Walter Leigh", Email = "w@gmail" };
         List<Bid> bids = new List<Bid>{
-            new Bid { Id = 1, Bidder = bidder1, Amount = 1000, Time = DateTime.Now, AuctionId = 1 },
-            new Bid { Id = 2, Bidder = bidder2, Amount = 2000, Time = DateTime.Now.AddMinutes(10), AuctionId = 1 },
-            new Bid { Id = 3, Bidder = bidder3, Amount = 3000, Time = DateTime.Now.AddMinutes(30), AuctionId = 1 },
-            new Bid { Id = 4, Bidder = bidder2, Amount = 5000, Time = DateTime.Now.AddMinutes(35), AuctionId = 1 }
+            new Bid { Id = 1, Bidder = bidder1, Amount = 1000, Time = DateTime.Now, AuctionId = "1" },
+            new Bid { Id = 2, Bidder = bidder2, Amount = 2000, Time = DateTime.Now.AddMinutes(10), AuctionId = "1" },
+            new Bid { Id = 3, Bidder = bidder3, Amount = 3000, Time = DateTime.Now.AddMinutes(30), AuctionId = "1" },
+            new Bid { Id = 4, Bidder = bidder2, Amount = 5000, Time = DateTime.Now.AddMinutes(35), AuctionId = "1" }
         };
 
         Item item = new Item { Id = 1, Title = "Chair", Description = "The best chair", Category = Category.Home, Condition = Condition.Good, Location = "Amsterdam", Seller = customer, StartPrice = 10, AssesmentPrice = 20, Year = 2021, Status = Status.Registered };
 
-        Auction auction = new Auction { Id = 1, StartTime = DateTime.Now, EndTime = DateTime.Now, Status = AuctionStatus.Active, Type = AuctionType.Dutch, Item = item };
+        Auction auction = new Auction { Id = "1", StartTime = DateTime.Now, EndTime = DateTime.Now, Status = AuctionStatus.Active, Type = AuctionType.Dutch, Item = item };
 
         var ItemRepositoryMock = new Mock<IItemRepository>();
         ItemRepositoryMock.Setup(svc => svc.GetItemById(1))
             .Returns(Task.FromResult<Item?>(item));
 
         var BidRepositoryMock = new Mock<IBidRepository>();
-        BidRepositoryMock.Setup(svc => svc.GetBidsForAuction(1))
+        BidRepositoryMock.Setup(svc => svc.GetBidsForAuction("1"))
             .Returns(Task.FromResult<IEnumerable<Bid>?>(bids));
 
         var AuctionRepositoryMock = new Mock<IAuctionRepository>();
-        AuctionRepositoryMock.Setup(svc => svc.GetAuctionById(1))
+        AuctionRepositoryMock.Setup(svc => svc.GetAuctionById("1"))
             .Returns(Task.FromResult<Auction?>(auction));
 
         var controller = new AuctionController(_logger, _configuration, AuctionRepositoryMock.Object, ItemRepositoryMock.Object, BidRepositoryMock.Object);
         //Test if we can get an auction by ID - Use mock objects for ILogger and IConfiguration
 
-        var result = controller.GetAuctionById(1);
+        var result = controller.GetAuctionById("1");
 
         // Assert
         Assert.That(result, Is.TypeOf<OkObjectResult>());
         Assert.That((result as OkObjectResult)?.Value, Is.TypeOf<Auction>());
-        Assert.That(((result as OkObjectResult)?.Value as Auction).Id, Is.EqualTo(1));
+        Assert.That(((result as OkObjectResult)?.Value as Auction).Id, Is.EqualTo("1"));
         Assert.That(((result as OkObjectResult)?.Value as Auction).Item, Is.TypeOf<Item>());
         Assert.That(((result as OkObjectResult)?.Value as Auction).Item.Id, Is.EqualTo(1));
         Assert.That(((result as OkObjectResult)?.Value as Auction).Bids[1], Is.TypeOf<Bid>());
@@ -98,7 +98,7 @@ public class Tests
 
         var auction = new Auction
         {
-            Id = 1,
+            Id = "1",
             StartTime = DateTime.Now,
             EndTime = DateTime.Now,
             Status = AuctionStatus.Active,
@@ -121,7 +121,7 @@ public class Tests
         // Assert
         Assert.That(result, Is.TypeOf<CreatedAtActionResult>());
         Assert.That((result as CreatedAtActionResult)?.Value, Is.TypeOf<Auction>());
-        Assert.That(((result as CreatedAtActionResult)?.Value as Auction).Id, Is.EqualTo(1));
+        Assert.That(((result as CreatedAtActionResult)?.Value as Auction).Id, Is.EqualTo("1"));
         Assert.That(((result as CreatedAtActionResult)?.Value as Auction).Item, Is.TypeOf<Item>());
         Assert.That(((result as CreatedAtActionResult)?.Value as Auction).Item.Id, Is.EqualTo(1));
 
@@ -133,9 +133,9 @@ public class Tests
 public void PutAuctionTest()
 {
     // Arrange
-    int id = 1;
-    Auction auction = new Auction { Id = 1, Title = "Updated Auction", Description = "Updated Description" };
-    var existingAuction = new Auction { Id = 1, Title = "Existing Auction", Description = "Existing Description" };
+    string id ="1";
+    Auction auction = new Auction { Id = "1", Title = "Updated Auction", Description = "Updated Description" };
+    var existingAuction = new Auction { Id = "1", Title = "Existing Auction", Description = "Existing Description" };
     var AuctionRepositoryMock = new Mock<IAuctionRepository>();
     AuctionRepositoryMock.Setup(svc => svc.GetAuctionById(id))
         .Returns(Task.FromResult<Auction?>(existingAuction));
