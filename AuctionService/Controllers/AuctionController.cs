@@ -57,11 +57,17 @@ namespace AuctionService.Controllers
         [HttpPost]
         public async Task<ActionResult> PostAuction([FromBody] Auction auction)
         {
-            auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
+            var item = await _itemRepository.GetItemById(auction.ItemId);
+            if (item == null)
+            {
+                return NotFound("Item not found");
+            }
+            auction.ItemId = item.Id;
             await _auctionRepository.PostAuction(auction);
             _logger.LogInformation("posting..");
             return CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction);
         }
+
 
         // PUT: api/auction/{id}
 

@@ -14,7 +14,7 @@ public class AuctionRepository : IAuctionRepository
         _auctions = dbContext.Auctions;
     }
 
-    public  Task PostAuction(Auction auction)
+    public Task PostAuction(Auction auction)
     {
         _auctions.InsertOneAsync(auction);
         return Task.CompletedTask;
