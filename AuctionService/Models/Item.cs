@@ -1,6 +1,7 @@
-
+namespace AuctionService.Models;
 public class Item
 {
+    
     public int Id { get; set; }
     public string Title { get; set; }
     public decimal StartPrice { get; set; }
@@ -12,6 +13,8 @@ public class Item
     public Category Category { get; set; }
     public Condition Condition { get; set; }
     public Status Status { get; set; }
+
+    public int AuctionId { get; set; }
 
 }
 public enum Category
