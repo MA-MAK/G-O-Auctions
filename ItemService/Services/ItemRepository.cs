@@ -14,7 +14,7 @@ namespace ItemService.Services
 
         public Task<Item> GetItemForAuction(int auctionId)
         {
-            throw new NotImplementedException();
+            return Task.FromResult<Item>(items.Where(b => b.AuctionId == auctionId).FirstOrDefault());
         }
 
     }

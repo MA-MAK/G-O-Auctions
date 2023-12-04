@@ -1,8 +1,9 @@
 using ItemService.Models;
 
-namespace ItemService.Services{
-public interface IItemRepository
+namespace ItemService.Services
 {
-    public Task<Item> GetItemForAuction(int auctionId);
-}
+    public interface IItemRepository
+    {
+        public Task<Item> GetItemForAuction(int auctionId);
+    }
 }
