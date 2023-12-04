@@ -12,6 +12,7 @@ public class Item
     public Category Category { get; set; }
     public Condition Condition { get; set; }
     public Status Status { get; set; }
+    public int AuctionId { get; set; }
 
 }
 public enum Category

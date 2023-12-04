@@ -41,7 +41,7 @@ public class Tests
             new Bid { Id = 4, Bidder = bidder2, Amount = 5000, Time = DateTime.Now.AddMinutes(35), AuctionId = 1 }
         };
 
-        Item item = new Item { Id = 1, Title = "Chair", Description = "The best chair", Category = Category.Home, Condition = Condition.Good, Location = "Amsterdam", Seller = customer, StartPrice = 10, AssesmentPrice = 20, Year = 2021, Status = Status.Registered };
+        Item item = new Item { Id = 1, Title = "Chair", Description = "The best chair", Category = Category.Home, Condition = Condition.Good, Location = "Amsterdam", Seller = customer, StartPrice = 10, AssesmentPrice = 20, Year = 2021, Status = Status.Registered, AuctionId = 1 };
 
         Auction auction = new Auction { Id = 1, StartTime = DateTime.Now, EndTime = DateTime.Now, Status = AuctionStatus.Active, Type = AuctionType.Dutch, Item = item };
 
