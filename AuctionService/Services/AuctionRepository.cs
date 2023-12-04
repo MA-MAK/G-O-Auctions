@@ -1,51 +1,47 @@
 using System.Collections.Generic;
 using AuctionService.Models;
 
-namespace AuctionService.Services{
-public class AuctionRepository : IAuctionRepository
+namespace AuctionService.Services
 {
-    private List<Auction> auctions;
-
-    public AuctionRepository()
+    public class AuctionRepository : IAuctionRepository
     {
-        auctions = new List<Auction>();
-    }
+        private List<Auction> auctions;
 
-    public Task PostAuction(Auction auction)
-    {
-        auctions.Add(auction);
-        return Task.CompletedTask;
-    }
-
-    public Task DeleteAuction(Auction auction)
-    {
-        auctions.Remove(auction);
-        return Task.CompletedTask;
-    }
-
-    public Task<IEnumerable<Auction>> GetAllAuctions()
-    {
-        return Task.FromResult<IEnumerable<Auction>>(auctions);
-    }
-
-    public Task <Auction> GetAuctionById(int id)
-    {
-        return Task.FromResult(auctions.Find(a => a.Id == id));
-    }
-
-    public Task UpdateAuction(Auction auction)
-    {
-        int index = auctions.FindIndex(a => a.Id == auction.Id);
-        if (index != -1)
+        public AuctionRepository()
         {
-            auctions[index] = auction;
+            auctions = new List<Auction>();
         }
-        return Task.CompletedTask;
+
+        public Task PostAuction(Auction auction)
+        {
+            auctions.Add(auction);
+            return Task.CompletedTask;
+        }
+
+        public Task DeleteAuction(Auction auction)
+        {
+            auctions.Remove(auction);
+            return Task.CompletedTask;
+        }
+
+        public Task<IEnumerable<Auction>> GetAllAuctions()
+        {
+            return Task.FromResult<IEnumerable<Auction>>(auctions);
+        }
+
+        public Task<Auction> GetAuctionById(int id)
+        {
+            return Task.FromResult(auctions.Find(a => a.Id == id));
+        }
+
+        public Task UpdateAuction(Auction auction)
+        {
+            int index = auctions.FindIndex(a => a.Id == auction.Id);
+            if (index != -1)
+            {
+                auctions[index] = auction;
+            }
+            return Task.CompletedTask;
+        }
     }
 }
-}
-
-    
-
-
-
