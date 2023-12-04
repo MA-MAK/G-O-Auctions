@@ -16,8 +16,8 @@ public class MongoDBContext
 {
     private NLog.Logger _logger;
     private IConfiguration _config;
-    public IMongoDatabase GODatabase { get; set; }
-    public IMongoCollection<Auction> auctions { get; set; }
+    public virtual IMongoDatabase GODatabase { get; set; }
+    public virtual IMongoCollection<Auction> auctions { get; set; }
 
 
 

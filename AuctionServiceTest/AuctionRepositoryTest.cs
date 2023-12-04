@@ -11,6 +11,7 @@ using AuctionService.Controllers;
 
 namespace AuctionServiceTest
 {
+    [TestFixture]
     public class AuctionRepositoryTests
     {
         private AuctionRepository _auctionRepository;
@@ -23,59 +24,178 @@ namespace AuctionServiceTest
 
         private IConfiguration _configuration = null!;
 
+        /*
+                [SetUp]
+                public void Setup()
+                {
 
+                    // Create a mock of IMongoCollection<Auction>
+                    _auctionsCollectionMock = new Mock<IMongoCollection<Auction>>(MockBehavior.Strict);
+
+                    // Create a mock of IMongoDatabase
+                    _goDatabaseMock = new Mock<IMongoDatabase>(MockBehavior.Strict);
+                    _goDatabaseMock.Setup(db => db.GetCollection<Auction>("auctions", null)).Returns(_auctionsCollectionMock.Object);
+
+                    // Create a mock of MongoDBContext using the mock database
+                    _mongoDbContextMock = new Mock<MongoDBContext>(MockBehavior.Strict, null, null, null);
+                    _mongoDbContextMock.Setup(m => m.Auctions).Returns(_auctionsCollectionMock.Object);
+                    _mongoDbContextMock.Setup(m => m.GODatabase).Returns(_goDatabaseMock.Object);
+
+                    // Create AuctionRepository with the mocked MongoDBContext
+                    _auctionRepository = new AuctionRepository(_mongoDbContextMock.Object, loggerMock.Object, configurationMock.Object);
+                }
+        */
         [SetUp]
         public void Setup()
         {
-        
-                // Create a mock of IMongoCollection<Auction>
-                _auctionsCollectionMock = new Mock<IMongoCollection<Auction>>(MockBehavior.Strict);
+            // Create a mock of IMongoCollection<Auction>
+            _auctionsCollectionMock = new Mock<IMongoCollection<Auction>>(MockBehavior.Strict);
 
-                // Create a mock of IMongoDatabase
-                _goDatabaseMock = new Mock<IMongoDatabase>(MockBehavior.Strict);
-                _goDatabaseMock.Setup(db => db.GetCollection<Auction>("auctions", null)).Returns(_auctionsCollectionMock.Object);
+            // Set up InsertOneAsync to return a completed task
+            _auctionsCollectionMock
+                .Setup(m => m.InsertOneAsync(It.IsAny<Auction>(), null, default))
+                .Returns(Task.CompletedTask);
 
-                // Create a mock of MongoDBContext using the mock database
-                _mongoDbContextMock = new Mock<MongoDBContext>(MockBehavior.Strict, null, null, null);
-                _mongoDbContextMock.Setup(m => m.Auctions).Returns(_auctionsCollectionMock.Object);
-                _mongoDbContextMock.Setup(m => m.GODatabase).Returns(_goDatabaseMock.Object);
+            // Create a mock of IMongoDatabase
+            _goDatabaseMock = new Mock<IMongoDatabase>(MockBehavior.Strict);
+            _goDatabaseMock.Setup(db => db.GetCollection<Auction>("auctions", null)).Returns(_auctionsCollectionMock.Object);
 
-                // Create AuctionRepository with the mocked MongoDBContext
-                _auctionRepository = new AuctionRepository(_mongoDbContextMock.Object);
-            }
-            
-            [Test]
-            public async Task PostAuctionServiceTest()
-            {
-                // Arrange
-                var item = new Item
+            // Create a mock of MongoDBContext using the mock database
+            _mongoDbContextMock = new Mock<MongoDBContext>(MockBehavior.Strict, null, null, null);
+            _mongoDbContextMock.Setup(m => m.Auctions).Returns(_auctionsCollectionMock.Object);
+            _mongoDbContextMock.Setup(m => m.GODatabase).Returns(_goDatabaseMock.Object);
+
+            // Create a mock of ILogger and IConfiguration
+            var loggerMock = new Mock<ILogger<AuctionRepository>>();
+            var configurationMock = new Mock<IConfiguration>();
+
+            // Create AuctionRepository with the mocked MongoDBContext, ILogger, and IConfiguration
+            _auctionRepository = new AuctionRepository(_mongoDbContextMock.Object, loggerMock.Object, configurationMock.Object);
+
+
+        }
+
+
+        /*
+                [Test]
+                public async Task PostAuctionServiceTest()
                 {
-                    Id = 1,
-                    Title = "Chair",
-                    Description = "The best chair",
-                    Category = Category.Home,
-                    Condition = Condition.Good,
-                    Location = "Amsterdam",
-                    Seller = new Customer
+                    // Arrange
+                    var item = new Item
                     {
                         Id = 1,
-                        Name = "Johnny Doey",
-                        Email = "j@gmail"
-                    },
-                    StartPrice = 10,
-                    AssesmentPrice = 20,
-                    Year = 2021,
-                    Status = Status.Registered
-                };
+                        Title = "Chair",
+                        Description = "The best chair",
+                        Category = Category.Home,
+                        Condition = Condition.Good,
+                        Location = "Amsterdam",
+                        Seller = new Customer
+                        {
+                            Id = 1,
+                            Name = "Johnny Doey",
+                            Email = "j@gmail"
+                        },
+                        StartPrice = 10,
+                        AssesmentPrice = 20,
+                        Year = 2021,
+                        Status = Status.Registered
+                    };
 
-                Auction auction = new Auction { Id = 1, StartTime = DateTime.Now, EndTime = DateTime.Now, Status = AuctionStatus.Active, Type = AuctionType.Dutch, Item = item };
+                    Auction auction = new Auction { Id = 1, StartTime = DateTime.Now, EndTime = DateTime.Now, Status = AuctionStatus.Active, Type = AuctionType.Dutch, Item = item };
 
-                // Act
-                await _auctionRepository.PostAuction(auction);
+                    // Act
+                    await _auctionRepository.PostAuction(auction);
 
-                // Assert
-                _auctionsCollectionMock.Verify(m => m.InsertOneAsync(It.IsAny<Auction>(), null, default), Times.Once);
 
-            }
+                    await _auctionsCollectionMock.InsertOneAsync(auction);
+
+                    _auctionsCollectionMock.Verify(
+                        m => m.InsertOneAsync(
+                            It.Is<Auction>(a =>
+                                a.Id == auction.Id &&
+                                a.StartTime == auction.StartTime &&
+                                a.EndTime == auction.EndTime &&
+                                a.Status == auction.Status &&
+                                a.Type == auction.Type &&
+                                a.Item == auction.Item
+                            ),
+                            null,
+                            default
+                        ),
+                        Times.Once
+                    );
+        
+    }*/
+        [Test]
+        public async Task PostAuctionServiceTest()
+        {
+            // Create a mock of IMongoCollection<Auction>
+            _auctionsCollectionMock = new Mock<IMongoCollection<Auction>>();
+
+            // Set up InsertOneAsync to return a completed task
+            _auctionsCollectionMock
+                .Setup(m => m.InsertOneAsync(It.IsAny<Auction>(), null, default))
+                .Returns(Task.CompletedTask);
+
+            // Create a mock of IMongoDatabase
+            _goDatabaseMock = new Mock<IMongoDatabase>();
+            _goDatabaseMock.Setup(db => db.GetCollection<Auction>("auctions", null)).Returns(_auctionsCollectionMock.Object);
+
+            // Create a mock of MongoDBContext using the mock database
+            _mongoDbContextMock = new Mock<MongoDBContext>(null, null, null);
+            _mongoDbContextMock.Setup(m => m.Auctions).Returns(_auctionsCollectionMock.Object);
+            _mongoDbContextMock.Setup(m => m.GODatabase).Returns(_goDatabaseMock.Object);
+
+            // Create a mock of ILogger and IConfiguration
+            var loggerMock = new Mock<ILogger<AuctionRepository>>();
+            var configurationMock = new Mock<IConfiguration>();
+
+            // Create AuctionRepository with the mocked MongoDBContext, ILogger, and IConfiguration
+            _auctionRepository = new AuctionRepository(_mongoDbContextMock.Object, loggerMock.Object, configurationMock.Object);
+
+
+
+            var item = new Item
+            {
+                Id = 1,
+                Title = "Chair",
+                Description = "The best chair",
+                Category = Category.Home,
+                Condition = Condition.Good,
+                Location = "Amsterdam",
+                Seller = new Customer
+                {
+                    Id = 1,
+                    Name = "Johnny Doey",
+                    Email = "j@gmail"
+                },
+                StartPrice = 10,
+                AssesmentPrice = 20,
+                Year = 2021,
+                Status = Status.Registered
+            };
+
+            Auction auction = new Auction { Id = 1, StartTime = DateTime.Now, EndTime = DateTime.Now, Status = AuctionStatus.Active, Type = AuctionType.Dutch, Item = item };
+
+            // Act
+            await _auctionRepository.PostAuction(auction);
+
+            // Assert
+            _auctionsCollectionMock.Verify(
+                m => m.InsertOneAsync(
+                      It.Is<Auction>(a =>
+                        a.Id == auction.Id &&
+
+                        a.Status == auction.Status &&
+                        a.Type == auction.Type &&
+                        a.Item == auction.Item
+                    ),
+                    null,
+                    default
+                ),
+                Times.Once
+            );
         }
+
     }
+}
