@@ -15,7 +15,6 @@ namespace AuctionService.Controllers
         private readonly IBidRepository _bidRepository;
         private readonly IItemRepository _itemRepository;
 
-
         public AuctionController()
         {
             _auctions = new List<Auction>();
