@@ -3,8 +3,7 @@ using AuctionService.Models;
 using MongoDB.Driver;
 using MongoDB.Bson;
 
-namespace AuctionService.Services{
-public class AuctionRepository : IAuctionRepository
+namespace AuctionService.Services
 {
     
     private readonly IMongoCollection<Auction> _auctions;
@@ -16,7 +15,7 @@ public class AuctionRepository : IAuctionRepository
         _logger = logger;
     }
 
-    public  Task PostAuction(Auction auction)
+    public Task PostAuction(Auction auction)
     {
         _logger.LogInformation($"count: {_auctions.CountDocuments(a => true)}");
         _logger.LogInformation("AuctionRepository.PostAuction");
@@ -53,9 +52,3 @@ public class AuctionRepository : IAuctionRepository
 
     }
 }
-}
-
-    
-
-
-

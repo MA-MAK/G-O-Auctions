@@ -15,6 +15,7 @@ namespace AuctionService.Controllers
         private readonly IBidRepository _bidRepository;
         private readonly IItemRepository _itemRepository;
 
+
 /*
         public AuctionController()
         {
@@ -47,28 +48,37 @@ namespace AuctionService.Controllers
 
         // GET: api/auction/{id}
         [HttpGet("{id}")]
+        public Task<IActionResult> GetAuctionById(int id)
         public IActionResult GetAuctionById(string id)
         {
             Auction auction = _auctionRepository.GetAuctionById(id).Result;
             auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
             auction.Bids = _bidRepository.GetBidsForAuction(auction.Id).Result.ToList();
-            return Ok(auction);
+            return Task.FromResult<IActionResult>(Ok(auction));
         }
 
         // POST: api/auction
         [HttpPost]
-        public async Task<ActionResult> PostAuction([FromBody] Auction auction)
+        public Task<IActionResult> PostAuction([FromBody] Auction auction)
         {
+            var item = await _itemRepository.GetItemById(auction.ItemId);
+            if (item == null)
+            {
+                return NotFound("Item not found");
+            }
+            auction.ItemId = item.Id;
             //auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
             await _auctionRepository.PostAuction(auction);
             _logger.LogInformation("posting..");
-            return CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction);
+            return Task.FromResult<IActionResult>(CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction));
         }
+
 
         // PUT: api/auction/{id}
 
         // PUT: api/auction/{id}
         [HttpPut("{id}")]
+        public async Task<IActionResult> PutAuction(int id, [FromBody] Auction auction)
         public async Task<ActionResult> PutAuction(string id, [FromBody] Auction auction)
         {
             var existingAuction = await _auctionRepository.GetAuctionById(id);
