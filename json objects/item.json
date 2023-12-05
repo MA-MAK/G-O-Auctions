@@ -1,0 +1,16 @@
+{
+    "Title": "item_title",
+    "StartPrice": 10.99,
+    "AssesmentPrice": 15.99,
+    "Description": "item_description",
+    "Year": 2022,
+    "Location": "item_location",
+    "Seller": {
+        "Id": "seller_id",
+        "Name": "seller_name",
+        "Email": "seller_email"
+    },
+    "Category": "Electronics",
+    "Condition": "New",
+    "Status": "Registered"
+}

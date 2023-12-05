@@ -21,9 +21,11 @@ namespace ItemService.Controllers
         }
         
         [HttpGet("{id}")]
-        public Task<IActionResult> GetItemForAuction(int auctionId)
+        public Task<IActionResult> GetItemById(string id)
         {
-            var item = _itemRepository.GetItemForAuction(auctionId).Result;
+            _logger.LogInformation($"ItemController.GetItemById - id: {id}");
+            var item = _itemRepository.GetItemById(id).Result;
+            _logger.LogInformation($"ItemController.GetItemById - item: {item}");
             return Task.FromResult<IActionResult>(Ok(item));
         }
 
