@@ -10,6 +10,7 @@ namespace SaleService.Controllers
     public class SaleController : ControllerBase
     {
         private readonly ISaleRepository _saleRepository;
+        
         private readonly ILogger<SaleController> _logger;
         private readonly IConfiguration _configuration;
 
@@ -21,9 +22,9 @@ namespace SaleService.Controllers
         }
         
         [HttpGet("{id}")]
-        public Task<IActionResult> GetSaleForAuction(int auctionId)
+        public Task<IActionResult> GetSaleForItem(string itemId)
         {
-            var sale = _saleRepository.GetSaleForAuction(auctionId).Result;
+            var sale = _saleRepository.GetSaleForItem(itemId).Result;
             return Task.FromResult<IActionResult>(Ok(sale));
         }
         /*

@@ -12,9 +12,9 @@ namespace SaleService.Services
             sales = new List<Sale>();
         }
 
-        public Task<Sale> GetSaleForAuction(int auctionId)
+        public Task<Sale> GetSaleForItem(string itemId)
         {
-            return Task.FromResult<Sale>(sales.Where(b => b.AuctionId == auctionId).FirstOrDefault());
+            return Task.FromResult<Sale>(sales.Where(b => b.ItemId == itemId).FirstOrDefault());
         }
 
     }

@@ -5,6 +5,5 @@ public class Sale
     public decimal Amount { get; set; }
     public Customer Seller { get; set; }
     public Customer Buyer { get; set; }
-    public Item Item { get; set; }
-    public int AuctionId { get; set; }
+    public string ItemId { get; set; }
 }

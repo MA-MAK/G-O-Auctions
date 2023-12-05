@@ -4,6 +4,6 @@ namespace SaleService.Services
 {
     public interface ISaleRepository
     {
-        public Task<Sale> GetSaleForAuction(int auctionId);
+        public Task<Sale> GetSaleForItem(string itemId);
     }
 }
