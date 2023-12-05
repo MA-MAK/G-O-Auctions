@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net.Http.Formatting;
-using AuctionService.Models;
+using SaleService.Models;
 
-namespace AuctionService.Services
+namespace SaleService.Services
 {
     public class ItemRepository : IItemRepository
     {

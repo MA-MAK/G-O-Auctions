@@ -17,6 +17,8 @@ namespace SaleService.Services
             return Task.FromResult<Sale>(sales.Where(b => b.ItemId == itemId).FirstOrDefault());
         }
 
+        
+
 /*
         public async Task<Sale> CreateSale(Sale sale)
         {
@@ -61,6 +63,8 @@ namespace SaleService.Services
             }
         }
         */
+
+        
 
     }
 }
