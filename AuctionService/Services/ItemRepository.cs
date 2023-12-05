@@ -18,7 +18,7 @@ namespace AuctionService.Services
             _httpClient = httpClient;
             _logger = logger;
 
-            _logger.LogInformation($"ItemRepository - _httpClient: {_httpClient.BaseAddress}");
+            _logger.LogInformation($"### ItemRepository - _httpClient: {_httpClient.BaseAddress}");
         }
 
         public async Task<Item> GetItemById(string itemId)
