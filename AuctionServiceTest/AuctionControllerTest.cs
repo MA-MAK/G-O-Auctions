@@ -126,8 +126,6 @@ public class Tests
         //Assert.That(((result as CreatedAtActionResult)?.Value as Auction).Item.Id, Is.EqualTo(1));
     }
 
-
-
 [Test]
 public void PutAuctionTest()
 {
