@@ -2,6 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using SaleService.Models;
 using SaleService.Services;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using System;
+using Microsoft.Extensions.Configuration;
+
 
 namespace SaleService.Controllers
 {
@@ -10,7 +15,7 @@ namespace SaleService.Controllers
     public class SaleController : ControllerBase
     {
         private readonly ISaleRepository _saleRepository;
-        
+
         private readonly ILogger<SaleController> _logger;
         private readonly IConfiguration _configuration;
 
@@ -20,29 +25,47 @@ namespace SaleService.Controllers
             _logger = logger;
             _configuration = configuration;
         }
-        
+
         [HttpGet("{id}")]
         public Task<IActionResult> GetSaleForItem(string itemId)
         {
             var sale = _saleRepository.GetSaleForItem(itemId).Result;
             return Task.FromResult<IActionResult>(Ok(sale));
         }
+
         /*
         [HttpPost]
-        public async Task<IActionResult> PostSale(Sale sale)
+        public async Task<IActionResult> PostSaleForItem(string itemId, Sale sale)
         {
-            // TODO: Implement the logic to create a new sale
-            // and return the created sale object or appropriate response.
-            // Example:
-            // var createdSale = await _saleRepository.CreateSale(sale);
-            // return CreatedAtAction(nameof(GetSaleForAuction), new { id = createdSale.Id }, createdSale);
-            
-            return Ok();
+            try
+            {
+                // Hent varen fra itemId
+                var item = await _saleRepository.GetItemById(itemId);
+
+                if (item == null)
+                {
+                    return NotFound("Item not found");
+                }
+
+                // Tilknyt varenummeret til salget
+                sale.ItemId = itemId;
+
+                // Opret salget
+                var createdSale = await _saleRepository.CreateSale(sale);
+
+                return CreatedAtAction(nameof(GetSaleForItem), new { id = createdSale.Id }, createdSale);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to create sale for item");
+                return StatusCode(500, "Internal server error");
+            }
         }
         */
+
     }
 }
 
-        
+
 
 
