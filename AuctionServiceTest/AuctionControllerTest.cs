@@ -111,7 +111,7 @@ public class Tests
             .Returns(Task.FromResult<Item?>(item));
 
         var AuctionRepositoryMock = new Mock<IAuctionRepository>();
-        AuctionRepositoryMock.Setup(svc => svc.PostAuction(auction))
+        AuctionRepositoryMock.Setup(svc => svc.InsertAuction(auction))
             .Returns(Task.FromResult<Auction?>(auction));
 
         var controller = new AuctionController(_logger, _configuration, AuctionRepositoryMock.Object, ItemRepositoryMock.Object);

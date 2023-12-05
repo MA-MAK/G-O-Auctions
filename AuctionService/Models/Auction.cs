@@ -3,7 +3,7 @@ namespace AuctionService.Models
 {
     public class Auction
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public AuctionStatus Status { get; set; }

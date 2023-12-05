@@ -12,7 +12,7 @@ namespace AuctionService.Models
 /// <summary>
 /// MongoDB database context class.
 /// </summary>
-public class MongoDBContext 
+public class MongoDBContext: IMongoDBContext
 {
     private NLog.Logger _logger;
     private IConfiguration _config;
