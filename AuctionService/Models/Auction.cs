@@ -2,12 +2,8 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Text.Json.Serialization;
-//sing Json.Net;
-
 
 namespace AuctionService.Models;
-
-
 
 public class Auction
 {
@@ -19,9 +15,9 @@ public class Auction
     public AuctionStatus Status { get; set; }
     public string Title { get; set; }
     public AuctionType Type { get; set; }
-    [BsonIgnore]
     public Item? Item { get; set; }
-    public int ItemId { get; set; }
+    [BsonIgnore]
+    public string? ItemId { get; set; }
     [JsonIgnore]
     public List<Bid>? Bids { get; set; }
     public string Description { get; set; }

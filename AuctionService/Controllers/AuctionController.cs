@@ -15,14 +15,6 @@ namespace AuctionService.Controllers
         private readonly IBidRepository _bidRepository;
         private readonly IItemRepository _itemRepository;
 
-
-        /*
-                public AuctionController()
-                {
-                    _auctions = new List<Auction>();
-                }
-                */
-
         [ActivatorUtilitiesConstructor]
         public AuctionController(ILogger<AuctionController> logger, IConfiguration configuration, IAuctionRepository auctionRepository, IItemRepository itemRepository, IBidRepository bidRepository)
         {
@@ -51,7 +43,9 @@ namespace AuctionService.Controllers
         public IActionResult GetAuctionById(string id)
         {
             Auction auction = _auctionRepository.GetAuctionById(id).Result;
+            _logger.LogInformation($"GetAuctionById: {auction.Title}");
             auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
+            _logger.LogInformation($"GetAuctionById: {auction.Item.Title}");
             auction.Bids = _bidRepository.GetBidsForAuction(auction.Id).Result.ToList();
             return Ok(auction);
         }
@@ -60,13 +54,9 @@ namespace AuctionService.Controllers
         [HttpPost]
         public Task<IActionResult> PostAuction([FromBody] Auction auction)
         {
-            var item = _itemRepository.GetItemById(auction.ItemId);
-            if (item == null)
-            {
-                return Task.FromResult<IActionResult>(BadRequest());
-            }
-            auction.ItemId = item.Id;
-            //auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
+            _logger.LogInformation($"PostAuction: {auction.Title}");
+            auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
+            _logger.LogInformation($"PostAuction: {auction.Item.Title}");
             _auctionRepository.PostAuction(auction);
             _logger.LogInformation("posting..");
             return Task.FromResult<IActionResult>(CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction));
