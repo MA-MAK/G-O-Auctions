@@ -1,0 +1,12 @@
+{
+    "Bidder": {
+        "Id": 1,
+        "Name": "John Doe",
+        "Email": "johndoe@example.com"
+    },
+    "Amount": 100.50,
+    "Time": "2022-01-01T10:00:00Z",
+    "AuctionId": "1"
+}
+
+

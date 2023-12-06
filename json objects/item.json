@@ -5,11 +5,6 @@
     "Description": "item_description",
     "Year": 2022,
     "Location": "item_location",
-    "Seller": {
-        "Id": "seller_id",
-        "Name": "seller_name",
-        "Email": "seller_email"
-    },
     "Category": "Electronics",
     "Condition": "New",
     "Status": "Registered"

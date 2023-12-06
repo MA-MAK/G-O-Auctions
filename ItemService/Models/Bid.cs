@@ -1,9 +1,12 @@
-
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using ItemService.Models;
 
 
 public class Bid
 {
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
     public int Id { get; set; }
     public Customer Bidder { get; set; }
     public decimal Amount { get; set; }
