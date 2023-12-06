@@ -1,0 +1,16 @@
+
+{
+    "Id": 1,
+    "Amount": 100.50,
+    "Seller": {
+        "Id": 1,
+        "Name": "John Doe",
+        "Email": "john@example.com"
+    },
+    "Buyer": {
+        "Id": 2,
+        "Name": "Jane Smith",
+        "Email": "jane@example.com"
+    },
+    "ItemId": 12345
+}
