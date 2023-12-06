@@ -1,47 +1,55 @@
 using System.Collections.Generic;
 using AuctionService.Models;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
-namespace AuctionService.Services
+namespace AuctionService.Services;
+
+public class AuctionRepository : IAuctionRepository
 {
-    public class AuctionRepository : IAuctionRepository
+    private readonly IMongoCollection<Auction> _auctions;
+    private readonly ILogger<AuctionRepository> _logger;
+
+    public AuctionRepository(MongoDBContext dbContext, ILogger<AuctionRepository> logger)
     {
-        private List<Auction> auctions;
+        _auctions = dbContext.Auctions;
+        _logger = logger;
+    }
 
-        public AuctionRepository()
-        {
-            auctions = new List<Auction>();
-        }
+    public Task PostAuction(Auction auction)
+    {
+        _logger.LogInformation($"count: {_auctions.CountDocuments(a => true)}");
+        _logger.LogInformation("AuctionRepository.PostAuction");
+        _auctions.InsertOne(auction);
+        _logger.LogInformation($"count: {_auctions.CountDocuments(a => true)}");
+        _logger.LogInformation("AuctionRepository.PostAuction - Auction inserted");
+        return Task.CompletedTask;
+    }
 
-        public Task PostAuction(Auction auction)
-        {
-            auctions.Add(auction);
-            return Task.CompletedTask;
-        }
+    public Task DeleteAuction(Auction auction)
+    {
+        _auctions.DeleteOneAsync(a => a.Id == auction.Id);
+        return Task.CompletedTask;
+    }
 
-        public Task DeleteAuction(Auction auction)
-        {
-            auctions.Remove(auction);
-            return Task.CompletedTask;
-        }
+    /*  public Task<IEnumerable<Auction>> GetAllAuctions()
+     {
+          var auctions =  _auctions.Find(_ => true).ToListAsync();
+          return Task.FromResult<IEnumerable<Auction>>(auctions.Result);
+     }
 
-        public Task<IEnumerable<Auction>> GetAllAuctions()
-        {
-            return Task.FromResult<IEnumerable<Auction>>(auctions);
-        }
+     */
+    public Task<Auction> GetAuctionById(string id)
+    {
+        var auction = _auctions.Find(a => a.Id == id).FirstOrDefaultAsync();
+        return Task.FromResult<Auction>(auction.Result);
+    }
 
-        public Task<Auction> GetAuctionById(int id)
-        {
-            return Task.FromResult(auctions.Find(a => a.Id == id));
-        }
+    public Task UpdateAuction(Auction auction)
+    {
 
-        public Task UpdateAuction(Auction auction)
-        {
-            int index = auctions.FindIndex(a => a.Id == auction.Id);
-            if (index != -1)
-            {
-                auctions[index] = auction;
-            }
-            return Task.CompletedTask;
-        }
+        _auctions.ReplaceOneAsync(a => a.Id == auction.Id, auction);
+        return Task.CompletedTask;
+
     }
 }

@@ -2,12 +2,10 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
-using AuctionService.Models;
-using AuctionService.Services;
-using NLog;
+using ItemService.Models;
+using ItemService.Services;
 
-namespace AuctionService.Models
-{
+namespace ItemService.Models;
 
 /// <summary>
 /// MongoDB database context class.
@@ -17,7 +15,7 @@ public class MongoDBContext
     private ILogger<MongoDBContext> _logger;
     private IConfiguration _config;
     public IMongoDatabase GODatabase { get; set; }
-    public IMongoCollection<Auction> auctions { get; set; }
+    public IMongoCollection<Item> items { get; set; }
 
     /// <summary>
     /// Create an instance of the context class.
@@ -33,15 +31,10 @@ public class MongoDBContext
 
         var client = new MongoClient(_config["MongoDBSettings:MongoConnectionString"]);
         GODatabase = client.GetDatabase(_config["MongoDBSettings:DatabaseName"]);
-        auctions = GODatabase.GetCollection<Auction>(_config["MongoDBSettings:AuctionCollection"]);
-
-        //_logger.Debug($"Connected to database {_config["MongoDBSettings:DatabaseName"]}");
-        //_logger.Debug($"Using collection {_config["MongoDBSettings:AuctionCollection"]}");
-
+        items = GODatabase.GetCollection<Item>(_config["MongoDBSettings:ItemCollection"]);
     }
 
-    public IMongoCollection<Auction> Auctions => GODatabase.GetCollection<Auction>("Auctions");
+    public IMongoCollection<Item> Items => GODatabase.GetCollection<Item>("Items");
 
 }
 
-}

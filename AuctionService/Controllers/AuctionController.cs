@@ -15,11 +15,7 @@ namespace AuctionService.Controllers
         private readonly IBidRepository _bidRepository;
         private readonly IItemRepository _itemRepository;
 
-        public AuctionController()
-        {
-            _auctions = new List<Auction>();
-        }
-
+        [ActivatorUtilitiesConstructor]
         public AuctionController(ILogger<AuctionController> logger, IConfiguration configuration, IAuctionRepository auctionRepository, IItemRepository itemRepository, IBidRepository bidRepository)
         {
             _logger = logger;
@@ -44,29 +40,31 @@ namespace AuctionService.Controllers
 
         // GET: api/auction/{id}
         [HttpGet("{id}")]
-        public Task<IActionResult> GetAuctionById(int id)
+        public IActionResult GetAuctionById(string id)
         {
             Auction auction = _auctionRepository.GetAuctionById(id).Result;
+            _logger.LogInformation($"GetAuctionById: {auction.Title}");
             auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
+            _logger.LogInformation($"GetAuctionById: {auction.Item.Title}");
             auction.Bids = _bidRepository.GetBidsForAuction(auction.Id).Result.ToList();
-            return Task.FromResult<IActionResult>(Ok(auction));
+            return Ok(auction);
         }
 
         // POST: api/auction
         [HttpPost]
         public Task<IActionResult> PostAuction([FromBody] Auction auction)
         {
+            _logger.LogInformation($"PostAuction: {auction.Title}");
             auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
-            //await _auctionRepository.PostAuction(auction);
+            _logger.LogInformation($"PostAuction: {auction.Item.Title}");
+            _auctionRepository.PostAuction(auction);
             _logger.LogInformation("posting..");
             return Task.FromResult<IActionResult>(CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction));
         }
 
         // PUT: api/auction/{id}
-
-        // PUT: api/auction/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAuction(int id, [FromBody] Auction auction)
+        public async Task<ActionResult> PutAuction(string id, [FromBody] Auction auction)
         {
             var existingAuction = await _auctionRepository.GetAuctionById(id);
             if (existingAuction == null)
@@ -80,8 +78,6 @@ namespace AuctionService.Controllers
             // Opdater auktionen, hvis metoden ikke returnerer noget (void)
             await _auctionRepository.UpdateAuction(existingAuction);
             return NoContent(); // Returnerer NoContent uanset hvad
-
-            //return NoContent(); // Returnerer NoContent uanset hvad
         }
 
 
@@ -103,7 +99,7 @@ namespace AuctionService.Controllers
 
         // DELETE: api/auction/{id}
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(string id)
         {
             var auction = _auctions.Find(a => a.Id == id);
             if (auction == null)

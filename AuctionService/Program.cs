@@ -1,10 +1,14 @@
 using NLog;
 using NLog.Web;
 using AuctionService.Services;
+using MongoDB.Driver;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
+using AuctionService.Models;
 
-var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
-logger.Debug("init main");
-
+//var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+//logger.Debug("init main");
 try
 {
     var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +21,25 @@ try
     builder.Services.AddSwaggerGen();
     builder.Logging.ClearProviders();
     builder.Host.UseNLog();
+    builder.Services.AddLogging();
+    builder.Services.AddHttpClient("ItemService", client =>
+    {
+        client.BaseAddress = new Uri("http://localhost:5164");
+        // Add any additional configuration for HttpClient as needed
+    });
     builder.Services.AddSingleton<IAuctionRepository, AuctionRepository>();
+
+    builder.Services.AddSingleton<IItemRepository, ItemRepository>(
+        b => new ItemRepository(b.GetService<IHttpClientFactory>()
+        .CreateClient("ItemService"), 
+        builder.Services.BuildServiceProvider().GetRequiredService<ILogger<ItemRepository>>()));
+    builder.Services.AddSingleton<IBidRepository, BidRepository>();
+
+    // MongoDB configuration
+    var connectionString = builder.Configuration.GetConnectionString("MongoDBConnection");
+    var databaseName = builder.Configuration.GetSection("MongoDBSettings:DatabaseName").Value;
+    var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<MongoDBContext>>();
+    builder.Services.AddSingleton<MongoDBContext>(provider => new MongoDBContext(logger, builder.Configuration));
 
     var app = builder.Build();
 
@@ -39,7 +61,7 @@ try
 }
 catch (Exception ex)
 {
-    logger.Error(ex, "Stopped program because of exception");
+    //logger.Error(ex, "Stopped program because of exception");
     throw;
 }
 finally
