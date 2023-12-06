@@ -4,6 +4,6 @@ namespace ItemService.Services
 {
     public interface IItemRepository
     {
-        public Task<Item> GetItemForAuction(int auctionId);
+        public Task<Item> GetItemById(string itemId);
     }
 }

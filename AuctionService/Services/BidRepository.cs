@@ -9,12 +9,12 @@ namespace AuctionService.Services
     {
         private readonly HttpClient _httpClient;
 
-        public BidRepository(HttpClient httpClient)
+        public BidRepository()//(HttpClient httpClient)
         {
-            _httpClient = httpClient;
+            //_httpClient = httpClient;
         }
 
-        public async Task<IEnumerable<Bid>> GetBidsForAuction(int auctionId)
+        public async Task<IEnumerable<Bid>> GetBidsForAuction(string auctionId)
         {
             // Make a GET request to the API endpoint with the item ID
             HttpResponseMessage response = await _httpClient.GetAsync($"/api/items/{auctionId}");

@@ -1,21 +1,23 @@
 using System.Collections.Generic;
 using ItemService.Models;
+using MongoDB.Driver;
 
 namespace ItemService.Services
 {
     public class ItemRepository : IItemRepository
     {
-        private List<Item> items;
+        private readonly IMongoCollection<Item> _items;
+        private readonly ILogger<ItemRepository> _logger;
 
-        public ItemRepository()
+        public ItemRepository(MongoDBContext dbContext, ILogger<ItemRepository> logger)
         {
-            items = new List<Item>();
+            _items = dbContext.Items;
+            _logger = logger;
         }
 
-        public Task<Item> GetItemForAuction(int auctionId)
+        public Task<Item> GetItemById(string itemId)
         {
-            return Task.FromResult<Item>(items.Where(b => b.AuctionId == auctionId).FirstOrDefault());
+            return Task.FromResult<Item>(_items.Find(a => a.Id == itemId).FirstOrDefault());
         }
-
     }
 }

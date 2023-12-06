@@ -9,16 +9,14 @@ public class AuctionRepository : IAuctionRepository
 {
     private readonly IMongoCollection<Auction> _auctions;
     private readonly ILogger<AuctionRepository> _logger;
-    private readonly IConfiguration _config;
 
-    public AuctionRepository(IMongoDBContext dbContext, ILogger<AuctionRepository> logger, IConfiguration config)
+    public AuctionRepository(MongoDBContext dbContext, ILogger<AuctionRepository> logger)
     {
-        _auctions = dbContext.auctions;
+        _auctions = dbContext.Auctions;
         _logger = logger;
-        _config = config;
     }
 
-    public Task InsertAuction(Auction auction)
+    public Task PostAuction(Auction auction)
     {
         _logger.LogInformation($"count: {_auctions.CountDocuments(a => true)}");
         _logger.LogInformation("AuctionRepository.PostAuction");
@@ -36,22 +34,14 @@ public class AuctionRepository : IAuctionRepository
 
     /*  public Task<IEnumerable<Auction>> GetAllAuctions()
      {
-          var auctions =  auctions.Find( => true).ToListAsync();
+          var auctions =  _auctions.Find(_ => true).ToListAsync();
           return Task.FromResult<IEnumerable<Auction>>(auctions.Result);
      }
 
      */
-    public Task<IEnumerable<Auction>> GetAllAuctions()
+    public Task<Auction> GetAuctionById(string id)
     {
-        var auctions = _auctions.Find(a => true).ToListAsync();
-        return Task.FromResult<IEnumerable<Auction>>(auctions.Result);
-
-    }
-
-
-    public Task<Auction> GetAuctionById(string auctionId)
-    {
-        var auction = _auctions.Find(a => a.Id == auctionId).FirstOrDefaultAsync();
+        var auction = _auctions.Find(a => a.Id == id).FirstOrDefaultAsync();
         return Task.FromResult<Auction>(auction.Result);
     }
 
