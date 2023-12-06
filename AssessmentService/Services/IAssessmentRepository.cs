@@ -5,9 +5,9 @@ namespace AssessmentService.Services
 
   public interface IAssessmentRepository
   {
-    public Task<Item> GetItemById(string ItemId);
+    public Task<Item> GetItemById(string itemId);
     public Task<IEnumerable<Item>> GetAllRegistredItems();
-    public Task PostItem(Item Item);
+    public Task UpdateItem(Item Item);
 
   }
 }
