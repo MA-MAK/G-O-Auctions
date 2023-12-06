@@ -6,7 +6,7 @@ public class Item
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public string Id { get; set; }
+    public string? Id { get; set; }
     public string Title { get; set; }
     public decimal StartPrice { get; set; }
     public decimal AssesmentPrice { get; set; }

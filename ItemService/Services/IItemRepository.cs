@@ -4,6 +4,8 @@ namespace ItemService.Services
 {
     public interface IItemRepository
     {
-        public Task<Item> GetItemById(string itemId);
+        Task<Item> GetItemById(string itemId);
+        Task<IEnumerable<Item>> GetAllItems();
     }
 }
+

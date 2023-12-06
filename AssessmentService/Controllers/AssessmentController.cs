@@ -29,6 +29,7 @@ namespace AssessmentService.Controllers
         {
             try
             {
+                _logger.LogInformation($"### ItemController.GetItemById - itemId: {itemId}");
                 var item = await _assessmentRepository.GetItemById(itemId);
 
                 if (item != null)

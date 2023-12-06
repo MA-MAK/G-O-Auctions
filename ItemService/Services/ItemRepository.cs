@@ -19,5 +19,20 @@ namespace ItemService.Services
         {
             return Task.FromResult<Item>(_items.Find(a => a.Id == itemId).FirstOrDefault());
         }
+
+        public async Task<IEnumerable<Item>> GetAllItems()
+        {
+            try
+            {
+                var allItems = await _items.Find(_ => true).ToListAsync();
+                return allItems;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error occurred while retrieving all items: {ex.Message}");
+                throw;
+            }
+        }
+
     }
 }
