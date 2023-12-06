@@ -26,11 +26,13 @@ namespace SaleService.Controllers
             _configuration = configuration;
         }
 
+
+
         [HttpGet("{id}")]
-        public Task<IActionResult> GetSaleForItem(string itemId)
+        public Task<IActionResult> GetItemForSale(string itemId)
         {
-            var sale = _saleRepository.GetSaleForItem(itemId).Result;
-            return Task.FromResult<IActionResult>(Ok(sale));
+            var item = _itemRepository.GetItemForSale(itemId).Result;
+            return Task.FromResult<IActionResult>(Ok(item));
         }
 
         /*
@@ -61,8 +63,31 @@ namespace SaleService.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-        */
+        
 
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetSaleById(string saleId)
+        {
+            try
+            {
+                var sale = await _saleRepository.GetSaleById(saleId);
+
+                if (sale == null)
+                {
+                    return NotFound("Sale not found");
+                }
+
+                return Ok(sale);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to retrieve sale");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+     */
     }
 }
 

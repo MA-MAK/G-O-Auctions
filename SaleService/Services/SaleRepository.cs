@@ -12,59 +12,29 @@ namespace SaleService.Services
             sales = new List<Sale>();
         }
 
+        /*
+
         public Task<Sale> GetSaleForItem(string itemId)
         {
             return Task.FromResult<Sale>(sales.Where(b => b.ItemId == itemId).FirstOrDefault());
         }
 
-        
-
-/*
-        public async Task<Sale> CreateSale(Sale sale)
-        {
-            // Serialize the sale object to JSON
-            var json = JsonConvert.SerializeObject(sale);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            // Make a POST request to the API endpoint to create a new sale
-            HttpResponseMessage response = await _httpClient.PostAsync("/api/sales", content);
-
-            if (response.IsSuccessStatusCode)
-            {
-                // Deserialize the response content to a Sale object
-                Sale createdSale = await response.Content.ReadAsAsync<Sale>();
-                return createdSale;
-            }
-            else
-            {
-                // Handle the error response
-                throw new Exception($"Failed to create sale. Status code: {response.StatusCode}");
-            }
-        }
-        */
-
-        /*
 
         public async Task<Sale> GetSaleById(int saleId)
         {
-            // Make a GET request to the API endpoint with the item ID
-            HttpResponseMessage response = await _httpClient.GetAsync($"/api/sales/{saleId}");
+            // Connect to MongoDB
+            var client = new MongoClient("mongodb://localhost:27018");
+            var database = client.GetDatabase("salesdb");
+            var collection = database.GetCollection<Sale>("sales");
 
-            if (response.IsSuccessStatusCode)
-            {
-                // Deserialize the response content to an Item object
-                Sale sale = await response.Content.ReadAsAsync<Item>();
-                return sale;
-            }
-            else
-            {
-                // Handle the error response
-                throw new Exception($"Failed to get sale with ID {saleId}. Status code: {response.StatusCode}");
-            }
+            // Create a filter to find the sale by ID
+            var filter = Builders<Sale>.Filter.Eq(s => s.Id, saleId);
+
+            // Find the sale in the collection
+            var sale = await collection.Find(filter).FirstOrDefaultAsync();
+
+            return sale;
         }
         */
-
-        
-
     }
 }
