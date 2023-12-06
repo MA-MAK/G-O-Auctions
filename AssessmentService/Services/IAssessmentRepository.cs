@@ -7,7 +7,7 @@ namespace AssessmentService.Services
   {
     public Task<Item> GetItemById(string itemId);
     public Task<IEnumerable<Item>> GetAllRegistredItems();
-    public Task UpdateItem(Item Item);
+    public Task UpdateItem(string itemId, string description, int year, decimal assessmentPrice, int category, int condition, int status, string title);
 
   }
 }

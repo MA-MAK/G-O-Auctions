@@ -11,6 +11,7 @@ namespace AssessmentService.Controllers
     [Route("api/[controller]")]
     public class AssessmentController : ControllerBase
     {
+        
         private readonly IAssessmentRepository _assessmentRepository;
         private readonly ILogger<AssessmentController> _logger;
         private readonly IConfiguration _configuration;
@@ -23,7 +24,7 @@ namespace AssessmentService.Controllers
         }
 
         [HttpGet("{itemId}")]
-        public async Task<IActionResult> GetItemById(int itemId)
+        public async Task<IActionResult> GetItemById(string itemId)
         {
             try
             {
@@ -50,7 +51,8 @@ namespace AssessmentService.Controllers
         {
             try
             {
-                var items = await _assessmentRepository.GetAllRegistredItems(Status.Registered);
+                var items = await _assessmentRepository.GetAllRegistredItems();
+
                 return Ok(items);
             }
             catch (Exception ex)
@@ -60,28 +62,31 @@ namespace AssessmentService.Controllers
             }
         }
 
-        [HttpPost("PostItem")]
-        public async Task<IActionResult> PostItem(Item item)
+        [HttpPut("PutItem")]
+        public async Task<IActionResult> UpdateItem(string itemId, string description, int year, decimal assessmentPrice, int category, int condition, int status, string title)
         {
             try
             {
                 // Assuming there's a PUT function in ItemService to update items
-                var result = await _assessmentRepository.PostItem(item);
+                await _assessmentRepository.UpdateItem(itemId, description, year, assessmentPrice, category, condition, status, title);
 
-                if (result)
-                {
-                    return Ok($"Item with ID {item.Id} posted successfully");
-                }
-                else
-                {
-                    return BadRequest($"Failed to post item with ID {item.Id}");
-                }
+                // If the update is successful, return Ok
+                return Ok($"Item with ID {itemId} updated successfully");
+            }
+            catch (KeyNotFoundException)
+            {
+                // Handle the case where the item with the specified ID is not found
+                return NotFound($"Item with ID {itemId} not found");
             }
             catch (Exception ex)
             {
+                // Log the exception for debugging purposes
                 _logger.LogError($"Exception: {ex.Message}");
+
+                // Return a generic error message for other exceptions
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
     }
 }
