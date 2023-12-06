@@ -28,6 +28,5 @@ namespace ItemService.Controllers
             _logger.LogInformation($"ItemController.GetItemById - item: {item}");
             return Task.FromResult<IActionResult>(Ok(item));
         }
-
     }
 }

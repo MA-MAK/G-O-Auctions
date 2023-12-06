@@ -41,12 +41,12 @@ public class Tests
             new Bid { Id = 4, Bidder = bidder2, Amount = 5000, Time = DateTime.Now.AddMinutes(35), AuctionId = "1" }
         };
 
-        Item item = new Item { Id = 1, Title = "Chair", Description = "The best chair", Category = Category.Home, Condition = Condition.Good, Location = "Amsterdam", Seller = customer, StartPrice = 10, AssesmentPrice = 20, Year = 2021, Status = Status.Registered, AuctionId = 1 };
+        Item item = new Item { Id = "1", Title = "Chair", Description = "The best chair", Category = Category.Home, Condition = Condition.Good, Location = "Amsterdam", Seller = customer, StartPrice = 10, AssesmentPrice = 20, Year = 2021, Status = Status.Registered, AuctionId = 1 };
 
         Auction auction = new Auction { Id = "1", StartTime = DateTime.Now, EndTime = DateTime.Now, Status = AuctionStatus.Active, Type = AuctionType.Dutch, Item = item };
 
         var ItemRepositoryMock = new Mock<IItemRepository>();
-        ItemRepositoryMock.Setup(svc => svc.GetItemById(1))
+        ItemRepositoryMock.Setup(svc => svc.GetItemById("1"))
             .Returns(Task.FromResult<Item?>(item));
 
         var BidRepositoryMock = new Mock<IBidRepository>();
@@ -67,7 +67,7 @@ public class Tests
         Assert.That((result as OkObjectResult)?.Value, Is.TypeOf<Auction>());
         Assert.That(((result as OkObjectResult)?.Value as Auction).Id, Is.EqualTo("1"));
         Assert.That(((result as OkObjectResult)?.Value as Auction).Item, Is.TypeOf<Item>());
-        Assert.That(((result as OkObjectResult)?.Value as Auction).Item.Id, Is.EqualTo(1));
+        Assert.That(((result as OkObjectResult)?.Value as Auction).Item.Id, Is.EqualTo("1"));
         Assert.That(((result as OkObjectResult)?.Value as Auction).Bids[1], Is.TypeOf<Bid>());
         Assert.That(((result as OkObjectResult)?.Value as Auction).Bids.Count, Is.EqualTo(4));
         Assert.That(((result as OkObjectResult)?.Value as Auction).Bids[0].Id, Is.EqualTo(1));
@@ -78,7 +78,7 @@ public class Tests
     {
         var item = new Item
         {
-            Id = 1,
+            Id = "1",
             Title = "Chair",
             Description = "The best chair",
             Category = Category.Home,
@@ -103,11 +103,13 @@ public class Tests
             EndTime = DateTime.Now,
             Status = AuctionStatus.Active,
             Type = AuctionType.Dutch,
-            ItemId = item.Id
+            Item = new Item{
+                Id = item.Id
+            }
         };
 
         var ItemRepositoryMock = new Mock<IItemRepository>();
-        ItemRepositoryMock.Setup(svc => svc.GetItemById(1))
+        ItemRepositoryMock.Setup(svc => svc.GetItemById("1"))
             .Returns(Task.FromResult<Item?>(item));
 
         var AuctionRepositoryMock = new Mock<IAuctionRepository>();
@@ -122,8 +124,8 @@ public class Tests
         Assert.That(result, Is.TypeOf<CreatedAtActionResult>());
         Assert.That((result as CreatedAtActionResult)?.Value, Is.TypeOf<Auction>());
         Assert.That(((result as CreatedAtActionResult)?.Value as Auction).Id, Is.EqualTo("1"));
-        //Assert.That(((result as CreatedAtActionResult)?.Value as Auction).Item, Is.TypeOf<Item>());
-        //Assert.That(((result as CreatedAtActionResult)?.Value as Auction).Item.Id, Is.EqualTo(1));
+        Assert.That(((result as CreatedAtActionResult)?.Value as Auction).Item, Is.TypeOf<Item>());
+        Assert.That(((result as CreatedAtActionResult)?.Value as Auction).Item.Id, Is.EqualTo("1"));
     }
 
 [Test]
