@@ -10,13 +10,13 @@ public class AuctionRepository : IAuctionRepository
     private readonly IMongoCollection<Auction> _auctions;
     private readonly ILogger<AuctionRepository> _logger;
 
-    public AuctionRepository(MongoDBContext dbContext, ILogger<AuctionRepository> logger)
+    public AuctionRepository(IMongoDBContext dbContext, ILogger<AuctionRepository> logger)
     {
-        _auctions = dbContext.Auctions;
+        _auctions = dbContext.auctions;
         _logger = logger;
     }
 
-    public Task PostAuction(Auction auction)
+    public Task InsertAuction(Auction auction)
     {
         _logger.LogInformation($"count: {_auctions.CountDocuments(a => true)}");
         _logger.LogInformation("AuctionRepository.PostAuction");

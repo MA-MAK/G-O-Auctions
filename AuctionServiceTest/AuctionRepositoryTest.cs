@@ -30,21 +30,21 @@ namespace AuctionServiceTest
         {
 
             // Create a mock of IMongoCollection<Auction>
-            _auctionsCollectionMock = new Mock<IMongoCollection<Auction>>(MockBehavior.Strict);
+            _auctionsCollectionMock = new Mock<IMongoCollection<Auction>>();
 
             // Create a mock of IMongoDatabase
-            _goDatabaseMock = new Mock<IMongoDatabase>(MockBehavior.Strict);
+            _goDatabaseMock = new Mock<IMongoDatabase>();
             _goDatabaseMock.Setup(db => db.GetCollection<Auction>("auctions", null)).Returns(_auctionsCollectionMock.Object);
 
             // Create a mock of MongoDBContext using the mock database
-            _mongoDbContextMock = new Mock<IMongoDBContext>(MockBehavior.Strict);
+            _mongoDbContextMock = new Mock<IMongoDBContext>();
             _mongoDbContextMock.Setup(m => m.auctions).Returns(_auctionsCollectionMock.Object);
             _mongoDbContextMock.Setup(m => m.GODatabase).Returns(_goDatabaseMock.Object);
             // Create a mock of ILogger and IConfiguration
             var loggerMock = new Mock<ILogger<AuctionRepository>>();
-            var configurationMock = new Mock<IConfiguration>();
+            //var configurationMock = new Mock<IConfiguration>();
             // Create AuctionRepository with the mocked MongoDBContext
-            _auctionRepository = new AuctionRepository(_mongoDbContextMock.Object, loggerMock.Object, configurationMock.Object);
+            _auctionRepository = new AuctionRepository(_mongoDbContextMock.Object, loggerMock.Object);//, configurationMock.Object);
         }
 
 
@@ -54,7 +54,7 @@ namespace AuctionServiceTest
             // Arrange
             var item = new Item
             {
-                Id = 1,
+                Id = "1",
                 Title = "Chair",
                 Description = "The best chair",
                 Category = Category.Home,
@@ -72,7 +72,7 @@ namespace AuctionServiceTest
                 Status = Status.Registered
             };
 
-            Auction auction = new Auction { Id = "1", StartTime = DateTime.Now, EndTime = DateTime.Now, Status = AuctionStatus.Active, Type = AuctionType.Dutch, ItemId = 1 };
+            Auction auction = new Auction { Id = "1", StartTime = DateTime.Now, EndTime = DateTime.Now, Status = AuctionStatus.Active, Type = AuctionType.Dutch, ItemId = "1" };
 
 
             // Act

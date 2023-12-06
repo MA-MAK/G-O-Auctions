@@ -57,7 +57,7 @@ namespace AuctionService.Controllers
             _logger.LogInformation($"PostAuction: {auction.Title}");
             auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
             _logger.LogInformation($"PostAuction: {auction.Item.Title}");
-            _auctionRepository.PostAuction(auction);
+            _auctionRepository.InsertAuction(auction);
             _logger.LogInformation("posting..");
             return Task.FromResult<IActionResult>(CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction));
         }
