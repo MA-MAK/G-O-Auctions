@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using System;
 using Microsoft.Extensions.Configuration;
 
-
 namespace SaleService.Controllers
 {
     [ApiController]
@@ -19,22 +18,24 @@ namespace SaleService.Controllers
         private readonly ILogger<SaleController> _logger;
         private readonly IConfiguration _configuration;
 
-        public SaleController(ISaleRepository saleRepository, ILogger<SaleController> logger, IConfiguration configuration)
+        public SaleController(
+            ISaleRepository saleRepository,
+            ILogger<SaleController> logger,
+            IConfiguration configuration
+        )
         {
             _saleRepository = saleRepository;
             _logger = logger;
             _configuration = configuration;
         }
 
-
-
         [HttpGet("{id}")]
-        public Task<IActionResult> GetItemForSale(string itemId)
+        public IActionResult GetSaleById(string id)
         {
-            var item = _itemRepository.GetItemForSale(itemId).Result;
-            return Task.FromResult<IActionResult>(Ok(item));
+            Sale sale = _saleRepository.GetSaleById(id).Result;
+            sale.Item = _itemRepository.GetItemById(sale.Item.Id).Result;
+            return Ok(auction);
         }
-
         /*
         [HttpPost]
         public async Task<IActionResult> PostSaleForItem(string itemId, Sale sale)
@@ -63,34 +64,6 @@ namespace SaleService.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-        
-
-
-
-        [HttpGet]
-        public async Task<IActionResult> GetSaleById(string saleId)
-        {
-            try
-            {
-                var sale = await _saleRepository.GetSaleById(saleId);
-
-                if (sale == null)
-                {
-                    return NotFound("Sale not found");
-                }
-
-                return Ok(sale);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Failed to retrieve sale");
-                return StatusCode(500, "Internal server error");
-            }
-        }
      */
     }
 }
-
-
-
-
