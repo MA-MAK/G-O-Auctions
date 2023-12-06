@@ -1,53 +1,22 @@
 using System.Collections.Generic;
 using BidService.Models;
+using MongoDB.Driver;
 
 namespace BidService.Services;
 
 public class BidRepository : IBidRepository
 {
-    private List<Bid> bids;
+    private readonly IMongoCollection<Bid> _bids;
+    private readonly ILogger<BidRepository> _logger;
 
-    public BidRepository()
+    public BidRepository(MongoDBContext dbContext, ILogger<BidRepository> logger)
     {
-        bids = new List<Bid>();
-    }
-
-    public Task<IEnumerable<Bid>> GetBidsForAuction(int auctionId)
-    {
-        return Task.FromResult<IEnumerable<Bid>>(bids.Where(b => b.AuctionId == auctionId));
+        _bids = dbContext.Bids;
+        _logger = logger;
     }
 
-    // Implement the methods defined in the IBidRepository interface
-    /*
-    public void AddBid(Bid bid)
+    public Task<IEnumerable<Bid>> GetBidsForAuction(string auctionId)
     {
-        // Implementation for adding a bid to the repository
+        return Task.FromResult<IEnumerable<Bid>>(_bids.Find(a => a.AuctionId == auctionId).ToList());
     }
-    */
-    /*
-    public void UpdateBid(Bid bid)
-    {
-        // Implementation for updating a bid in the repository
-    }
-    */
-    /*
-    public void DeleteBid(int bidId)
-    {
-        // Implementation for deleting a bid from the repository
-    }
-    */
-    /*
-    public Bid GetBidById(int bidId)
-    {
-        // Implementation for retrieving a bid by its ID from the repository
-        return null; // Replace with actual implementation
-    }
-    */
-    /*
-    public List<Bid> GetAllBids()
-    {
-        // Implementation for retrieving all bids from the repository
-        return new List<Bid>(); // Replace with actual implementation
-    }
-    */
 }
