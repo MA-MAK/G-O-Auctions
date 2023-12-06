@@ -14,6 +14,7 @@ namespace AssessmentService.Controllers
         
         private readonly IAssessmentRepository _assessmentRepository;
         private readonly ILogger<AssessmentController> _logger;
+       
         private readonly IConfiguration _configuration;
 
         public AssessmentController(IAssessmentRepository assessmentRepository, ILogger<AssessmentController> logger, IConfiguration configuration)
@@ -32,6 +33,7 @@ namespace AssessmentService.Controllers
 
                 if (item != null)
                 {
+                    _logger.LogInformation($"### ItemController.GetItemById - item: {item.Id}");
                     return Ok(item);
                 }
                 else
@@ -52,6 +54,7 @@ namespace AssessmentService.Controllers
             try
             {
                 var items = await _assessmentRepository.GetAllRegistredItems();
+                _logger.LogInformation($"### ItemController.GetAllRegistredItems - items: {items.Count()}");
 
                 return Ok(items);
             }
@@ -69,6 +72,7 @@ namespace AssessmentService.Controllers
             {
                 // Assuming there's a PUT function in ItemService to update items
                 await _assessmentRepository.UpdateItem(itemId, description, year, assessmentPrice, category, condition, status, title);
+                _logger.LogInformation($"### ItemController.UpdateItem - item: {itemId}");
 
                 // If the update is successful, return Ok
                 return Ok($"Item with ID {itemId} updated successfully");
