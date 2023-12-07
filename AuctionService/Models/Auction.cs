@@ -16,8 +16,6 @@ public class Auction
     public string Title { get; set; }
     public AuctionType Type { get; set; }
     public Item? Item { get; set; }
-    [BsonIgnore]
-    public string? ItemId { get; set; }//TODO: remove this
     public List<Bid>? Bids { get; set; }
     public string Description { get; set; }
 

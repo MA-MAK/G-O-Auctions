@@ -17,11 +17,14 @@ namespace ItemService.Controllers
         private readonly ILogger<ItemController> _logger;
         private readonly IConfiguration _configuration;
 
-        public ItemController(IItemRepository itemRepository, ILogger<ItemController> logger, IConfiguration configuration)
+        private readonly ICustomerRepository _customerRepository;
+
+        public ItemController(IItemRepository itemRepository, ICustomerRepository customerRepository, ILogger<ItemController> logger, IConfiguration configuration)
         {
             _itemRepository = itemRepository;
             _logger = logger;
             _configuration = configuration;
+            _customerRepository = customerRepository;
         }
 
         [HttpGet("{id}")]
@@ -30,6 +33,7 @@ namespace ItemService.Controllers
             _logger.LogInformation($"ItemController.GetItemById - id: {id}");
             var item = await _itemRepository.GetItemById(id);
             _logger.LogInformation($"ItemController.GetItemById - item: {item}");
+            item.Customer = _customerRepository.GetCustomerById(item.Customer.Id).Result;
 
             if (item == null)
             {
