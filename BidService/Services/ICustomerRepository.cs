@@ -1,6 +1,7 @@
 using BidService.Models;
 
+namespace BidService.Services;
 public interface ICustomerRepository
 {
-    Task<Customer> GetCustomerForBid(int BidId);
+    Task<Customer> GetCustomerById(string CustomerId);
 }
