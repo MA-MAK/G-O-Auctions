@@ -54,7 +54,7 @@ namespace ItemService.Controllers
             }
         }
 
-         [HttpPut]
+        [HttpPut]
         public async Task<IActionResult> UpdateItem(Item updatedItem)
         {
             try
@@ -87,6 +87,32 @@ namespace ItemService.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> PostItem(Item Item)
+        {
+            try
+            {
+                if (Item == null)
+                {
+                    return BadRequest("Invalid item data");
+                }
+
+                var success = await _itemRepository.PostItem(Item);
+                _logger.LogInformation($"### ItemController.PostItem - response: {success}");
+
+                if (success)
+                {
+                    return CreatedAtAction(nameof(GetItemById), new { id = Item.Id }, Item);
+                }
+
+                return StatusCode(500, "Failed to post item");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error occurred while posting item: {ex.Message}");
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
     }
 }
 
