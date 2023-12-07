@@ -102,48 +102,41 @@ namespace AssessmentService.Services
         }
 
         // Put method to update item on certain attributes via ItemService
-        public async Task UpdateItem(string itemId, string description, int year, decimal assessmentPrice, int category, int condition, int status, string title)
+        public async Task UpdateItem(Item item)
         {
             try
             {
                 // Make a GET request to the ItemService API endpoint to get the item by ID
-                HttpResponseMessage getItemResponse = await _httpClient.GetAsync($"/api/items/{itemId}");
+               /* HttpResponseMessage getItemResponse = await _httpClient.GetAsync($"/api/item/{item.Id}");
 
                 if (!getItemResponse.IsSuccessStatusCode)
                 {
-                    _logger.LogError($"### Failed to get item with ID {itemId}. Status code: {getItemResponse.StatusCode}");
-                    throw new Exception($"Failed to get item with ID {itemId}. Status code: {getItemResponse.StatusCode}");
+                    _logger.LogError($"### Failed to get item with ID {item.Id}. Status code: {getItemResponse.StatusCode}");
+                    throw new Exception($"Failed to get item with ID {item.Id}. Status code: {getItemResponse.StatusCode}");
                 }
 
                 // Deserialize the response content to an Item object
                 string getItemJsonString = await getItemResponse.Content.ReadAsStringAsync();
                 var existingItem = JsonSerializer.Deserialize<Item>(getItemJsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-
-                // Update the attributes based on the parameters
-                existingItem.Description = description ?? existingItem.Description;
-                existingItem.Year = year != 0 ? year : existingItem.Year;
-                existingItem.AssesmentPrice = assessmentPrice != 0 ? assessmentPrice : existingItem.AssesmentPrice;
-                existingItem.Category = category != 0 ? (Category)category : existingItem.Category;
-                existingItem.Condition = condition != 0 ? (Condition)condition : existingItem.Condition;
-
+*/
                 // Set Status to ReadyForAuction or NotSellable
-                if (status != 0)
+                if (item.Status != 0)
                 {
-                    existingItem.Status = (Status)status;
+                    item.Status = (Status)item.Status;
                 }
 
-                existingItem.Title = title ?? existingItem.Title;
+                item.Title = item.Title ?? item.Title;
 
                 // Make a PUT request to update the item in the ItemService
-                string updatedItemJsonString = JsonSerializer.Serialize(existingItem);
+                string updatedItemJsonString = JsonSerializer.Serialize(item);
                 StringContent content = new StringContent(updatedItemJsonString, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage updateItemResponse = await _httpClient.PutAsync($"/api/items/{itemId}", content);
+                HttpResponseMessage updateItemResponse = await _httpClient.PutAsync($"/api/item/", content);
 
                 if (!updateItemResponse.IsSuccessStatusCode)
                 {
-                    _logger.LogError($"### Failed to update item with ID {itemId}. Status code: {updateItemResponse.StatusCode}");
-                    throw new Exception($"Failed to update item with ID {itemId}. Status code: {updateItemResponse.StatusCode}");
+                    _logger.LogError($"### Failed to update item with ID {item.Id}. Status code: {updateItemResponse.StatusCode}");
+                    throw new Exception($"Failed to update item with ID {item.Id}. Status code: {updateItemResponse.StatusCode}");
                 }
             }
             catch (Exception ex)
