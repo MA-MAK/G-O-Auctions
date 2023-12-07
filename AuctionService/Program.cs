@@ -25,15 +25,24 @@ try
     builder.Services.AddHttpClient("ItemService", client =>
     {
         client.BaseAddress = new Uri("http://localhost:5164");
-        // Add any additional configuration for HttpClient as needed
     });
+
+    builder.Services.AddHttpClient("BidService", client =>
+    {
+        client.BaseAddress = new Uri("http://localhost:5223");
+    });
+
     builder.Services.AddSingleton<IAuctionRepository, AuctionRepository>();
 
     builder.Services.AddSingleton<IItemRepository, ItemRepository>(
         b => new ItemRepository(b.GetService<IHttpClientFactory>()
         .CreateClient("ItemService"), 
         builder.Services.BuildServiceProvider().GetRequiredService<ILogger<ItemRepository>>()));
-    builder.Services.AddSingleton<IBidRepository, BidRepository>();
+    
+    builder.Services.AddSingleton<IBidRepository, BidRepository>(
+        b => new BidRepository(b.GetService<IHttpClientFactory>()
+        .CreateClient("BidService"), 
+        builder.Services.BuildServiceProvider().GetRequiredService<ILogger<BidRepository>>()));
 
     // MongoDB configuration
     var connectionString = builder.Configuration.GetConnectionString("MongoDBConnection");

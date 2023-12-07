@@ -43,10 +43,10 @@ namespace AuctionService.Controllers
         public IActionResult GetAuctionById(string id)
         {
             Auction auction = _auctionRepository.GetAuctionById(id).Result;
-            _logger.LogInformation($"GetAuctionById: {auction.Title}");
+            _logger.LogInformation($"### GetAuctionById: {auction.Title}");
             auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
-            _logger.LogInformation($"GetAuctionById: {auction.Item.Title}");
-            auction.Bids = _bidRepository.GetBidsForAuction(auction.Id).Result.ToList();
+            _logger.LogInformation($"### GetAuctionById: {auction.Item.Title}");
+            auction.Bids = _bidRepository.GetBidsForAuction(id).Result.ToList();
             return Ok(auction);
         }
 

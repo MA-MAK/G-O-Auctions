@@ -28,10 +28,13 @@ namespace BidService.Controllers
         }
 */
         [HttpGet("{id}")]
-        public Task<IActionResult> GetBidsForAuction(int id)
+        public Task<IActionResult> GetBidsForAuction(string id)
         {
+            _logger.LogInformation($"### GetBidsForAuction: {id}");
             var bids = _bidRepository.GetBidsForAuction(id).Result.ToList();
+            _logger.LogInformation($"### GetBidsForAuction: {bids.Count}");
             return Task.FromResult<IActionResult>(Ok(bids));
+
         }
 
 /*
