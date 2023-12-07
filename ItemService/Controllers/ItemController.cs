@@ -53,6 +53,40 @@ namespace ItemService.Controllers
                 return StatusCode(500, "Internal Server Error");
             }
         }
+
+         [HttpPut]
+        public async Task<IActionResult> UpdateItem(Item updatedItem)
+        {
+            try
+            {
+                if (updatedItem == null)
+                {
+                    return BadRequest("Invalid item data");
+                }
+
+                /* var existingItem = await _itemRepository.GetItemById(id);
+
+                if (existingItem == null)
+                {
+                    return NotFound();
+                }
+*/
+                var success = await _itemRepository.UpdateItem(updatedItem);
+                _logger.LogInformation($"### ItemController: updateItem - response: {success}");
+                if (success)
+                {
+                    return Ok(updatedItem);
+                }
+
+                return StatusCode(500, "Failed to update item");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error occurred while updating item: {ex.Message}");
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
+
     }
 }
 

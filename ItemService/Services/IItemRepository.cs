@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using ItemService.Models;
 
 namespace ItemService.Services
@@ -6,6 +7,8 @@ namespace ItemService.Services
     {
         Task<Item> GetItemById(string itemId);
         Task<IEnumerable<Item>> GetAllItems();
+        Task<bool> UpdateItem(Item item);
     }
 }
+
 

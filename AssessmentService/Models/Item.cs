@@ -15,7 +15,7 @@ public class Item
     public string Location { get; set; }
 
     [BsonElement("Seller")]
-    public Customer Seller { get; set; }
+    public Customer? Seller { get; set; }
     public Category Category { get; set; }
     public Condition Condition { get; set; }
     public Status Status { get; set; }

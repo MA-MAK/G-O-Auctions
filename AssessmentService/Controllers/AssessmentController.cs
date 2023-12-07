@@ -66,22 +66,24 @@ namespace AssessmentService.Controllers
             }
         }
 
-        [HttpPut("PutItem")]
-        public async Task<IActionResult> UpdateItem(string itemId, string description, int year, decimal assessmentPrice, int category, int condition, int status, string title)
+        [HttpPut]
+        public async Task<IActionResult> UpdateItem(Item updatedItem)
         {
+            _logger.LogInformation($"### AssessmentController.UpdateItem - item: {updatedItem.Id}");
+
             try
             {
                 // Assuming there's a PUT function in ItemService to update items
-                await _assessmentRepository.UpdateItem(itemId, description, year, assessmentPrice, category, condition, status, title);
-                _logger.LogInformation($"### ItemController.UpdateItem - item: {itemId}");
+                await _assessmentRepository.UpdateItem(updatedItem);
+                _logger.LogInformation($"### AssessmentController.UpdateItem - item: {updatedItem.Id}");
 
                 // If the update is successful, return Ok
-                return Ok($"Item with ID {itemId} updated successfully");
+                return Ok(updatedItem);
             }
             catch (KeyNotFoundException)
             {
                 // Handle the case where the item with the specified ID is not found
-                return NotFound($"Item with ID {itemId} not found");
+                return NotFound($"Item with ID {updatedItem.Id} not found");
             }
             catch (Exception ex)
             {
