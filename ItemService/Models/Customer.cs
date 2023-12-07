@@ -3,18 +3,19 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace ItemService.Models
 
 {
+    [BsonIgnoreExtraElements]
     public class Customer
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         [BsonIgnore]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         [BsonIgnore]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         [BsonIgnore]
-        public bool Premium { get; set; }
+        public bool? Premium { get; set; }
 
         // Constructor
         /*

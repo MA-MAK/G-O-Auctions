@@ -94,13 +94,17 @@ namespace ItemService.Controllers
         [HttpPost]
         public async Task<IActionResult> PostItem(Item Item)
         {
+            _logger.LogInformation($"### ItemController.PostItem - Posting item...");
             try
             {
                 if (Item == null)
                 {
                     return BadRequest("Invalid item data");
                 }
-
+                _logger.LogInformation($"### ItemController.PostItem - Item.Customer: {Item.Customer.Id}");
+                _logger.LogInformation($"### ItemController.PostItem - Item:  {Item.Title}");
+                Item.Customer = _customerRepository.GetCustomerById(Item.Customer.Id).Result;
+                _logger.LogInformation($"### ItemController.PostItem - Customer: {Item.Customer.Name}");
                 var success = await _itemRepository.PostItem(Item);
                 _logger.LogInformation($"### ItemController.PostItem - response: {success}");
 
