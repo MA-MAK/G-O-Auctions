@@ -58,3 +58,5 @@ dotnet add package NLog.Targets.Loki
 (create dashboard with filter: app=monitoring)
 
 
+
+
