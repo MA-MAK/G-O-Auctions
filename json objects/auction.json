@@ -5,7 +5,10 @@
     "Status": 1,
     "Title": "Example Auction",
     "Type": 1,
-    "ItemId": "656ef7cf3bcf7cf6fe0275db",
+    "Item":{
+        "Id": "656ef7cf3bcf7cf6fe0275db"
+    }, 
+    "Bids":[],
     "Description": "This is an example auction"
 }
 

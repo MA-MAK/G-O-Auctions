@@ -1,12 +1,11 @@
-using BidService.Services;
+using CustomerService.Services;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
-using BidService.Models;
+using CustomerService.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -14,14 +13,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLogging();
-builder.Services.AddSingleton<IBidRepository, BidRepository>();
+builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>();
 
 // MongoDB configuration
 var connectionString = builder.Configuration.GetConnectionString("MongoDBConnection");
 var databaseName = builder.Configuration.GetSection("MongoDBSettings:DatabaseName").Value;
 var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<MongoDBContext>>();
 builder.Services.AddSingleton<MongoDBContext>(provider => new MongoDBContext(logger, builder.Configuration));
-
 
 var app = builder.Build();
 

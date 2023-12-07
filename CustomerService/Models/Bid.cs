@@ -1,6 +1,6 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using ItemService.Models;
+using CustomerService.Models;
 
 
 public class Bid

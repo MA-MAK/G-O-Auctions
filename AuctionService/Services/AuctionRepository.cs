@@ -41,7 +41,9 @@ public class AuctionRepository : IAuctionRepository
      */
     public Task<Auction> GetAuctionById(string id)
     {
+        _logger.LogInformation($"### AuctionRepository.GetAuctionById - id: {id}");
         var auction = _auctions.Find(a => a.Id == id).FirstOrDefaultAsync();
+        _logger.LogInformation($"### AuctionRepository.GetAuctionById - auction: {auction.Result.Title}");
         return Task.FromResult<Auction>(auction.Result);
     }
 
