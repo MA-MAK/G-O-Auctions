@@ -22,14 +22,14 @@ namespace BidService.Controllers
             _logger = logger;
             _configuration = configuration;
         }
-/*
-        [HttpGet]
-        public ActionResult<IEnumerable<Bid>> GetAllBids()
-        {
-            var bids = _bidRepository.GetAllBids();
-            return Ok(bids);
-        }
-*/
+        /*
+                [HttpGet]
+                public ActionResult<IEnumerable<Bid>> GetAllBids()
+                {
+                    var bids = _bidRepository.GetAllBids();
+                    return Ok(bids);
+                }
+        */
         [HttpGet("{id}")]
         public Task<IActionResult> GetBidsForAuction(string id)
         {
@@ -44,38 +44,35 @@ namespace BidService.Controllers
 
         }
 
-/*
         [HttpPost]
-        public ActionResult<Bid> CreateBid(Bid bid)
+        public async Task<IActionResult> PostBid(Bid newBid)
         {
-            _bidRepository.CreateBid(bid);
-            return CreatedAtAction(nameof(GetBidById), new { id = bid.Id }, bid);
-        }
-*/
-/*
-        [HttpPut("{id}")]
-        public IActionResult UpdateBid(int id, Bid bid)
-        {
-            if (id != bid.Id)
+            try
             {
-                return BadRequest();
+                _logger.LogInformation($"### BidController.PostBid");
+
+                // Validate the new bid and check for existing bids
+                if (newBid == null || newBid.Amount <= 0 || string.IsNullOrEmpty(newBid.CustomerId) || string.IsNullOrEmpty(newBid.AuctionId))
+                {
+                    return BadRequest("Invalid bid data");
+                }
+
+                var success = await _bidRepository.PostBid(newBid);
+
+                if (success)
+                {
+                    // Bid posted successfully
+                    return CreatedAtAction(nameof(GetBidsForAuction), new { id = newBid.AuctionId }, newBid);
+                }
+
+                // Bid post failed
+                return StatusCode(500, "Failed to post bid");
             }
-            _bidRepository.UpdateBid(bid);
-            return NoContent();
-        }
-*/
-/*
-        [HttpDelete("{id}")]
-        public IActionResult DeleteBid(int id)
-        {
-            var bid = _bidRepository.GetBidById(id);
-            if (bid == null)
+            catch (Exception ex)
             {
-                return NotFound();
+                _logger.LogError($"Error occurred while posting bid: {ex.Message}");
+                return StatusCode(500, "Internal Server Error");
             }
-            _bidRepository.DeleteBid(bid);
-            return NoContent();
         }
-        */
     }
 }

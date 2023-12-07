@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using CustomerService.Models;
 using CustomerService.Services;
 
@@ -19,14 +21,48 @@ namespace CustomerService.Controllers
             _logger = logger;
             _configuration = configuration;
         }
-        
+
         [HttpGet("{id}")]
-        public Task<IActionResult> GetCustomerById(string id)
+        public async Task<IActionResult> GetCustomerById(string id)
         {
             _logger.LogInformation($"CustomerController.GetCustomerById - id: {id}");
-            var customer = _customerRepository.GetCustomerById(id).Result;
+            var customer = await _customerRepository.GetCustomerById(id);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
             _logger.LogInformation($"CustomerController.GetCustomerById - customer: {customer}");
-            return Task.FromResult<IActionResult>(Ok(customer));
+            return Ok(customer);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostCustomer(Customer newCustomer)
+        {
+            try
+            {
+                if (newCustomer == null)
+                {
+                    return BadRequest("Invalid customer data");
+                }
+
+                // Perform any additional validation if needed
+
+                var success = await _customerRepository.PostCustomer(newCustomer);
+
+                if (success)
+                {
+                    return CreatedAtAction(nameof(GetCustomerById), new { id = newCustomer.Id }, newCustomer);
+                }
+
+                return StatusCode(500, "Failed to post customer");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error occurred while posting customer: {ex.Message}");
+                return StatusCode(500, "Internal Server Error");
+            }
         }
     }
 }

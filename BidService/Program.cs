@@ -14,26 +14,33 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLogging();
+builder.Services.AddHttpClient("BidService", client =>
+{
+   client.BaseAddress = new Uri("http://localhost:5104");
+});
 builder.Services.AddSingleton<IBidRepository, BidRepository>();
 
-    builder.Services.AddHttpClient("CustomerService", client =>
-    {
-        client.BaseAddress = new Uri("http://localhost:5104");
-    });
-
-    builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>(
-        b => new CustomerRepository(b.GetService<IHttpClientFactory>()
-        .CreateClient("CustomerService"), 
-        builder.Services.BuildServiceProvider().GetRequiredService<ILogger<CustomerRepository>>()));
+builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>(
+    b => new CustomerRepository(b.GetService<IHttpClientFactory>()
+    .CreateClient("BidService"),
+    builder.Services.BuildServiceProvider().GetRequiredService<ILogger<CustomerRepository>>()));
 
 // MongoDB configuration
 var connectionString = builder.Configuration.GetConnectionString("MongoDBConnection");
 var databaseName = builder.Configuration.GetSection("MongoDBSettings:DatabaseName").Value;
 var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<MongoDBContext>>();
+
 builder.Services.AddSingleton<MongoDBContext>(provider => new MongoDBContext(logger, builder.Configuration));
 
-
 var app = builder.Build();
+
+
+
+
+
+
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
