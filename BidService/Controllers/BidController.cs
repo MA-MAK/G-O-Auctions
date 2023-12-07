@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BidService.Models;
 using BidService.Services;
 
+
 namespace BidService.Controllers
 {
     [ApiController]
@@ -12,10 +13,12 @@ namespace BidService.Controllers
         private readonly IBidRepository _bidRepository;
         private readonly ILogger<BidController> _logger;
         private readonly IConfiguration _configuration;
+        private readonly ICustomerRepository _customerRepository;
 
-        public BidController(IBidRepository bidRepository, ILogger<BidController> logger, IConfiguration configuration)
+        public BidController(IBidRepository bidRepository, ICustomerRepository customerRepository, ILogger<BidController> logger, IConfiguration configuration)
         {
             _bidRepository = bidRepository;
+            _customerRepository = customerRepository;
             _logger = logger;
             _configuration = configuration;
         }
@@ -33,6 +36,10 @@ namespace BidService.Controllers
             _logger.LogInformation($"### GetBidsForAuction: {id}");
             var bids = _bidRepository.GetBidsForAuction(id).Result.ToList();
             _logger.LogInformation($"### GetBidsForAuction: {bids.Count}");
+            foreach (var bid in bids)
+            {
+                bid.Customer = _customerRepository.GetCustomerById(bid.Customer.Id).Result;
+            }
             return Task.FromResult<IActionResult>(Ok(bids));
 
         }
