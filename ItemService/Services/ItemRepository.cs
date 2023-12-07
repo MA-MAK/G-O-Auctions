@@ -72,6 +72,33 @@ namespace ItemService.Services
             }
         }
 
+        public async Task<bool> PostItem(Item Item)
+        {
+            try
+            {
+                _logger.LogInformation($"### ItemRepository.PostItem");
+
+                // Check if the item with the same Id already exists
+                var existingItem = await _items.Find(a => a.Id == Item.Id).FirstOrDefaultAsync();
+
+                if (existingItem != null)
+                {
+                    _logger.LogWarning($"Item with Id {Item.Id} already exists. Post failed.");
+                    return false; // Item with the same Id already exists, post failed
+                }
+
+                // Insert the new item
+                await _items.InsertOneAsync(Item);
+
+                return true; // Item posted successfully
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error occurred while posting item: {ex.Message}");
+                return false;
+            }
+        }
+
 
     }
 }
