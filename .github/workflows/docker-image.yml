@@ -13,14 +13,42 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout repository
     - uses: actions/checkout@v3
+    
     - name: docker login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-    - name: Push to DockerHub
-      run: docker push ${{secrets.DOCKER_USER}}/<docker hub repo>
+        
+    - name: Build the Docker image for AuctionService
+      run: docker build . --file AuctionService/Dockerfile --tag auctionservice-image:$(date +%s)
+    - name: Push auctionservice-image to DockerHub
+      run: docker push ${{secrets.DOCKER_USER}}/asnielsen789
+
+    - name: Build the Docker image for BidService
+      run: docker build . --file BidService/Dockerfile --tag bidservice-image:$(date +%s)
+    - name: Push bidservice-image to DockerHub
+      run: docker push ${{secrets.DOCKER_USER}}/asnielsen789
+
+    - name: Build the Docker image for ItemService
+      run: docker build . --file ItemService/Dockerfile --tag itemservice-image:$(date +%s)
+    - name: Push itemservice-image to DockerHub
+      run: docker push ${{secrets.DOCKER_USER}}/asnielsen789
+
+    - name: Build the Docker image for CustomerService
+      run: docker build . --file CustomerService/Dockerfile --tag customerservice-image:$(date +%s)
+    - name: Push customerservice-image to DockerHub
+      run: docker push ${{secrets.DOCKER_USER}}/asnielsen789
+
+    - name: Build the Docker image for SaleService
+      run: docker build . --file SaleService/Dockerfile --tag saleservice-image:$(date +%s)
+    - name: Push saleservice-image to DockerHub
+      run: docker push ${{secrets.DOCKER_USER}}/asnielsen789
+
+    - name: Build the Docker image for AssessmentService
+      run: docker build . --file AssessmentService/Dockerfile --tag assessmentservice-image:$(date +%s)
+    - name: Push assessmentservice-image to DockerHub
+      run: docker push ${{secrets.DOCKER_USER}}/asnielsen789
