@@ -22,15 +22,13 @@ public class Item
     [BsonIgnore]
     public string? Location { get; set; }
     [BsonIgnore]
-    public Customer? Seller { get; set; }
+    public Customer? Customer { get; set; }
     [BsonIgnore]
     public Category Category { get; set; }
     [BsonIgnore]
     public Condition Condition { get; set; }
     [BsonIgnore]
     public Status Status { get; set; }
-    [BsonIgnore]
-    public int AuctionId { get; set; }//TODO: remove this
 }
 public enum Category
 {

@@ -13,8 +13,7 @@ public class Item
     public string? Description { get; set; }
     public int Year { get; set; }
     public string Location { get; set; }
-    [BsonIgnore]
-    public Customer? Seller { get; set; }
+    public Customer? Customer { get; set; }
     public Category Category { get; set; }
     public Condition Condition { get; set; }
     public Status Status { get; set; }

@@ -17,11 +17,14 @@ namespace ItemService.Controllers
         private readonly ILogger<ItemController> _logger;
         private readonly IConfiguration _configuration;
 
-        public ItemController(IItemRepository itemRepository, ILogger<ItemController> logger, IConfiguration configuration)
+        private readonly ICustomerRepository _customerRepository;
+
+        public ItemController(IItemRepository itemRepository, ICustomerRepository customerRepository, ILogger<ItemController> logger, IConfiguration configuration)
         {
             _itemRepository = itemRepository;
             _logger = logger;
             _configuration = configuration;
+            _customerRepository = customerRepository;
         }
 
         [HttpGet("{id}")]
@@ -30,6 +33,7 @@ namespace ItemService.Controllers
             _logger.LogInformation($"ItemController.GetItemById - id: {id}");
             var item = await _itemRepository.GetItemById(id);
             _logger.LogInformation($"ItemController.GetItemById - item: {item}");
+            item.Customer = _customerRepository.GetCustomerById(item.Customer.Id).Result;
 
             if (item == null)
             {
@@ -90,13 +94,17 @@ namespace ItemService.Controllers
         [HttpPost]
         public async Task<IActionResult> PostItem(Item Item)
         {
+            _logger.LogInformation($"### ItemController.PostItem - Posting item...");
             try
             {
                 if (Item == null)
                 {
                     return BadRequest("Invalid item data");
                 }
-
+                _logger.LogInformation($"### ItemController.PostItem - Item.Customer: {Item.Customer.Id}");
+                _logger.LogInformation($"### ItemController.PostItem - Item:  {Item.Title}");
+                Item.Customer = _customerRepository.GetCustomerById(Item.Customer.Id).Result;
+                _logger.LogInformation($"### ItemController.PostItem - Customer: {Item.Customer.Name}");
                 var success = await _itemRepository.PostItem(Item);
                 _logger.LogInformation($"### ItemController.PostItem - response: {success}");
 
