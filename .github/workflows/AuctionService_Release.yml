@@ -27,10 +27,13 @@ jobs:
       working-directory: AuctionService
       run: |
         dotnet restore
-    - name: Build
+    - name: Build Service
       working-directory: AuctionService
       run: dotnet build --no-restore
-    - name: Test
+    - name: Build Test
+      working-directory: AuctionServiceTest
+      run: dotnet build --no-restore
+    - name: Run Test
       working-directory: AuctionServiceTest
       run: dotnet test --no-build --verbosity normal
     - name: Commit and push to main
