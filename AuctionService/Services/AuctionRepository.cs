@@ -32,13 +32,13 @@ public class AuctionRepository : IAuctionRepository
         return Task.CompletedTask;
     }
 
-    /*  public Task<IEnumerable<Auction>> GetAllAuctions()
+      public Task<IEnumerable<Auction>> GetAllAuctions()
      {
           var auctions =  _auctions.Find(_ => true).ToListAsync();
           return Task.FromResult<IEnumerable<Auction>>(auctions.Result);
      }
 
-     */
+     
     public Task<Auction> GetAuctionById(string id)
     {
         _logger.LogInformation($"### AuctionRepository.GetAuctionById - id: {id}");
