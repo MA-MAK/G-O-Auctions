@@ -41,23 +41,24 @@ public class Tests
         };
 
         var BidRepositoryMock = new Mock<IBidRepository>();
-        BidRepositoryMock.Setup(svc => svc.GetBidsForAuction(1))
+        BidRepositoryMock.Setup(svc => svc.GetBidsForAuction("1"))
             .Returns(Task.FromResult<IEnumerable<Bid>?>(bids));
 
         var CustomerRepositoryMock = new Mock<ICustomerRepository>();
-        CustomerRepositoryMock.Setup(svc => svc.GetCustomerForBid(1))
+        CustomerRepositoryMock.Setup(svc => svc.GetCustomerById("1"))
             .Returns(Task.FromResult<Customer?>(bidder1));
 
-        var controller = new BidController(BidRepositoryMock.Object, _logger, _configuration);
+        var controller = new BidController(BidRepositoryMock.Object, CustomerRepositoryMock.Object, _logger, _configuration);
+//public BidController(IBidRepository bidRepository, ICustomerRepository customerRepository, ILogger<BidController> logger, IConfiguration configuration)
 
-        var result = controller.GetBidsForAuction(1).Result;
+        var result = controller.GetBidsForAuction("1").Result;
         
         Assert.That(result, Is.TypeOf<OkObjectResult>());
         Assert.That((result as OkObjectResult)?.Value, Is.TypeOf<List<Bid>>());
         Assert.That(((result as OkObjectResult)?.Value as List<Bid>)[1], Is.TypeOf<Bid>());
         Assert.That(((result as OkObjectResult)?.Value as List<Bid>).Count, Is.EqualTo(4));
         Assert.That(((result as OkObjectResult)?.Value as List<Bid>)[0].Id, Is.EqualTo("1"));
-        Assert.That(((result as OkObjectResult)?.Value as List<Bid>)[0].Bidder, Is.TypeOf<Customer>());
-        Assert.That(((result as OkObjectResult)?.Value as List<Bid>)[0].Bidder.Id, Is.EqualTo("1"));
+        Assert.That(((result as OkObjectResult)?.Value as List<Bid>)[0].Customer, Is.TypeOf<Customer>());
+        Assert.That(((result as OkObjectResult)?.Value as List<Bid>)[0].Customer.Id, Is.EqualTo("1"));
     }
 }
