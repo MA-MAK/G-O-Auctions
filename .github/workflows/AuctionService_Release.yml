@@ -46,7 +46,7 @@ jobs:
         git config --global user.name "asnielsen789"
     - name: pull latest main
       run: |
-        git merge origin main
+        git merge origin/main
         git commit -am "automated release to main"
         git push
     - name: Checkout to main
@@ -55,5 +55,5 @@ jobs:
         ref: main
     - name: Commit and push to main
       run: |
-        git merge origin develop --allow-unrelated-histories
+        git merge origin/develop --allow-unrelated-histories
         git push
