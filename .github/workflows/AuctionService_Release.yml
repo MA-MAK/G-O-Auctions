@@ -42,5 +42,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Commit and push to main
       run: |
+        git config --global user.email "asnielsen789@gmail.com"
+        git config --global user.name "asnielsen789"
         git commit -am "automated release to main"
         git push
