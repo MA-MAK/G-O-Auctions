@@ -30,14 +30,14 @@ public class Tests
     [Test]
     public void GetBidsForAuctionTest()
     {
-        Customer bidder1 = new Customer { Id = 1, Name = "Mary Jane", Email = "m@gmail" };
-        Customer bidder2 = new Customer { Id = 2, Name = "Peter Bennington", Email = "p@gmail" };
-        Customer bidder3 = new Customer { Id = 3, Name = "Walter Leigh", Email = "w@gmail" };
+        Customer bidder1 = new Customer { Id = "1", Name = "Mary Jane", Email = "m@gmail" };
+        Customer bidder2 = new Customer { Id = "2", Name = "Peter Bennington", Email = "p@gmail" };
+        Customer bidder3 = new Customer { Id = "3", Name = "Walter Leigh", Email = "w@gmail" };
         List<Bid> bids = new List<Bid>{
-            new Bid { Id = 1, Bidder = bidder1, Amount = 1000, Time = DateTime.Now, AuctionId = 1 },
-            new Bid { Id = 2, Bidder = bidder2, Amount = 2000, Time = DateTime.Now.AddMinutes(10), AuctionId = 1 },
-            new Bid { Id = 3, Bidder = bidder3, Amount = 3000, Time = DateTime.Now.AddMinutes(30), AuctionId = 1 },
-            new Bid { Id = 4, Bidder = bidder2, Amount = 5000, Time = DateTime.Now.AddMinutes(35), AuctionId = 1 }
+            new Bid { Id = "1", Customer = bidder1, Amount = 1000, Time = DateTime.Now, Auction = new Auction { Id = "1" } },
+            new Bid { Id = "2", Customer = bidder2, Amount = 2000, Time = DateTime.Now.AddMinutes(10), Auction = new Auction { Id = "1" } },
+            new Bid { Id = "3", Customer = bidder3, Amount = 3000, Time = DateTime.Now.AddMinutes(30), Auction = new Auction { Id = "1" } },
+            new Bid { Id = "4", Customer = bidder2, Amount = 5000, Time = DateTime.Now.AddMinutes(35), Auction = new Auction { Id = "1" } }
         };
 
         var BidRepositoryMock = new Mock<IBidRepository>();
@@ -56,8 +56,8 @@ public class Tests
         Assert.That((result as OkObjectResult)?.Value, Is.TypeOf<List<Bid>>());
         Assert.That(((result as OkObjectResult)?.Value as List<Bid>)[1], Is.TypeOf<Bid>());
         Assert.That(((result as OkObjectResult)?.Value as List<Bid>).Count, Is.EqualTo(4));
-        Assert.That(((result as OkObjectResult)?.Value as List<Bid>)[0].Id, Is.EqualTo(1));
+        Assert.That(((result as OkObjectResult)?.Value as List<Bid>)[0].Id, Is.EqualTo("1"));
         Assert.That(((result as OkObjectResult)?.Value as List<Bid>)[0].Bidder, Is.TypeOf<Customer>());
-        Assert.That(((result as OkObjectResult)?.Value as List<Bid>)[0].Bidder.Id, Is.EqualTo(1));
+        Assert.That(((result as OkObjectResult)?.Value as List<Bid>)[0].Bidder.Id, Is.EqualTo("1"));
     }
 }

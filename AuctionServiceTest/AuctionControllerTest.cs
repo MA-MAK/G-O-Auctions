@@ -30,18 +30,18 @@ public class Tests
     [Test]
     public void GetAuctionByIDTest()
     {
-        Customer customer = new Customer { Id = 1, Name = "Johnny Doey", Email = "j@gmail" };
-        Customer bidder1 = new Customer { Id = 2, Name = "Mary Jane", Email = "m@gmail" };
-        Customer bidder2 = new Customer { Id = 3, Name = "Peter Bennington", Email = "p@gmail" };
-        Customer bidder3 = new Customer { Id = 4, Name = "Walter Leigh", Email = "w@gmail" };
+        Customer customer = new Customer { Id = "1", Name = "Johnny Doey", Email = "j@gmail" };
+        Customer bidder1 = new Customer { Id = "2", Name = "Mary Jane", Email = "m@gmail" };
+        Customer bidder2 = new Customer { Id = "3", Name = "Peter Bennington", Email = "p@gmail" };
+        Customer bidder3 = new Customer { Id = "4", Name = "Walter Leigh", Email = "w@gmail" };
         List<Bid> bids = new List<Bid>{
-            new Bid { Id = 1, Customer = bidder1, Amount = 1000, Time = DateTime.Now, AuctionId = "1" },
-            new Bid { Id = 2, Customer = bidder2, Amount = 2000, Time = DateTime.Now.AddMinutes(10), AuctionId = "1" },
-            new Bid { Id = 3, Customer = bidder3, Amount = 3000, Time = DateTime.Now.AddMinutes(30), AuctionId = "1" },
-            new Bid { Id = 4, Customer = bidder2, Amount = 5000, Time = DateTime.Now.AddMinutes(35), AuctionId = "1" }
+            new Bid { Id = "1", Customer = bidder1, Amount = 1000, Time = DateTime.Now, AuctionId = "1" },
+            new Bid { Id = "2", Customer = bidder2, Amount = 2000, Time = DateTime.Now.AddMinutes(10), AuctionId = "1" },
+            new Bid { Id = "3", Customer = bidder3, Amount = 3000, Time = DateTime.Now.AddMinutes(30), AuctionId = "1" },
+            new Bid { Id = "4", Customer = bidder2, Amount = 5000, Time = DateTime.Now.AddMinutes(35), AuctionId = "1" }
         };
 
-        Item item = new Item { Id = "1", Title = "Chair", Description = "The best chair", Category = Category.Home, Condition = Condition.Good, Location = "Amsterdam", Seller = customer, StartPrice = 10, AssesmentPrice = 20, Year = 2021, Status = Status.Registered, AuctionId = 1 };
+        Item item = new Item { Id = "1", Title = "Chair", Description = "The best chair", Category = Category.Home, Condition = Condition.Good, Location = "Amsterdam", Customer = customer, StartPrice = 10, AssesmentPrice = 20, Year = 2021, Status = Status.Registered };
 
         Auction auction = new Auction { Id = "1", StartTime = DateTime.Now, EndTime = DateTime.Now, Status = AuctionStatus.Active, Type = AuctionType.Dutch, Item = item };
 
@@ -84,9 +84,9 @@ public class Tests
             Category = Category.Home,
             Condition = Condition.Good,
             Location = "Amsterdam",
-            Seller = new Customer
+            Customer = new Customer
             {
-                Id = 1,
+                Id = "1",
                 Name = "Johnny Doey",
                 Email = "j@gmail"
             },
