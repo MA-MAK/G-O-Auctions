@@ -62,5 +62,7 @@ jobs:
     - name: Create pull request #Commit and push to main
       run: |
         gh pr create -B main -H develop --title 'Merge develop into main' --body 'Created by Github action'
+      env:
+        GH_TOKEN: ${{ github.token }}
 #        git merge origin/develop --allow-unrelated-histories
 #        git push
