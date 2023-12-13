@@ -27,17 +27,11 @@ jobs:
       working-directory: AuctionService
       run: |
         dotnet restore
-#        dotnet add package MongoDB.Bson
-#        dotnet add package MongoDB.Driver
-#        dotnet add package NLog
-#        dotnet add package NLog.Targets.Loki
-#        dotnet add package NLog.Web.AspNetCore
-#        dotnet add package Swashbuckle.AspNetCore
     - name: Build
       working-directory: AuctionService
       run: dotnet build --no-restore
     - name: Test
-      working-directory: AuctionService.Tests
+      working-directory: AuctionServiceTest
       run: dotnet test --no-build --verbosity normal
     - name: Commit and push to main
       run: |
