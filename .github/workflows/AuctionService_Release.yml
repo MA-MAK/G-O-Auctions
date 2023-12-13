@@ -67,7 +67,6 @@ jobs:
 #        git merge origin/develop --allow-unrelated-histories
 #        git push
     - name: Create a Release
-        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
