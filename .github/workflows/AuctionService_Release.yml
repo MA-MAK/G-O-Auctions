@@ -52,7 +52,7 @@ jobs:
         git branch
         git branch -r
         git status
-        git merge main
+        git merge origin/main
         git commit -am "automated release to main"
         git push
     - name: Checkout to main
