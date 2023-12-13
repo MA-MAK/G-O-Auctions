@@ -27,4 +27,4 @@ jobs:
     - name: Build the Docker image for BidService
       run: docker build . --file BidService/Dockerfile --tag bidservice-image:$(date +%s)
     - name: Push bidservice-image to DockerHub
-      run: docker push ${{secrets.DOCKER_USER}}/asnielsen789
+      run: docker push ${{secrets.DOCKER_USER}}/bidservice-image:$(date +%s)
