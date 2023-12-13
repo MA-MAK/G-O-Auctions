@@ -9,7 +9,7 @@ on:
       - "develop"
     paths:
       - AuctionService/**
-      - AuctionService.Tests/**
+      - AuctionServiceTest/**
       - .github/workflows/AuctionService_Release.yml
 
 jobs:

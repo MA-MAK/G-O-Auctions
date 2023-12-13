@@ -9,7 +9,7 @@ on:
       - "develop"
     paths:
       - BidService/**
-      - BidService.Tests/**
+      - BidServiceTest/**
 
 jobs:
   build:
