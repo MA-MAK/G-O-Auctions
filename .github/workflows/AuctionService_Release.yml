@@ -59,10 +59,15 @@ jobs:
 #      uses: actions/checkout@v2
 #      with:
 #        ref: main
-    - name: Create pull request #Commit and push to main
-      run: |
-        gh pr create -B main -H develop --title 'Merge develop into main' --body 'Created by Github action'
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#    - name: Create pull request #Commit and push to main
+#      run: |
+#        gh pr create -B main -H develop --title 'Merge develop into main' --body 'Created by Github action'
+#      env:
+#        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #        git merge origin/develop --allow-unrelated-histories
 #        git push
+    - name: Create a Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
