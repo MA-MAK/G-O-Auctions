@@ -48,5 +48,5 @@ jobs:
       run: |
         git config --global user.email "asnielsen789@gmail.com"
         git config --global user.name "asnielsen789"
-        git merge origin/develop
+        git merge origin/develop --allow-unrelated-histories
         
