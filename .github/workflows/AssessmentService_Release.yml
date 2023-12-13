@@ -6,6 +6,8 @@ name: .NET
 on:
   push:
     branches: [ "develop" ]
+    paths:
+      - 'AssessmentService/**'
 
 jobs:
   build:
@@ -18,9 +20,9 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
-#    - name: Install dependencies
-#      run: |
-#        dotnet add package ...
+    - name: Install dependencies
+      run: |
+        dotnet restore packages
     - name: Build
       run: dotnet build --no-restore
     - name: Test
