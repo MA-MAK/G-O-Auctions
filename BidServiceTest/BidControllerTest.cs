@@ -49,7 +49,6 @@ public class Tests
             .Returns(Task.FromResult<Customer?>(bidder1));
 
         var controller = new BidController(BidRepositoryMock.Object, CustomerRepositoryMock.Object, _logger, _configuration);
-//public BidController(IBidRepository bidRepository, ICustomerRepository customerRepository, ILogger<BidController> logger, IConfiguration configuration)
 
         var result = controller.GetBidsForAuction("1").Result;
         
