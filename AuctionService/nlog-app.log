@@ -1,0 +1,300 @@
+2023-12-05 09:42:29.0360 Info Loading assembly name: NLog.Loki
+2023-12-05 09:42:29.0804 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 09:42:29.1036 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 09:42:29.1036 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 09:42:29.1251 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 09:42:29.1251 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 09:42:29.1414 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 09:42:29.1414 Info Configuration initialized.
+2023-12-05 09:42:29.4411 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 10:12:52.0702 Info Shutdown() called. Logger closing...
+2023-12-05 10:12:52.0702 Info Closing old configuration.
+2023-12-05 10:12:52.0702 Info Logger has been closed down.
+2023-12-05 10:13:26.7921 Info Loading assembly name: NLog.Loki
+2023-12-05 10:13:26.8432 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 10:13:26.8628 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 10:13:26.8628 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 10:13:26.8906 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 10:13:26.8906 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 10:13:26.8906 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 10:13:26.9107 Info Configuration initialized.
+2023-12-05 10:13:26.9973 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:21:47.5279 Info Shutdown() called. Logger closing...
+2023-12-05 11:21:47.5279 Info Closing old configuration.
+2023-12-05 11:21:47.5345 Info Logger has been closed down.
+2023-12-05 11:21:54.1885 Info Loading assembly name: NLog.Loki
+2023-12-05 11:21:54.1885 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 11:21:54.2252 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 11:21:54.2252 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 11:21:54.2537 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 11:21:54.2537 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 11:21:54.2645 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:21:54.2645 Info Configuration initialized.
+2023-12-05 11:21:54.3493 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:24:32.5191 Info Shutdown() called. Logger closing...
+2023-12-05 11:24:32.5191 Info Closing old configuration.
+2023-12-05 11:24:32.5191 Info Logger has been closed down.
+2023-12-05 11:29:32.8888 Info Loading assembly name: NLog.Loki
+2023-12-05 11:29:32.8974 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 11:29:32.9168 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 11:29:32.9168 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 11:29:32.9375 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 11:29:32.9375 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 11:29:32.9533 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:29:32.9533 Info Configuration initialized.
+2023-12-05 11:29:33.0360 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:49:40.1509 Info Shutdown() called. Logger closing...
+2023-12-05 11:49:40.1509 Info Closing old configuration.
+2023-12-05 11:49:40.1678 Info Logger has been closed down.
+2023-12-05 11:49:47.6836 Info Loading assembly name: NLog.Loki
+2023-12-05 11:49:47.6836 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 11:49:47.7131 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 11:49:47.7131 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 11:49:47.7336 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 11:49:47.7417 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 11:49:47.7417 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:49:47.7601 Info Configuration initialized.
+2023-12-05 11:49:47.8350 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:51:34.8867 Info Shutdown() called. Logger closing...
+2023-12-05 11:51:34.8867 Info Closing old configuration.
+2023-12-05 11:51:34.8867 Info Logger has been closed down.
+2023-12-05 11:51:37.5212 Info Loading assembly name: NLog.Loki
+2023-12-05 11:51:37.5300 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 11:51:37.5534 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 11:51:37.5543 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 11:51:37.5726 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 11:51:37.5726 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 11:51:37.5902 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:51:37.5902 Info Configuration initialized.
+2023-12-05 11:51:37.6686 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:52:28.7136 Info Shutdown() called. Logger closing...
+2023-12-05 11:52:28.7136 Info Closing old configuration.
+2023-12-05 11:52:28.7276 Info Logger has been closed down.
+2023-12-05 11:52:31.0108 Info Loading assembly name: NLog.Loki
+2023-12-05 11:52:31.0108 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 11:52:31.0422 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 11:52:31.0422 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 11:52:31.0718 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 11:52:31.0718 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 11:52:31.0718 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:52:31.0934 Info Configuration initialized.
+2023-12-05 11:52:31.1711 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:52:50.1217 Info Shutdown() called. Logger closing...
+2023-12-05 11:52:50.1217 Info Closing old configuration.
+2023-12-05 11:52:50.1353 Info Logger has been closed down.
+2023-12-05 11:52:52.7366 Info Loading assembly name: NLog.Loki
+2023-12-05 11:52:52.7451 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 11:52:52.7640 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 11:52:52.7640 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 11:52:52.7894 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 11:52:52.7894 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 11:52:52.7894 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:52:52.8084 Info Configuration initialized.
+2023-12-05 11:52:52.8827 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:54:28.0149 Info Shutdown() called. Logger closing...
+2023-12-05 11:54:28.0149 Info Closing old configuration.
+2023-12-05 11:54:28.0149 Info Logger has been closed down.
+2023-12-05 11:54:31.1626 Info Loading assembly name: NLog.Loki
+2023-12-05 11:54:31.1744 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 11:54:31.2059 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 11:54:31.2059 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 11:54:31.2334 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 11:54:31.2458 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 11:54:31.2458 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:54:31.2674 Info Configuration initialized.
+2023-12-05 11:54:31.3643 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:54:49.9610 Info Shutdown() called. Logger closing...
+2023-12-05 11:54:49.9610 Info Closing old configuration.
+2023-12-05 11:54:49.9610 Info Logger has been closed down.
+2023-12-05 11:54:52.2670 Info Loading assembly name: NLog.Loki
+2023-12-05 11:54:52.2750 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 11:54:52.2939 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 11:54:52.2939 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 11:54:52.3108 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 11:54:52.3108 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 11:54:52.3259 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:54:52.3259 Info Configuration initialized.
+2023-12-05 11:54:52.4019 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:55:59.7810 Info Shutdown() called. Logger closing...
+2023-12-05 11:55:59.7810 Info Closing old configuration.
+2023-12-05 11:55:59.7810 Info Logger has been closed down.
+2023-12-05 11:56:02.2236 Info Loading assembly name: NLog.Loki
+2023-12-05 11:56:02.2341 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 11:56:02.2587 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 11:56:02.2587 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 11:56:02.2796 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 11:56:02.2901 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 11:56:02.2901 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 11:56:02.2901 Info Configuration initialized.
+2023-12-05 11:56:02.3707 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 12:02:10.6584 Info Shutdown() called. Logger closing...
+2023-12-05 12:02:10.6584 Info Closing old configuration.
+2023-12-05 12:02:10.6584 Info Logger has been closed down.
+2023-12-05 12:11:10.8909 Info Loading assembly name: NLog.Loki
+2023-12-05 12:11:10.8991 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 12:11:10.9256 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 12:11:10.9256 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 12:11:10.9456 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 12:11:10.9625 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 12:11:10.9625 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 12:11:10.9625 Info Configuration initialized.
+2023-12-05 12:11:10.9768 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 12:11:10.9931 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 12:11:18.3385 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 12:19:44.6839 Info Shutdown() called. Logger closing...
+2023-12-05 12:19:44.6839 Info Closing old configuration.
+2023-12-05 12:19:44.6839 Info Logger has been closed down.
+2023-12-05 12:19:56.7147 Info Loading assembly name: NLog.Loki
+2023-12-05 12:19:56.7147 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 12:19:56.7491 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 12:19:56.7491 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 12:19:56.7906 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 12:19:56.7906 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 12:19:56.7906 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 12:19:56.8099 Info Configuration initialized.
+2023-12-05 12:19:56.8099 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 12:19:56.8285 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 12:21:13.5698 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 12:41:54.1530 Info Shutdown() called. Logger closing...
+2023-12-05 12:41:54.1530 Info Closing old configuration.
+2023-12-05 12:41:54.1530 Info Logger has been closed down.
+2023-12-05 12:41:59.0558 Info Loading assembly name: NLog.Loki
+2023-12-05 12:41:59.0628 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 12:41:59.0875 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 12:41:59.0875 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 12:41:59.1237 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 12:41:59.1237 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 12:41:59.1237 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 12:41:59.1413 Info Configuration initialized.
+2023-12-05 12:41:59.1413 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 12:41:59.1582 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 12:42:09.1645 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:10:20.8064 Info Shutdown() called. Logger closing...
+2023-12-05 13:10:20.8064 Info Closing old configuration.
+2023-12-05 13:10:20.8250 Info Logger has been closed down.
+2023-12-05 13:10:27.3153 Info Loading assembly name: NLog.Loki
+2023-12-05 13:10:27.3236 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 13:10:27.3521 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 13:10:27.3537 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 13:10:27.3891 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 13:10:27.3891 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 13:10:27.4024 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:10:27.4024 Info Configuration initialized.
+2023-12-05 13:10:27.4024 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:10:27.4294 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:10:34.3350 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:19:12.0830 Info Shutdown() called. Logger closing...
+2023-12-05 13:19:12.0830 Info Closing old configuration.
+2023-12-05 13:19:12.0883 Info Logger has been closed down.
+2023-12-05 13:19:14.7786 Info Loading assembly name: NLog.Loki
+2023-12-05 13:19:14.7786 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 13:19:14.8157 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 13:19:14.8157 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 13:19:14.8449 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 13:19:14.8449 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 13:19:14.8567 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:19:14.8567 Info Configuration initialized.
+2023-12-05 13:19:14.8567 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:19:14.8794 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:19:17.4994 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:20:38.5147 Info Shutdown() called. Logger closing...
+2023-12-05 13:20:38.5147 Info Closing old configuration.
+2023-12-05 13:20:38.5147 Info Logger has been closed down.
+2023-12-05 13:20:41.3891 Info Loading assembly name: NLog.Loki
+2023-12-05 13:20:41.3891 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 13:20:41.4313 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 13:20:41.4323 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 13:20:41.4670 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 13:20:41.4670 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 13:20:41.4785 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:20:41.4785 Info Configuration initialized.
+2023-12-05 13:20:41.4785 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:20:41.5029 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:20:43.9431 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:21:33.6819 Info Shutdown() called. Logger closing...
+2023-12-05 13:21:33.6819 Info Closing old configuration.
+2023-12-05 13:21:33.6819 Info Logger has been closed down.
+2023-12-05 13:21:36.5479 Info Loading assembly name: NLog.Loki
+2023-12-05 13:21:36.5479 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 13:21:36.5849 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 13:21:36.5849 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 13:21:36.6217 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 13:21:36.6217 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 13:21:36.6358 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:21:36.6358 Info Configuration initialized.
+2023-12-05 13:21:36.6358 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:21:36.6626 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:21:40.5263 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:25:31.0465 Info Shutdown() called. Logger closing...
+2023-12-05 13:25:31.0465 Info Closing old configuration.
+2023-12-05 13:25:31.0465 Info Logger has been closed down.
+2023-12-05 13:25:33.6807 Info Loading assembly name: NLog.Loki
+2023-12-05 13:25:33.6883 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 13:25:33.7208 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 13:25:33.7208 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 13:25:33.7496 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 13:25:33.7496 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 13:25:33.7615 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:25:33.7615 Info Configuration initialized.
+2023-12-05 13:25:33.7615 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:25:33.7830 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:25:37.2346 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:28:03.1443 Info Shutdown() called. Logger closing...
+2023-12-05 13:28:03.1443 Info Closing old configuration.
+2023-12-05 13:28:03.1443 Info Logger has been closed down.
+2023-12-05 13:28:05.8980 Info Loading assembly name: NLog.Loki
+2023-12-05 13:28:05.9050 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 13:28:05.9314 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 13:28:05.9322 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 13:28:05.9490 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 13:28:05.9490 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 13:28:05.9694 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:28:05.9694 Info Configuration initialized.
+2023-12-05 13:28:05.9694 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:28:05.9916 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:40:18.8988 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:40:24.9791 Info Shutdown() called. Logger closing...
+2023-12-05 13:40:24.9791 Info Closing old configuration.
+2023-12-05 13:40:24.9791 Info Logger has been closed down.
+2023-12-05 13:40:29.1344 Info Loading assembly name: NLog.Loki
+2023-12-05 13:40:29.1344 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 13:40:29.1682 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 13:40:29.1682 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 13:40:29.1862 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 13:40:29.2022 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 13:40:29.2022 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:40:29.2165 Info Configuration initialized.
+2023-12-05 13:40:29.2165 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:40:29.2338 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:40:33.2114 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:46:07.5181 Info Shutdown() called. Logger closing...
+2023-12-05 13:46:07.5181 Info Closing old configuration.
+2023-12-05 13:46:07.5181 Info Logger has been closed down.
+2023-12-05 13:46:10.4518 Info Loading assembly name: NLog.Loki
+2023-12-05 13:46:10.4518 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 13:46:10.4890 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 13:46:10.4890 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 13:46:10.5102 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 13:46:10.5102 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 13:46:10.5316 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:46:10.5316 Info Configuration initialized.
+2023-12-05 13:46:10.5316 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:46:10.5538 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:46:16.7127 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 13:48:12.5267 Info Shutdown() called. Logger closing...
+2023-12-05 13:48:12.5267 Info Closing old configuration.
+2023-12-05 13:48:12.5416 Info Logger has been closed down.
+2023-12-05 14:03:38.5163 Info Loading assembly name: NLog.Loki
+2023-12-05 14:03:38.5163 Info NLog.Loki, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8dab11a1448ce9d0. File version: 0.0.0.0. Product version: 2.1.1. GlobalAssemblyCache: False
+2023-12-05 14:03:38.5619 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-05 14:03:38.5619 Info Registered target NLog.Targets.ConsoleTarget(Name=logconsole)
+2023-12-05 14:03:38.6051 Info Registered target NLog.Loki.LokiTarget(Name=loki)
+2023-12-05 14:03:38.6051 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.6.2256. Product version: 5.2.6+1d441552d39bd7e2bd31062e2e96de6828a83003. GlobalAssemblyCache: False
+2023-12-05 14:03:38.6197 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 14:03:38.6197 Info Configuration initialized.
+2023-12-05 14:03:38.6197 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 14:03:38.6480 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 14:03:43.8740 Info Validating config: TargetNames=logfile, logconsole, loki, ConfigItems=47, FilePath=C:\git\sem4\GO-Auctions\AuctionService\bin\Debug\net7.0\NLog.config
+2023-12-05 14:07:06.3091 Info Shutdown() called. Logger closing...
+2023-12-05 14:07:06.3091 Info Closing old configuration.
+2023-12-05 14:07:06.3091 Info Logger has been closed down.
