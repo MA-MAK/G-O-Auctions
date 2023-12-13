@@ -46,9 +46,9 @@ jobs:
         git config --global user.name "asnielsen789"
     - name: pull latest main
       run: |
-        git fetch origin main
-#        git config pull.ff only
-#        git pull origin main
+        git config pull.ff only
+        git pull origin main
+        git push
     - name: Checkout to main
       uses: actions/checkout@v2
       with:
@@ -56,4 +56,5 @@ jobs:
     - name: Commit and push to main
       run: |
         git merge origin develop --allow-unrelated-histories
+        git push
         
