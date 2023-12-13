@@ -1,0 +1,29 @@
+{
+    "Title": "item_title",
+    "StartPrice": 10.99,
+    "AssesmentPrice": 15.99,
+    "Description": "item_description",
+    "Year": 2022,
+    "Location": "item_location",
+    "Customer":{
+        "Id":"6571ab4aee4c2ef0ade27526"
+    },
+    "Category": "Electronics",
+    "Condition": "New",
+    "Status": "Registered"
+}
+
+{
+    "Title": "Bike",
+    "StartPrice": 1000.99,
+    "AssesmentPrice": "1500.99",
+    "Description": "Old Ralleigh Bike, never used",
+    "Year": 1990,
+    "Location": "Berlin",
+    "Customer":{
+        "Id":"65718799ee4c2ef0ade2750e"
+    },
+    "Category": 3,
+    "Condition": 1,
+    "Status": 3
+  }

@@ -1,0 +1,11 @@
+{
+    "Bidder": {
+        "_id": ObjectId('65718799ee4c2ef0ade2750e')
+    },
+    "Amount": 100.50,
+    "Time": "2022-01-01T10:00:00Z",
+    "AuctionId": "65707b4fc04c682d3a533b03"
+
+}
+
+
