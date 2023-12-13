@@ -77,4 +77,3 @@ finally
 {
     NLog.LogManager.Shutdown();
 }
-
