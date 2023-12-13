@@ -5,10 +5,11 @@ name: .NET
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: 
+      - "develop"
     paths:
-      - 'AuctionService/**'
-      - 'AuctionService.Tests/**'
+      - AuctionService/**
+      - AuctionService.Tests/**
 
 jobs:
   build:

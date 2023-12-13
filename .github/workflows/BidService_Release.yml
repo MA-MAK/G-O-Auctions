@@ -5,10 +5,11 @@ name: .NET
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: 
+      - "develop"
     paths:
-      - 'BidService/**'
-      - 'BidService.Tests/**'
+      - BidService/**
+      - BidService.Tests/**
 
 jobs:
   build:

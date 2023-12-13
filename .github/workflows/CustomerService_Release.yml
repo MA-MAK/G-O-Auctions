@@ -5,9 +5,10 @@ name: .NET
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: 
+      - "develop"
     paths:
-      - 'CustomerService/**'
+      - CustomerService/**
 
 jobs:
   build:

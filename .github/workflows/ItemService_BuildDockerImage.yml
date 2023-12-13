@@ -2,9 +2,10 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
-  paths:
-      - 'ItemService/**'
+    branches: 
+      - "main"
+    paths:
+      - ItemService/**
 
 jobs:
 
