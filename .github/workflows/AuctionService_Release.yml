@@ -44,9 +44,9 @@ jobs:
       run: |
         git config --global user.email "asnielsen789@gmail.com"
         git config --global user.name "asnielsen789"
-    - name: pull latest main
-      run: |
-        git merge origin/main
+#    - name: pull latest main
+#      run: |
+#        git merge origin/main
     - name: Checkout to main
       uses: actions/checkout@v2
       with:
