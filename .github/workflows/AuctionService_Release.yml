@@ -44,17 +44,17 @@ jobs:
       run: |
         git config --global user.email "asnielsen789@gmail.com"
         git config --global user.name "asnielsen789"
-    - name: pull latest main
-      run: |
-        git branch
-        git branch -r
-        git fetch --all
-        git branch
-        git branch -r
-        git status
-        git merge origin/main --allow-unrelated-histories
-        git commit -am "automated release to main"
-        git push
+#    - name: pull latest main
+#      run: |
+#        git branch
+#        git branch -r
+#        git fetch --all
+#        git branch
+#        git branch -r
+#        git status
+#        git merge origin/main --allow-unrelated-histories
+#        git commit -am "automated release to main"
+#        git push
     - name: Checkout to main
       uses: actions/checkout@v2
       with:
