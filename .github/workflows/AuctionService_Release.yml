@@ -61,5 +61,5 @@ jobs:
         ref: main
     - name: Commit and push to main
       run: |
-        git merge develop --allow-unrelated-histories
+        git merge origin/develop --allow-unrelated-histories
         git push
