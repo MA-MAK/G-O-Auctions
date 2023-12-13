@@ -46,6 +46,7 @@ jobs:
         git config --global user.name "asnielsen789"
     - name: pull latest main
       run: |
+        git config pull.ff only
         git pull origin main
     - name: Checkout to main
       uses: actions/checkout@v2
