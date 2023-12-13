@@ -27,4 +27,4 @@ jobs:
     - name: Build the Docker image for ItemService
       run: docker build . --file ItemService/Dockerfile --tag itemservice-image:$(date +%s)
     - name: Push itemservice-image to DockerHub
-      run: docker push ${{secrets.DOCKER_USER}}/asnielsen789
+      run: docker push ${{secrets.DOCKER_USER}}/itemservice-image:$(date +%s)

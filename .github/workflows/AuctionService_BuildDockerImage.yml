@@ -21,13 +21,12 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
     - name: Login to Docker Hub
-        uses: docker/login-action@v3
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build the Docker image for AuctionService
       run: docker build . --file AuctionService/Dockerfile --tag auctionservice-image:$(date +%s)
     - name: Push auctionservice-image to DockerHub
-      run: docker push ${{secrets.DOCKER_USER}}/asnielsen789
+      run: docker push ${{secrets.DOCKER_USER}}/auctionservice-image:$(date +%s)
