@@ -25,12 +25,12 @@ jobs:
     - name: Install dependencies
       working-directory: AuctionService
       run: |
-        dotnet install package MongoDB.Bson
-        dotnet install package MongoDB.Driver
-        dotnet install package NLog
-        dotnet install package NLog.Targets.Loki
-        dotnet install package NLog.Web.AspNetCore
-        dotnet install package Swashbuckle.AspNetCore
+        dotnet add package MongoDB.Bson
+        dotnet add package MongoDB.Driver
+        dotnet add package NLog
+        dotnet add package NLog.Targets.Loki
+        dotnet add package NLog.Web.AspNetCore
+        dotnet add package Swashbuckle.AspNetCore
     - name: Build
       working-directory: AuctionService
       run: dotnet build --no-restore
