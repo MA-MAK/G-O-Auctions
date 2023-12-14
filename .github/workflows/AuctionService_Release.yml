@@ -40,18 +40,11 @@ jobs:
     - name: Run Test
       working-directory: AuctionServiceTest
       run: dotnet test --no-build --verbosity normal
-    - name: Setup git user
+    - name: Set up Git
       run: |
-        git config --global user.email "asnielsen789@gmail.com"
-        git config --global user.name "asnielsen789"
-#    - name: pull latest main
-#      run: |
-#        git merge origin/main
-    - name: Checkout to main
-      uses: actions/checkout@v2
-      with:
-        ref: main
-    - name: Commit and push to main
-      run: |
-        git merge origin/develop --allow-unrelated-histories
-        
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+    - name: create pull request
+      run: gh pr create -B main -H develop --title 'Merge develop into main branch' --body 'Created by Github action'
+      env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}

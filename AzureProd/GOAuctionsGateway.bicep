@@ -1,5 +1,5 @@
 
-@description('Generated from /subscriptions/69871a8a-fe89-416a-aa8e-e2bd525fd3ce/resourceGroups/AuktionsHusetRG/providers/Microsoft.Network/publicIPAddresses/goauctions-public_ip')
+@description('Generated from /subscriptions/69871a8a-fe89-416a-aa8e-e2bd525fd3ce/resourceGroups/GOAuctionsProdRG/providers/Microsoft.Network/publicIPAddresses/goauctions-public_ip')
 resource goauctionspublicip 'Microsoft.Network/publicIPAddresses@2022-11-01' = {
   name: 'goauctions-public_ip'
   location: 'eastus'
@@ -9,8 +9,8 @@ resource goauctionspublicip 'Microsoft.Network/publicIPAddresses@2022-11-01' = {
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4
     dnsSettings: {
-      domainNameLabel: 'auktionshustgo'
-      fqdn: 'auktionshustgo.eastus.cloudapp.azure.com'
+      domainNameLabel: 'goauctions'
+      fqdn: 'goauctions.eastus.cloudapp.azure.com'
     }
     ipTags: []
     ddosSettings: {

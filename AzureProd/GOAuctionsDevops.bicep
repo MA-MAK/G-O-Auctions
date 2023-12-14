@@ -4,7 +4,7 @@ param location string = resourceGroup().location
 param vnetname string = 'theVNet'
 param subnetName string = 'goDevopsSubnet'
 param dnsRecordName string ='devopshostname'
-param dnszonename string='thednszonename.dk'
+param dnszonename string='goauctions.dk'
 param storageAccountName string='nostorage'
 
 resource VNET 'Microsoft.Network/virtualNetworks@2020-11-01' existing = {
@@ -19,10 +19,10 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-09-01' existing 
   name: storageAccountName
 }
 
-@description('auktionsHuset DevOps Container Group')
-resource auktionsHusetDevOpsGroup 'Microsoft.ContainerInstance/containerGroups@2023-05-01' = {
+@description('GOAuctions DevOps Container Group')
+resource GOAuctionsDevOpsGroup 'Microsoft.ContainerInstance/containerGroups@2023-05-01' = {
 
-  name: 'auktionsHusetDevOpsGroup'
+  name: 'GOAuctionsDevOpsGroup'
   location: location
 
   properties: {
@@ -123,10 +123,10 @@ resource dnsRecord 'Microsoft.Network/privateDnsZones/A@2020-06-01' = {
     ttl: 3600
     aRecords: [
       {
-        ipv4Address: auktionsHusetDevOpsGroup.properties.ipAddress.ip
+        ipv4Address: GOAuctionsDevOpsGroup.properties.ipAddress.ip
       }
     ]
   }
 }
 
-output containerIPAddressFqdn string = auktionsHusetDevOpsGroup.properties.ipAddress.ip
+output containerIPAddressFqdn string = GOAuctionsDevOpsGroup.properties.ipAddress.ip

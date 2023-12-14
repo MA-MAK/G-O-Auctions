@@ -18,6 +18,6 @@ public class BidRepository : IBidRepository
     public Task<IEnumerable<Bid>> GetBidsForAuction(string auctionId)
     {
         _logger.LogInformation($"### BidRepository.GetBidsForAuction - auctionId: {auctionId}");
-        return Task.FromResult<IEnumerable<Bid>>(_bids.Find(a => a.AuctionId == auctionId).ToList());
+        return Task.FromResult<IEnumerable<Bid>>(_bids.Find(a => a.Auction.Id == auctionId).ToList());
     }
 }

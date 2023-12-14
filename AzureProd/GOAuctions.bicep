@@ -13,10 +13,10 @@ var publicIPAddressName = 'goauctions-public_ip'
 var applicationGateWayName = 'goauctionsAppGateway'
 
 @description('Name of the DNS zone')
-var dnszonename = 'auktionshuset.dk'
+var dnszonename = 'goauctions.dk'
 
 @description('Public Domain name used when accessing gateway from internet')
-var publicDomainName = 'auktionshusetgo'
+var publicDomainName = 'goauctions'
 
 @description('List of file shares to create')
 var shareNames = [
@@ -29,7 +29,7 @@ var shareNames = [
 
 // ---------------------------------
 
-module network 'networkGO.bicep' = {
+module network 'GOAuctionsNetwork.bicep' = {
   name: 'networkModule'
   params: {
     location: location
@@ -40,7 +40,7 @@ module network 'networkGO.bicep' = {
   }  
 }
 
-module storage 'storageGO.bicep' = {
+module storage 'GOAuctionsStorage.bicep' = {
   name: 'storageModule'
   params: {
     location: location
@@ -49,7 +49,7 @@ module storage 'storageGO.bicep' = {
   }  
 }
 
-module devops 'devopsGO.bicep' = {
+module devops 'GOAuctionsDevops.bicep' = {
   name: 'devopsModule'
   params: {
     location: location
@@ -61,7 +61,7 @@ module devops 'devopsGO.bicep' = {
   }
 }
 
-module backend 'backendGO.bicep' = {
+module backend 'GOAuctionsBackend.bicep' = {
   name: 'backendModule'
   params: {
     location: location
