@@ -1,11 +1,6 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches: 
-      - "main"
-    paths:
-      - AuctionService/**
   pull_request:
     branches: 
       - "main"
