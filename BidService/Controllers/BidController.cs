@@ -40,6 +40,8 @@ namespace BidService.Controllers
             {
                 bid.Customer = _customerRepository.GetCustomerById(bid.Customer.Id).Result;
             }
+
+            _logger.LogInformation($"### GetBidsForAuction: {bids[0].AuctionId}");
             return Task.FromResult<IActionResult>(Ok(bids));
 
         }

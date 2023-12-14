@@ -8,11 +8,10 @@ public class Bid
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string Id { get; set; }
-
     public Customer? Customer { get; set; }
     public decimal Amount { get; set; }
     public DateTime Time { get; set; }
-    public Auction? Auction { get; set; }
+    public string AuctionId { get; set; }
 
 
 /*

@@ -1,9 +1,11 @@
+using System.Threading.Tasks;
 using SaleService.Models;
 
 namespace SaleService.Services
 {
     public interface ISaleRepository
     {
-        public Task<Sale> GetSaleForItem(string itemId);
+        Task<Sale> GetSaleById(string saleId);
+        Task PostSale(Sale sale);
     }
 }
