@@ -31,9 +31,11 @@ public class AuctionRepository : IAuctionRepository
 
                 string jsonString = await response.Content.ReadAsStringAsync();
                 _logger.LogInformation(
-                    $"### BidRepository.GetBidsForAuction - jsonString: {jsonString}"
+                    $"### AuctionsRepository.GetAuctionById - jsonString: {jsonString}"
                 );
-                Auction auction = JsonSerializer.Deserialize<Auction>(jsonString);
+                //Auction auction = JsonSerializer.Deserialize<Auction>(jsonString);
+                Auction auction = JsonSerializer.Deserialize<Auction>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                _logger.LogInformation($"### AuctionsRepository.GetAuctionById - auction: {auction.Id}");
                 return auction;
             }
             else

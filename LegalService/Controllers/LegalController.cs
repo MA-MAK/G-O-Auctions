@@ -81,16 +81,33 @@ namespace LegalService.Controllers
             return Ok(auctions);
             
         }
-/*
-        // GET: api/legal/user/{id}
-        [HttpGet("{id}")]
-        public Task<IActionResult> GetCustomerById(string id)
+        // GET: api/user/{customerId}
+        [HttpGet("{customerId}")]
+        [ActionName("users")]
+        public async Task<IActionResult> GetCustomerById(string customerId)
         {
-            _logger.LogInformation($"CustomerController.GetCustomerById - id: {id}");
-            var customer = _customerRepository.GetCustomerById(id).Result;
-            _logger.LogInformation($"CustomerController.GetCustomerById - customer: {customer}");
-            return Task.FromResult<IActionResult>(Ok(customer));
+            _logger.LogInformation($"### CustomerController.GetCustomerById - customerId: {customerId}");
+            try
+            {
+                var customer = await _customerRepository.GetCustomerById(customerId);
+
+                if (customer != null)
+                {
+                    _logger.LogInformation(
+                        $"### CustomerController.GetCustomerById - customer: {customer.Id}"
+                    );
+                    return Ok(customer);
+                }
+                else
+                {
+                    return NotFound($"Customer with ID {customerId} not found");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Exception: {ex.Message}");
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
-        */
     }
 }
