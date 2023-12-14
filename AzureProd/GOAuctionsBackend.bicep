@@ -5,7 +5,7 @@ param vnetname string = 'goauctionsVNet'
 param subnetName string = 'goDevopsSubnet'
 param storageAccountName string = 'storageAccount'
 param dnsRecordName string ='backendhostname'
-param dnszonename string='thednszonename.dk'
+param dnszonename string='goauctions.dk'
 
 resource VNET 'Microsoft.Network/virtualNetworks@2020-11-01' existing = {
   name: vnetname
@@ -19,9 +19,9 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-09-01' existing 
   name: storageAccountName
 }
 
-@description('auktionsHusetBackendGroup')
-resource auktionsHusetBackendGroup 'Microsoft.ContainerInstance/containerGroups@2023-05-01' = {
-  name: 'auktionsHusetBackendGroup'
+@description('GOAuctionsBackendGroup')
+resource GOAuctionsBackendGroup 'Microsoft.ContainerInstance/containerGroups@2023-05-01' = {
+  name: 'GOAuctionsBackendGroup'
   location: location
   properties: {
     sku: 'Standard'
@@ -150,10 +150,10 @@ resource dnsRecord 'Microsoft.Network/privateDnsZones/A@2020-06-01' = {
     ttl: 3600
     aRecords: [
       {
-        ipv4Address: auktionsHusetBackendGroup.properties.ipAddress.ip
+        ipv4Address: GOAuctionsBackendGroup.properties.ipAddress.ip
       }
     ]
   }
 }
 
-output containerIPAddressFqdn string = auktionsHusetBackendGroup.properties.ipAddress.ip
+output containerIPAddressFqdn string = GOAuctionsBackendGroup.properties.ipAddress.ip
