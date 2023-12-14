@@ -2,6 +2,8 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace ItemService.Models;
+
+[BsonIgnoreExtraElements]
 public class Item
 {
     [BsonId]

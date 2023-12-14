@@ -36,12 +36,17 @@ namespace BidService.Controllers
             _logger.LogInformation($"### GetBidsForAuction: {id}");
             var bids = _bidRepository.GetBidsForAuction(id).Result.ToList();
             _logger.LogInformation($"### GetBidsForAuction: {bids.Count}");
+            if (bids.Count == 0)
+            {
+                return Task.FromResult<IActionResult>(Ok(new List<Bid>()));
+            }
             foreach (var bid in bids)
             {
                 bid.Customer = _customerRepository.GetCustomerById(bid.Customer.Id).Result;
             }
-            return Task.FromResult<IActionResult>(Ok(bids));
 
+            _logger.LogInformation($"### GetBidsForAuction: {bids[0].AuctionId}");
+            return Task.FromResult<IActionResult>(Ok(bids));
         }
 
 /*
