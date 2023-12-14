@@ -17,7 +17,7 @@ public class Worker : BackgroundService
     private readonly ILogger<Worker> _logger;
     private string _bidPath = string.Empty;
     private string _mqHost = string.Empty;
-    private readonly IBidRepository _bidRepository;
+    private readonly BidRepository _bidRepository;
     public Worker(ILogger<Worker> logger, IConfiguration configuration, BidRepository bidRepository)
     {
         _logger = logger;
@@ -52,7 +52,7 @@ public class Worker : BackgroundService
             var message = Encoding.UTF8.GetString(body);
             var bid = System.Text.Json.JsonSerializer.Deserialize<Bid>(message);
             _logger.LogInformation($"Received bid: {bid}");
-            _bidRepository.PostBid(bid);
+            _bidRepository.InsertBid(bid);
         };
 
         // Start consuming messages from the "booking" queue

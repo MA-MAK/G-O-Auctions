@@ -1,10 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
-  <PropertyGroup>
+ <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-BidWorker-1bc74807-e1b7-4f00-95a4-43f40a3d8510</UserSecretsId>
+
+    <Company>GO Auctions</Company>
+    <Authors>MAMAK</Authors>
+
+    <Version>0.1.1</Version>
+    <Description>
+      Service handling bidworker.
+    </Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,5 +24,5 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="RabbitMQ.Client" Version="6.6.0" />
   </ItemGroup>
-
+ 
 </Project>
