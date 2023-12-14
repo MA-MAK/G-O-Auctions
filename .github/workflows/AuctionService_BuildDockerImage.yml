@@ -28,6 +28,8 @@ jobs:
       run: |
         docker login --username asnielsen789 --password TempPW901
     - name: Build the Docker image for AuctionService
-      run: docker build . --file AuctionService/Dockerfile --tag auctionservice-image
-    - name: Push auctionservice-image to DockerHub
-      run: docker push ${{secrets.DOCKER_USER}}/auctionservice-image
+      run: |
+        docker build -t auctionservice_image -f Dockerfile .
+        docker tag auctionservice_image asnielsen789/auctionservice
+    - name: Push auctionservice_image to DockerHub
+      run: docker push asnielsen789/auctionservice_image
