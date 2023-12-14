@@ -16,7 +16,13 @@ namespace AuctionService.Controllers
         private readonly IItemRepository _itemRepository;
 
         [ActivatorUtilitiesConstructor]
-        public AuctionController(ILogger<AuctionController> logger, IConfiguration configuration, IAuctionRepository auctionRepository, IItemRepository itemRepository, IBidRepository bidRepository)
+        public AuctionController(
+            ILogger<AuctionController> logger,
+            IConfiguration configuration,
+            IAuctionRepository auctionRepository,
+            IItemRepository itemRepository,
+            IBidRepository bidRepository
+        )
         {
             _logger = logger;
             _auctionRepository = auctionRepository;
@@ -24,7 +30,12 @@ namespace AuctionService.Controllers
             _bidRepository = bidRepository;
         }
 
-        public AuctionController(ILogger<AuctionController> logger, IConfiguration configuration, IAuctionRepository auctionRepository, IItemRepository itemRepository)
+        public AuctionController(
+            ILogger<AuctionController> logger,
+            IConfiguration configuration,
+            IAuctionRepository auctionRepository,
+            IItemRepository itemRepository
+        )
         {
             _logger = logger;
             _auctionRepository = auctionRepository;
@@ -36,6 +47,19 @@ namespace AuctionService.Controllers
         public IActionResult Get()
         {
             return Ok(_auctions);
+        }
+
+        // GET: api/auction/all
+        [HttpGet("all")]
+        public IActionResult GetAllAuctions()
+        {
+            var auctions = _auctionRepository.GetAllAuctions().Result;
+            foreach (var auction in auctions)
+            {
+                auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
+                auction.Bids = _bidRepository.GetBidsForAuction(auction.Id).Result.ToList();
+            }
+            return Ok(auctions);
         }
 
         // GET: api/auction/{id}
@@ -59,7 +83,9 @@ namespace AuctionService.Controllers
             _logger.LogInformation($"PostAuction: {auction.Item.Title}");
             _auctionRepository.PostAuction(auction);
             _logger.LogInformation("posting..");
-            return Task.FromResult<IActionResult>(CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction));
+            return Task.FromResult<IActionResult>(
+                CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction)
+            );
         }
 
         // PUT: api/auction/{id}
@@ -79,7 +105,6 @@ namespace AuctionService.Controllers
             await _auctionRepository.UpdateAuction(existingAuction);
             return NoContent(); // Returnerer NoContent uanset hvad
         }
-
 
         /*
                 [HttpPut("{id}")]

@@ -1,0 +1,32 @@
+name: Docker Image CI
+
+on:
+  pull_request:
+    branches: 
+      - "main"
+    paths:
+      - SaleService/**
+  push:
+    branches: 
+      - "develop"
+    paths:
+      - .github/workflows/SaleService_BuildDockerImage.yml
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Login to Docker Hub
+      run: |
+        docker login --username ${{secrets.DOCKER_USER}} --password ${{secrets.DOCKER_PASSWORD}}
+    - name: Build the Docker image for SaleService
+      run: |
+        docker build . --file SaleService/Dockerfile --tag asnielsen789/saleservice:latest
+    - name: Push the Docker image for SaleService
+      run: |
+        docker push asnielsen789/saleservice:latest

@@ -1,0 +1,39 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  push:
+    branches: 
+      - "develop"
+    paths:
+      - ItemService/**
+      - .github/workflows/ItemService_Release.yml
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+    - name: Install dependencies for service
+      working-directory: ItemService
+      run: |
+        dotnet restore
+    - name: Build Service
+      working-directory: ItemService
+      run: dotnet build --no-restore
+    - name: Set up Git
+      run: |
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+    - name: create pull request
+      run: gh pr create -B main -H develop --title 'Merge develop into main branch' --body 'Created by Github action'
+      env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}

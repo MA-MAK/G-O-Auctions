@@ -12,7 +12,7 @@ public class Bid
     public Customer? Customer { get; set; }
     public decimal Amount { get; set; }
     public DateTime Time { get; set; }
-    public string AuctionId { get; set; }
+    public Auction? Auction { get; set; }
 
 
 /*

@@ -1,0 +1,32 @@
+name: Docker Image CI
+
+on:
+  pull_request:
+    branches: 
+      - "main"
+    paths:
+      - AuctionService/**
+  push:
+    branches: 
+      - "develop"
+    paths:
+      - .github/workflows/AuctionService_BuildDockerImage.yml
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Login to Docker Hub
+      run: |
+        docker login --username ${{secrets.DOCKER_USER}} --password ${{secrets.DOCKER_PASSWORD}}
+    - name: Build the Docker image for AuctionService
+      run: |
+        docker build . --file AuctionService/Dockerfile --tag asnielsen789/auctionservice:latest
+    - name: Push the Docker image for AuctionService
+      run: |
+        docker push asnielsen789/auctionservice:latest

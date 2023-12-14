@@ -5,12 +5,70 @@ services:
     - connectionString=mongodb://admin:1234@mongodb-dev:27017
     - databaseName=GODB
     - collectionName=auctions
-   
     expose:
     - "80"
     volumes:
     - mongodb_data_container:/data/db
+    networks:
+    - GOnet
 
+  BidService:
+    image: asnielsen789/bidservice:latest
+    environment:
+    - connectionString=mongodb://admin:1234@mongodb-dev:27017
+    - databaseName=GODB
+    - collectionName=bids
+    expose:
+    - "80"
+    volumes:
+    - mongodb_data_container:/data/db
+    networks:
+    - GOnet
+
+  ItemService:
+    image: asnielsen789/itemservice:latest
+    environment:
+    - connectionString=mongodb://admin:1234@mongodb-dev:27017
+    - databaseName=GODB
+    - collectionName=items
+    expose:
+    - "80"
+    volumes:
+    - mongodb_data_container:/data/db
+    networks:
+    - GOnet
+
+  CustomerService:
+    image: asnielsen789/customerservice:latest
+    environment:
+    - connectionString=mongodb://admin:1234@mongodb-dev:27017
+    - databaseName=GODB
+    - collectionName=customer
+    expose:
+    - "80"
+    volumes:
+    - mongodb_data_container:/data/db
+    networks:
+    - GOnet
+
+  SaleService:
+    image: asnielsen789/saleservice:latest
+    environment:
+    - connectionString=mongodb://admin:1234@mongodb-dev:27017
+    - databaseName=GODB
+    - collectionName=sales
+    expose:
+    - "80"
+    volumes:
+    - mongodb_data_container:/data/db
+    networks:
+    - GOnet
+
+  AssessmentService:
+    image: asnielsen789/assessmentservice:latest
+    environment:
+    expose:
+    - "80"
     networks:
     - GOnet
 
@@ -20,7 +78,6 @@ services:
     ports:
     - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
-    
     networks:
     - GOnet
 
@@ -28,7 +85,6 @@ services:
     image: grafana/grafana:latest
     ports:
     - "3000:3000"
-    
     networks:
     - GOnet
     volumes:
@@ -40,12 +96,10 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: 1234
-
     ports:
     - 27018:27017
     volumes:
     - mongodb_data_container:/data/db
-
     networks:
     - GOnet
 
@@ -63,14 +117,11 @@ services:
   rabbitmq:
     image: "rabbitmq:3-management"
     container_name: rabbitmq
-
     ports:
       - 5672:5672
       - 15672:15672
-   
     networks:
       - GOnet
-    
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
@@ -81,8 +132,6 @@ volumes:
     external: false
   grafana_data:
     external: false
-
-  
 
 networks:
   GOnet:
