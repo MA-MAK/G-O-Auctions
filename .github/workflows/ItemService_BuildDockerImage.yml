@@ -1,11 +1,16 @@
 name: Docker Image CI
 
 on:
-  push:
+  pull_request:
     branches: 
       - "main"
     paths:
       - ItemService/**
+  push:
+    branches: 
+      - "develop"
+    paths:
+      - .github/workflows/ItemService_BuildDockerImage.yml
 
 jobs:
 
@@ -16,15 +21,12 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-    
-    - name: docker login
-      env:
-        DOCKER_USER: ${{secrets.DOCKER_USER}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+    - name: Login to Docker Hub
       run: |
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-
+        docker login --username ${{secrets.DOCKER_USER}} --password ${{secrets.DOCKER_PASSWORD}}
     - name: Build the Docker image for ItemService
-      run: docker build . --file ItemService/Dockerfile --tag itemservice-image:$(date +%s)
-    - name: Push itemservice-image to DockerHub
-      run: docker push ${{secrets.DOCKER_USER}}/itemservice-image:$(date +%s)
+      run: |
+        docker build . --file ItemService/Dockerfile --tag asnielsen789/itemservice:latest
+    - name: Push the Docker image for ItemService
+      run: |
+        docker push asnielsen789/itemservice:latest

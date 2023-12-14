@@ -1,11 +1,16 @@
 name: Docker Image CI
 
 on:
-  push:
+  pull_request:
     branches: 
       - "main"
     paths:
       - CustomerService/**
+  push:
+    branches: 
+      - "develop"
+    paths:
+      - .github/workflows/CustomerService_BuildDockerImage.yml
 
 jobs:
 
@@ -16,15 +21,12 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-    
-    - name: docker login
-      env:
-        DOCKER_USER: ${{secrets.DOCKER_USER}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+    - name: Login to Docker Hub
       run: |
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-
+        docker login --username ${{secrets.DOCKER_USER}} --password ${{secrets.DOCKER_PASSWORD}}
     - name: Build the Docker image for CustomerService
-      run: docker build . --file CustomerService/Dockerfile --tag customerservice-image:$(date +%s)
-    - name: Push customerservice-image to DockerHub
-      run: docker push ${{secrets.DOCKER_USER}}/customerservice-image:$(date +%s)
+      run: |
+        docker build . --file CustomerService/Dockerfile --tag asnielsen789/customerservice:latest
+    - name: Push the Docker image for CustomerService
+      run: |
+        docker push asnielsen789/customerservice:latest
