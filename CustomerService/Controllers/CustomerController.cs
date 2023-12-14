@@ -23,9 +23,9 @@ namespace CustomerService.Controllers
         [HttpGet("{id}")]
         public Task<IActionResult> GetCustomerById(string id)
         {
-            _logger.LogInformation($"CustomerController.GetCustomerById - id: {id}");
-            var customer = _customerRepository.GetCustomerById(id).Result;
-            _logger.LogInformation($"CustomerController.GetCustomerById - customer: {customer}");
+            _logger.LogInformation($"### CustomerController.GetCustomerById - id: {id}");
+            Customer customer = _customerRepository.GetCustomerById(id).Result;
+            _logger.LogInformation($"### CustomerController.GetCustomerById - customer: {customer.Id}");
             return Task.FromResult<IActionResult>(Ok(customer));
         }
     }

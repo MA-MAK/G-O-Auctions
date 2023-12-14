@@ -32,7 +32,7 @@ namespace ItemService.Controllers
         {
             _logger.LogInformation($"ItemController.GetItemById - id: {id}");
             var item = await _itemRepository.GetItemById(id);
-            _logger.LogInformation($"ItemController.GetItemById - item: {item}");
+            _logger.LogInformation($"ItemController.GetItemById - item > customer: {item.Customer.Id}");
             item.Customer = _customerRepository.GetCustomerById(item.Customer.Id).Result;
 
             if (item == null)
