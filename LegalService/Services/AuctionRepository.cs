@@ -88,4 +88,6 @@ public class AuctionRepository : IAuctionRepository
             throw new Exception($"Error in GetAllAuctions: {ex.Message}", ex);
         }
     }
+
+    
 }
