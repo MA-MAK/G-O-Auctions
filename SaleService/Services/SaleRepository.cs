@@ -1,21 +1,57 @@
 using System.Collections.Generic;
 using SaleService.Models;
+using MongoDB.Driver;
+using MongoDB.Bson;
+using System.Text.Json;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Net.Http.Formatting;
+
 
 namespace SaleService.Services
 {
     public class SaleRepository : ISaleRepository
     {
-        private List<Sale> sales;
+        private readonly IMongoCollection<Sale> _sales;
+        private readonly ILogger<SaleRepository> _logger;
+        private readonly IAuctionRepository _auctionRepository;
 
-        public SaleRepository()
+        public SaleRepository(MongoDBContext dbContext, ILogger<SaleRepository> logger, IAuctionRepository auctionRepository)
         {
-            sales = new List<Sale>();
+            _sales = dbContext.Sales;
+            _logger = logger;
+            _auctionRepository = auctionRepository;
         }
 
-        public Task<Sale> GetSalById(string itemId)
+
+        public Task<Sale> GetSaleById(string saleId)
         {
-            var sale = _sales.Find(a => a.Id == id).FirstOrDefaultAsync();
-            return Task.FromResult<Sale>(sale.Result);
+            _logger.LogInformation($"### SaleRepository.GetSaleById - saleId: {saleId}");
+            // Make a GET request to the API endpoint with the SaleID
+            var sale = _sales.Find(a => a.Id == saleId).FirstOrDefault();
+            _logger.LogInformation($"### SaleRepository.GetSaleById - got sale from DB {sale}");
+            return Task.FromResult<Sale>(sale);
+        }
+
+
+
+        public async Task PostSale(Sale sale)
+        {
+            _logger.LogInformation($"### SaleRepository.PostSale");
+
+            try
+            {
+
+
+                // Add the sale to the sales collection
+                await _sales.InsertOneAsync(sale);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"### Error in PostSale: {ex.Message}");
+                // Log and handle the exception appropriately
+                throw new Exception($"Error in PostSale: {ex.Message}", ex);
+            }
         }
     }
 }
