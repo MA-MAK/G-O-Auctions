@@ -26,7 +26,7 @@ jobs:
         username: ${{ secrets.DOCKER_USER }}
         password: ${{ secrets.DOCKER_PASSWORD }}
       run: |
-        docker login --username ${{ secrets.DOCKER_USER }} --password ${{ secrets.DOCKER_PASSWORD }} --password-stdin
+        docker login --username ${{ secrets.DOCKER_USER }} --password-stdin ${{ secrets.DOCKER_PASSWORD }}
     - name: Build the Docker image for AuctionService
       run: docker build . --file AuctionService/Dockerfile --tag auctionservice-image:$(date +%s)
     - name: Push auctionservice-image to DockerHub
