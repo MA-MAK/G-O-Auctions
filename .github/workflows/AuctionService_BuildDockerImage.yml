@@ -26,7 +26,7 @@ jobs:
         username: asnielsen789
         password: TempPW901
       run: |
-        docker login --username asnielsen789 --password-stdin TempPW901
+        docker login --username asnielsen789 --password TempPW901
     - name: Build the Docker image for AuctionService
       run: docker build . --file AuctionService/Dockerfile --tag auctionservice-image:$(date +%s)
     - name: Push auctionservice-image to DockerHub
