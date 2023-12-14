@@ -20,6 +20,10 @@ public class BidRepository : IBidRepository
         _logger.LogInformation($"### BidRepository.GetBidsForAuction - auctionId: {auctionId}");
         List<Bid> bids = _bids.Find(a => a.AuctionId == auctionId).ToList();
         _logger.LogInformation($"### BidRepository.GetBidsForAuction - bids count: {bids.Count}");
+        if (bids.Count == 0)
+        {
+            return Task.FromResult<IEnumerable<Bid>>(new List<Bid>());
+        }
         return Task.FromResult<IEnumerable<Bid>>(bids);
     }
 }
