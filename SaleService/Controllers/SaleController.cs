@@ -16,18 +16,21 @@ namespace SaleService.Controllers
         private readonly ILogger<SaleController> _logger;
         private readonly IConfiguration _configuration;
         private readonly IAuctionRepository _auctionRepository;
+        private readonly ICustomerRepository _customerRepository;
 
         public SaleController(
             ISaleRepository saleRepository,
             ILogger<SaleController> logger,
             IConfiguration configuration,
-            IAuctionRepository auctionRepository
+            IAuctionRepository auctionRepository,
+            ICustomerRepository customerRepository
         )
         {
             _saleRepository = saleRepository;
             _logger = logger;
             _configuration = configuration;
             _auctionRepository = auctionRepository;
+            _customerRepository = customerRepository;
         }
 
         [HttpGet("{saleId}")]
@@ -35,7 +38,7 @@ namespace SaleService.Controllers
         {
             try
             {
-
+                
                 var sale = await _saleRepository.GetSaleById(saleId);
                 _logger.LogInformation($"### Sale with ID {sale.Id} found.");
 
@@ -46,8 +49,8 @@ namespace SaleService.Controllers
                 }
 
                 // Retrieve the associated auction
-               // Auction auction = await _auctionRepository.GetAuctionById(sale.Auction.Id);
-                //sale.Auction = auction;
+                sale.Auction = await _auctionRepository.GetAuctionById(sale.Auction.Id);
+                sale.Customer = await _customerRepository.GetCustomerById(sale.Customer.Id);
 
                 return Ok(sale);
             }

@@ -5,6 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace SaleService.Models;
 
+[BsonIgnoreExtraElements]
 public class Auction
 {
     [BsonId]
@@ -22,7 +23,8 @@ public class Auction
     public AuctionType? Type { get; set; }
     [BsonIgnore]
     public Item? Item { get; set; }
-    // public List<Bid>? Bids { get; set; }
+    [BsonIgnore]
+    public List<Bid>? Bids { get; set; }
     [BsonIgnore]
     public string? Description { get; set; }
 }

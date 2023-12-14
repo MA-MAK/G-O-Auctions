@@ -23,17 +23,15 @@ namespace SaleService.Services
             _auctionRepository = auctionRepository;
         }
 
-
         public Task<Sale> GetSaleById(string saleId)
         {
             _logger.LogInformation($"### SaleRepository.GetSaleById - saleId: {saleId}");
             // Make a GET request to the API endpoint with the SaleID
-            var sale = _sales.Find(a => a.Id == saleId).FirstOrDefault();
-            _logger.LogInformation($"### SaleRepository.GetSaleById - got sale from DB {sale}");
+            Sale sale = _sales.Find<Sale>(sale => sale.Id == saleId).FirstOrDefault();
+            _logger.LogInformation($"### SaleRepository.GetSaleById - sale > auction id: {sale.Auction.Id}");
+            _logger.LogInformation($"### SaleRepository.GetSaleById - sale > customer id: {sale.Customer.Id}");
             return Task.FromResult<Sale>(sale);
         }
-
-
 
         public async Task PostSale(Sale sale)
         {

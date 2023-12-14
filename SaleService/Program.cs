@@ -15,16 +15,27 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddHttpClient("AuctionService", client =>
     {
         client.BaseAddress = new Uri("http://localhost:5064");
         // Add any additional configuration for HttpClient as needed
     });
-
 builder.Services.AddSingleton<IAuctionRepository, AuctionRepository>(
      b => new AuctionRepository(b.GetService<IHttpClientFactory>()
        .CreateClient("AuctionService"),
        builder.Services.BuildServiceProvider().GetRequiredService<ILogger<AuctionRepository>>()));
+
+builder.Services.AddHttpClient("CustomerService", client =>
+    {
+        client.BaseAddress = new Uri("http://localhost:5104");
+        // Add any additional configuration for HttpClient as needed
+    });
+builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>(
+     b => new CustomerRepository(b.GetService<IHttpClientFactory>()
+       .CreateClient("CustomerService"),
+       builder.Services.BuildServiceProvider().GetRequiredService<ILogger<CustomerRepository>>()));
+
 var connectionString = builder.Configuration.GetConnectionString("MongoDBConnection");
 var databaseName = builder.Configuration.GetSection("MongoDBSettings:DatabaseName").Value;
 var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<MongoDBContext>>();

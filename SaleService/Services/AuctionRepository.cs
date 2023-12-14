@@ -23,7 +23,6 @@ public class AuctionRepository : IAuctionRepository
 
     }
 
-
     public async Task<Auction> GetAuctionById(string auctionId)
     {
         _logger.LogInformation($"### AuctionRepository.GetAuctionById - id: {auctionId}");
