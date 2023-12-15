@@ -15,6 +15,8 @@ namespace LegalService.Controllers
     {
         private readonly IAuctionRepository _auctionRepository;
 
+        private readonly IAuthRepository _authRepository;
+
         private readonly ILogger<LegalController> _logger;
 
         private readonly IConfiguration _configuration;
@@ -25,13 +27,15 @@ namespace LegalService.Controllers
             IAuctionRepository auctionRepository,
             ICustomerRepository customerRepository,
             ILogger<LegalController> logger,
-            IConfiguration configuration
+            IConfiguration configuration,
+            IAuthRepository authRepository
         )
         {
             _auctionRepository = auctionRepository;
             _customerRepository = customerRepository;
             _logger = logger;
             _configuration = configuration;
+            _authRepository = authRepository;
         }
 
         // GET: api/auction/{auctionId}
@@ -109,5 +113,33 @@ namespace LegalService.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
+        // POST: api/legal/login
+        [HttpPost]
+        [ActionName("login")]
+        public async Task<IActionResult> Login([FromBody] LoginModel login)
+        {
+            try
+            {
+                var response = await _authRepository.Login(login);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return Ok(response.Content);
+                }
+                else
+                {
+                    return Unauthorized();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Exception: {ex.Message}");
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+
+        }
+
+        
     }
 }

@@ -21,6 +21,11 @@ builder.Services.AddHttpClient("AuctionService", client =>
         client.BaseAddress = new Uri("http://localhost:5064");
     });
 
+builder.Services.AddHttpClient("AuthService", client =>
+    {
+        client.BaseAddress = new Uri("http://localhost:5050");
+    });
+
 builder.Services.AddHttpClient("CustomerService", client =>
     {
         client.BaseAddress = new Uri("http://localhost:5104");
@@ -30,6 +35,11 @@ builder.Services.AddSingleton<IAuctionRepository, AuctionRepository>(
        b => new AuctionRepository(b.GetService<IHttpClientFactory>()
        .CreateClient("AuctionService"),
        builder.Services.BuildServiceProvider().GetRequiredService<ILogger<AuctionRepository>>()));
+
+builder.Services.AddSingleton<IAuthRepository, AuthRepository>(
+        b => new AuthRepository(b.GetService<IHttpClientFactory>()
+        .CreateClient("AuthService"), 
+        builder.Services.BuildServiceProvider().GetRequiredService<ILogger<AuthRepository>>()));
 
 builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>(
         b => new CustomerRepository(b.GetService<IHttpClientFactory>()
