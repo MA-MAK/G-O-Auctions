@@ -11,7 +11,7 @@ using MongoDB.Bson.Serialization.Serializers;
 //var connectionString = builder.Configuration.GetConnectionString("MongoDBConnection");
 //var databaseName = builder.Configuration.GetSection("MongoDBSettings:DatabaseName").Value;
 //var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<MongoDBContext>>();
-
+/*
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
@@ -21,6 +21,19 @@ IHost host = Host.CreateDefaultBuilder(args)
         services.AddHostedService<Worker>();
         services.AddSingleton<BidRepository>();
         services.AddSingleton<MongoDBContext>(provider => new MongoDBContext(logger, host.Configuration));
+    })
+    .Build();
+
+host.Run();
+
+*/
+
+IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices(services =>
+    {
+        services.AddHostedService<Worker>();
+        services.AddSingleton<MongoDBContext>();
+        services.AddSingleton<BidRepository>();
     })
     .Build();
 
