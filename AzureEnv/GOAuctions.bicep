@@ -73,6 +73,18 @@ module backend 'GOAuctionsBackend.bicep' = {
   }
 }
 
+module services 'GOAuctionsServices.bicep' = {
+  name: 'servicesModule'
+  params: {
+    location: location
+    vnetname: virtualNetworkName
+    subnetName: 'goServicesSubnet'
+    dnsRecordName: 'SERVICES'
+    dnszonename: dnszonename
+    storageAccountName: storage.outputs.storageAcountName
+  }
+}
+
 resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' = {
   name: applicationGateWayName
   location: location
@@ -133,6 +145,16 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
           backendAddresses: [
             {
               ipAddress: devops.outputs.containerIPAddressFqdn
+            }
+          ]
+        }
+      }
+      {
+        name: 'goAuctionsServicesPool'
+        properties: {
+          backendAddresses: [
+            {
+              ipAddress: services.outputs.containerIPAddressFqdn
             }
           ]
         }
