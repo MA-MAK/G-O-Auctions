@@ -41,7 +41,6 @@ namespace BidService.Services
                     Customer customer = JsonSerializer.Deserialize<Customer>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                     _logger.LogInformation($"### CustomerRepository.GetCustomerById - customer: {customer.Id}");
                     return customer;
-                }
                 else
                 {
                     _logger.LogError($"### Failed to get customer with ID {customerId}. Status code: {response.StatusCode}");
