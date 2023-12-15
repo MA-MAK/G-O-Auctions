@@ -33,7 +33,7 @@ public class BidRepository : IBidRepository
             // Check if the new bid amount is higher than existing bids for the same auction
             var existingBids = await _bids.Find(a => a.AuctionId == newBid.AuctionId).ToListAsync();
 
-            if (existingBids.Any() && newBid.Amount <= existingBids.Max(b => b.Amount))
+            if (existingBids.Any() && newBid.Amount < existingBids.Max(b => b.Amount))
             {
                 _logger.LogWarning("Bid amount must be higher than existing bids for the same auction.");
                 return false; // Bid amount is not higher, post failed
@@ -41,11 +41,11 @@ public class BidRepository : IBidRepository
 
             // Check if the customer with the specified ID exists
             
-            var existingCustomer = await _customerRepository.GetCustomerById(newBid.CustomerId);
+            var existingCustomer = await _customerRepository.GetCustomerById(newBid.Customer.Id);
 
             if (existingCustomer == null)
             {
-                _logger.LogWarning($"Customer with ID {newBid.CustomerId} does not exist.");
+                _logger.LogWarning($"Customer with ID {newBid.Customer.Id} does not exist.");
                 return false; // Customer does not exist, post failed
             }
 
