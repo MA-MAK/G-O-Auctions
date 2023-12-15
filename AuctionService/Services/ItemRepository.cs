@@ -57,5 +57,40 @@ namespace AuctionService.Services
                 throw new Exception($"Error in GetItemById: {ex.Message}", ex);
             }
         }
+
+
+        // Get all Items ready for auction
+         public async Task<IEnumerable<Item>> GetAllItemsReadyForAuction()
+        {
+
+            try
+            {
+                // Make a GET request to the ItemService API endpoint to get all items
+                HttpResponseMessage response = await _httpClient.GetAsync("/api/items");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Deserialize the response content to a list of Item objects
+                    string jsonString = await response.Content.ReadAsStringAsync();
+                    var allItems = JsonSerializer.Deserialize<List<Item>>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                    // Filter the items to get only the "ReadyForAuction" ones
+                    var ItemsReadyForAuction = allItems.Where(i => i.Status == Status.ReadyForAuction);
+
+                    return ItemsReadyForAuction;
+                }
+                else
+                {
+                    _logger.LogError($"### Failed to get all ready items. Status code: {response.StatusCode}");
+                    throw new Exception($"Failed to get all ready items. Status code: {response.StatusCode}");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"### Error in GetAllItemsReadyForAuction: {ex.Message}");
+                throw new Exception($"Error in GetAllItemsReadyForAuction: {ex.Message}", ex);
+            }
+
+        }
     }
 }
