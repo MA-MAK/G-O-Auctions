@@ -104,7 +104,5 @@ namespace AuctionServiceTest
                 "InsertOneAsync should be called with any auction object."
             );
         }
-
-
     }
 }
