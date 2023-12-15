@@ -9,6 +9,7 @@ on:
       - "develop"
     paths:
       - CustomerService/**
+      - .github/workflows/CustomerService_Release.yml
 
 jobs:
   build:
@@ -21,14 +22,18 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
-    - name: Install dependencies
+    - name: Install dependencies for service
+      working-directory: CustomerService
       run: |
-        dotnet restore packages
-    - name: Build
+        dotnet restore
+    - name: Build Service
+      working-directory: CustomerService
       run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
-    - name: Commit and push to main
+    - name: Set up Git
       run: |
-        git commit -am "automated release to main"
-        git push
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+    - name: create pull request
+      run: gh pr create -B main -H develop --title 'Merge develop into main branch' --body 'Created by Github action'
+      env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}

@@ -15,9 +15,12 @@ namespace CustomerService.Services
             _logger = logger;
         }
 
-        public Task<Customer> GetCustomerById(string customerId)
+        public Task<Customer> GetCustomerById(string id)
         {
-            return Task.FromResult<Customer>(_customers.Find(a => a.Id == customerId).FirstOrDefault());
+            _logger.LogInformation($"### CustomerRepository.GetCustomerById - customerId: {id}");
+            Customer customer = _customers.Find(c => c.Id == id).FirstOrDefault();
+            _logger.LogInformation($"### CustomerRepository.GetCustomerById - customerId: {customer.Id}");
+            return Task.FromResult<Customer>(customer);
         }
     }
 }
