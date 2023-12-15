@@ -134,5 +134,23 @@ namespace AuctionService.Controllers
             _auctions.Remove(auction);
             return NoContent();
         }
+
+
+          [HttpGet("GetAllItemsReadyForAuction")]
+        public async Task<IActionResult> GetAllItemsReadyForAuction()
+        {
+            try
+            {
+                var items = await _itemRepository.GetAllItemsReadyForAuction();
+                _logger.LogInformation($"### ItemController.GetAllItemsReadyForAuction - items: {items.Count()}");
+
+                return Ok(items);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Exception: {ex.Message}");
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
     }
 }

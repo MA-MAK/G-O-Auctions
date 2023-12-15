@@ -10,11 +10,13 @@ namespace AuctionService.Services
 {
     public class ItemRepository : IItemRepository
     {
+        private List<Item> itemsReadyForAuction;
         private readonly HttpClient _httpClient;
         private readonly ILogger<ItemRepository> _logger;
 
         public ItemRepository(HttpClient httpClient, ILogger<ItemRepository> logger)
         {
+            itemsReadyForAuction = new List<Item>();
             _httpClient = httpClient;
             _logger = logger;
 
@@ -67,22 +69,24 @@ namespace AuctionService.Services
             {
                 // Make a GET request to the ItemService API endpoint to get all items
                 HttpResponseMessage response = await _httpClient.GetAsync("/api/items");
-
+                _logger.LogInformation($"### ItemRepository - _httpClient: {_httpClient.BaseAddress}");
+                _logger.LogInformation($"### ItemRepository.GetAllItemsReadyForAuction - response: {response}");
+                
                 if (response.IsSuccessStatusCode)
                 {
                     // Deserialize the response content to a list of Item objects
                     string jsonString = await response.Content.ReadAsStringAsync();
+                    _logger.LogInformation($"### ItemRepository.GetAllItemsReadyForAuction - jsonString: {jsonString}");
                     var allItems = JsonSerializer.Deserialize<List<Item>>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
                     // Filter the items to get only the "ReadyForAuction" ones
-                    var ItemsReadyForAuction = allItems.Where(i => i.Status == Status.ReadyForAuction);
-
-                    return ItemsReadyForAuction;
-                }
+                    var itemsReadyForAuction = allItems.Where(i => i.Status == Status.ReadyForAuction);
+                    return itemsReadyForAuction;
+                }   
                 else
                 {
                     _logger.LogError($"### Failed to get all ready items. Status code: {response.StatusCode}");
-                    throw new Exception($"Failed to get all ready items. Status code: {response.StatusCode}");
+                    throw new Exception($"Failed to get items. Status code: {response.StatusCode}");
                 }
             }
             catch (Exception ex)
