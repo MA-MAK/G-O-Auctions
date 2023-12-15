@@ -2,7 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using BidService.Models;
 using BidService.Services;
-
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text;
+using RabbitMQ.Client;
+using BidService;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace BidService.Controllers
 {
@@ -10,77 +16,77 @@ namespace BidService.Controllers
     [Route("api/[controller]")]
     public class BidController : ControllerBase
     {
-        private readonly IBidRepository _bidRepository;
+        private readonly IBidRepository _BidRepository;
         private readonly ILogger<BidController> _logger;
         private readonly IConfiguration _configuration;
         private readonly ICustomerRepository _customerRepository;
+        private string _mqHost = string.Empty;
 
-        public BidController(IBidRepository bidRepository, ICustomerRepository customerRepository, ILogger<BidController> logger, IConfiguration configuration)
+        public BidController(IBidRepository BidRepository, ICustomerRepository customerRepository, ILogger<BidController> logger, IConfiguration configuration)
         {
-            _bidRepository = bidRepository;
+            _BidRepository = BidRepository;
             _customerRepository = customerRepository;
             _logger = logger;
             _configuration = configuration;
+            _mqHost = configuration["rabbitmqHost"] ?? "localhost";
         }
-/*
-        [HttpGet]
-        public ActionResult<IEnumerable<Bid>> GetAllBids()
-        {
-            var bids = _bidRepository.GetAllBids();
-            return Ok(bids);
-        }
-*/
+        /*
+                [HttpGet]
+                public ActionResult<IEnumerable<Bid>> GetAllBids()
+                {
+                    var Bids = _BidRepository.GetAllBids();
+                    return Ok(Bids);
+                }
+        */
         [HttpGet("{id}")]
         public Task<IActionResult> GetBidsForAuction(string id)
         {
             _logger.LogInformation($"### GetBidsForAuction: {id}");
-            var bids = _bidRepository.GetBidsForAuction(id).Result.ToList();
-            _logger.LogInformation($"### GetBidsForAuction: {bids.Count}");
-            if (bids.Count == 0)
+            var Bids = _BidRepository.GetBidsForAuction(id).Result.ToList();
+            _logger.LogInformation($"### GetBidsForAuction: {Bids.Count}");
+            foreach (var Bid in Bids)
             {
-                return Task.FromResult<IActionResult>(Ok(new List<Bid>()));
+                Bid.Customer = _customerRepository.GetCustomerById(Bid.Customer.Id).Result;
             }
-            foreach (var bid in bids)
-            {
-                bid.Customer = _customerRepository.GetCustomerById(bid.Customer.Id).Result;
-            }
-
-            _logger.LogInformation($"### GetBidsForAuction: {bids[0].AuctionId}");
-            return Task.FromResult<IActionResult>(Ok(bids));
+            return Task.FromResult<IActionResult>(Ok(Bids));
         }
 
-/*
-        [HttpPost]
-        public ActionResult<Bid> CreateBid(Bid bid)
+
+        [HttpPost("PostBid")]
+        public ActionResult<Bid> PostBid(Bid bid)
         {
-            _bidRepository.CreateBid(bid);
-            return CreatedAtAction(nameof(GetBidById), new { id = bid.Id }, bid);
-        }
-*/
-/*
-        [HttpPut("{id}")]
-        public IActionResult UpdateBid(int id, Bid bid)
-        {
-            if (id != bid.Id)
+            _logger.LogInformation("posting..");
+            try
             {
-                return BadRequest();
+                //Bid Bid = JsonSerializer.Deserialize<Bid>(jsonString);
+
+                var factory = new ConnectionFactory { HostName = _mqHost };
+                using var connection = factory.CreateConnection();
+                using var channel = connection.CreateModel();
+
+                channel.QueueDeclare(queue: "bids",
+                                     durable: false,
+                                     exclusive: false,
+                                     autoDelete: false,
+                                     arguments: null);
+
+                string message = JsonSerializer.Serialize(bid);
+                var body = Encoding.UTF8.GetBytes(message);
+
+                channel.BasicPublish(exchange: string.Empty,
+                                     routingKey: "bids",
+                                     basicProperties: null,
+                                     body: body);
+                Console.WriteLine($" [x] Sent {message}");
+
             }
-            _bidRepository.UpdateBid(bid);
-            return NoContent();
-        }
-*/
-/*
-        [HttpDelete("{id}")]
-        public IActionResult DeleteBid(int id)
-        {
-            var bid = _bidRepository.GetBidById(id);
-            if (bid == null)
+            catch (Exception ex)
             {
-                return NotFound();
+                _logger.LogInformation($"exception: {ex.Message}");
+                return StatusCode(500, $"{ex.Message}");
             }
-            _bidRepository.DeleteBid(bid);
-            return NoContent();
+            _logger.LogInformation($"OK: bid posted");
+            return Ok(bid);
         }
-        */
     }
 }

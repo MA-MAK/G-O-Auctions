@@ -26,28 +26,28 @@ namespace BidService.Services
 
             try
             {
-            // Make a GET request to the API endpoint with the item ID
-            HttpResponseMessage response = await _httpClient.GetAsync($"/api/customer/{customerId}");
+                // Make a GET request to the API endpoint with the item ID
+                HttpResponseMessage response = await _httpClient.GetAsync($"/api/customer/{customerId}");
 
-            if (response.IsSuccessStatusCode)
-            {
-                _logger.LogInformation($"### CustomerRepository.GetCustomerById - response: {response}");
-                // Deserialize the response content to an Item object
-                //Item item = await response.Content.ReadAsAsync<Item>();
+                if (response.IsSuccessStatusCode)
+                {
+                    _logger.LogInformation($"### CustomerRepository.GetCustomerById - response: {response}");
+                    // Deserialize the response content to an Item object
+                    //Item item = await response.Content.ReadAsAsync<Item>();
 
-                string jsonString = await response.Content.ReadAsStringAsync();
-                _logger.LogInformation($"### CustomerRepository.GetCustomerById - jsonString: {jsonString}");
-                //Item item = JsonSerializer.Deserialize<Item>(jsonString);
-                Customer customer = JsonSerializer.Deserialize<Customer>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                _logger.LogInformation($"### CustomerRepository.GetCustomerById - customer: {customer.Id}");
-                return customer;
-            }
-            else
-            {
-                _logger.LogError($"### Failed to get customer with ID {customerId}. Status code: {response.StatusCode}");
-                // Handle the error response
-                throw new Exception($"Failed to get item customer ID {customerId}. Status code: {response.StatusCode}");
-            }
+                    string jsonString = await response.Content.ReadAsStringAsync();
+                    _logger.LogInformation($"### CustomerRepository.GetCustomerById - jsonString: {jsonString}");
+                    //Item item = JsonSerializer.Deserialize<Item>(jsonString);
+                    Customer customer = JsonSerializer.Deserialize<Customer>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    _logger.LogInformation($"### CustomerRepository.GetCustomerById - customer: {customer.Id}");
+                    return customer;
+                }
+                else
+                {
+                    _logger.LogError($"### Failed to get customer with ID {customerId}. Status code: {response.StatusCode}");
+                    // Handle the error response
+                    throw new Exception($"Failed to get item customer ID {customerId}. Status code: {response.StatusCode}");
+                }
             }
             catch (Exception ex)
             {

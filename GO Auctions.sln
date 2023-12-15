@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemService", "ItemService\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssessmentService", "AssessmentService\AssessmentService.csproj", "{899827C4-5A2C-4D5B-A7E9-E8462D1D3DF7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BidWorker", "BidWorker\BidWorker.csproj", "{7F2F0467-7998-42A5-8935-2E7243ED98DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{899827C4-5A2C-4D5B-A7E9-E8462D1D3DF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{899827C4-5A2C-4D5B-A7E9-E8462D1D3DF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{899827C4-5A2C-4D5B-A7E9-E8462D1D3DF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F2F0467-7998-42A5-8935-2E7243ED98DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F2F0467-7998-42A5-8935-2E7243ED98DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F2F0467-7998-42A5-8935-2E7243ED98DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F2F0467-7998-42A5-8935-2E7243ED98DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
