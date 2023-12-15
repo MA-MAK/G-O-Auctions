@@ -59,10 +59,9 @@ namespace BidWorker.Services
             _logger.LogInformation($"Bid with ID: {bid.Id} is ready to be posted");
 
             // Get all existing bids for the same ID
-            var existingBids = await _bids.Find(b => b.Id == bid.Id).ToListAsync();
+            var existingBids = await _bids.Find(a => a.AuctionId == bid.AuctionId).ToListAsync();
 
-            // Check if the new bid amount is strictly greater than all existing bids
-            if (existingBids.All(existingBid => bid.Amount > existingBid.Amount))
+            if (bid.Amount > existingBids.Max(b => b.Amount))
             {
                 // If the new bid amount is strictly greater than all existing bids, insert the new bid
                 _logger.LogInformation($"Bid with ID is higher: {bid.Id}");
