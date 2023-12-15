@@ -2,10 +2,10 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
-using BidService.Models;
-using BidService.Services;
+using BidWorker.Models;
+using BidWorker.Services;
 
-namespace BidService.Models;
+namespace BidWorker.Models;
 
 /// <summary>
 /// MongoDB database context class.

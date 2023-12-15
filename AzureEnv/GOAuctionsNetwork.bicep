@@ -9,6 +9,7 @@ var virtualNetworkPrefix = '10.0.0.0/16'
 var subnetPrefix = '10.0.0.0/24'
 var backendSubnetPrefix = '10.0.1.0/24'
 var devopsSubnetPrefix = '10.0.2.0/24'
+var servicesSubnetPrefix = '10.0.3.0/24'
 
 resource publicIPAddress 'Microsoft.Network/publicIPAddresses@2021-05-01' =  {
   name: publicIPAddressName
@@ -65,6 +66,22 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2021-05-01' = {
         name: 'goDevopsSubnet'
         properties: {
           addressPrefix: devopsSubnetPrefix
+          privateEndpointNetworkPolicies: 'Enabled'
+          privateLinkServiceNetworkPolicies: 'Enabled'
+          delegations: [
+            {
+              name: 'containerGroup'
+              properties: {
+                serviceName: 'Microsoft.ContainerInstance/containerGroups'
+              }
+            }
+          ]
+        }
+      }
+      {
+        name: 'goServicesSubnet'
+        properties: {
+          addressPrefix: servicesSubnetPrefix
           privateEndpointNetworkPolicies: 'Enabled'
           privateLinkServiceNetworkPolicies: 'Enabled'
           delegations: [

@@ -1,20 +1,27 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-namespace BidService.Models
+using System.Text.Json;
+using System.Text.Json.Serialization;
+namespace BidWorker.Models
 
 {
     public class Customer
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
-        [BsonIgnore]
-        public string? Name { get; set; }
-        [BsonIgnore]
-        public string? Email { get; set; }
 
+        public string Id { get; set; }
+        [JsonIgnore]
         [BsonIgnore]
-        public bool? Premium { get; set; }
+        public string Name { get; set; }
+        [JsonIgnore]
+        
+        [BsonIgnore]
+        public string Email { get; set; }
+
+        [JsonIgnore]
+        [BsonIgnore]
+        public bool Premium { get; set; }
 
         // Constructor
         /*
