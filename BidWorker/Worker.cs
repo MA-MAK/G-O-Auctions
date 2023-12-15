@@ -45,11 +45,14 @@ public class Worker : BackgroundService
 
         // Set up consumer for the "booking" queue
         var bidConsumer = new EventingBasicConsumer(channel);
+         _logger.LogInformation($"listening to: {channel.ToString()}");
         bidConsumer.Received += (model, ea) =>
         {
 
             var body = ea.Body.ToArray();
+             _logger.LogInformation($"received body: {body}");
             var message = Encoding.UTF8.GetString(body);
+             _logger.LogInformation($"received message: {message}");
             var bid = System.Text.Json.JsonSerializer.Deserialize<Bid>(message);
             _logger.LogInformation($"Received bid: {bid}");
             _bidRepository.InsertBid(bid);
