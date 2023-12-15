@@ -4,8 +4,8 @@ param location string = resourceGroup().location
 param vnetname string = 'goauctionsVNet'
 param subnetName string = 'goDevopsSubnet'
 param storageAccountName string = 'storageAccount'
-param dnsRecordName string ='backendhostname'
-param dnszonename string='thednszonename.dk'
+param dnsRecordName string = 'backendhostname'
+param dnszonename string = 'goauctions.dk'
 
 resource VNET 'Microsoft.Network/virtualNetworks@2020-11-01' existing = {
   name: vnetname
@@ -19,50 +19,48 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-09-01' existing 
   name: storageAccountName
 }
 
-@description('auktionsHusetBackendGroup')
-resource auktionsHusetBackendGroup 'Microsoft.ContainerInstance/containerGroups@2023-05-01' = {
-  name: 'auktionsHusetBackendGroup'
+@description('GOAuctionsBackendGroup')
+resource GOAuctionsBackendGroup 'Microsoft.ContainerInstance/containerGroups@2023-05-01' = {
+  name: 'GOAuctionsBackendGroup'
   location: location
   properties: {
     sku: 'Standard'
     containers: [
-      // {
-      //   name: 'mongodb'
-      //   properties: {
-      //     image: 'mongo:latest'
-      //     command: [
-      //       'mongod'
-      //       '--dbpath=/data/auktionsdb'
-      //       '--auth'
-      //       '--bind_ip_all'
-      //     ]
-      //     ports: [
-      //       {
-      //         port: 27017
-      //       }
-      //     ]
-      //     environmentVariables: [
-            
-      //     ]
-      //     resources: {
-      //       requests: {
-      //         memoryInGB: json('1.0')
-      //         cpu: json('0.5')
-      //       }
-      //     }
-      //     volumeMounts: [
-      //       {
-      //         name: 'db'
-      //         mountPath: '/data/auktionsdb/'
-      //       }
-      //     ]
-      //   }
-      // }
+      {
+        name: 'mongodb'
+        properties: {
+          image: 'mongo:latest'
+          command: [
+            'mongod'
+            '--dbpath=/data/GODatabase'
+            '--auth'
+            '--bind_ip_all'
+          ]
+          ports: [
+            {
+              port: 27017
+            }
+          ]
+          environmentVariables: []
+          resources: {
+            requests: {
+              memoryInGB: json('1.0')
+              cpu: json('0.5')
+            }
+          }
+          volumeMounts: [
+            {
+              name: 'db'
+              mountPath: '/data/GODatabase/'
+            }
+          ]
+        }
+      }
       {
         name: 'rabbitmq'
         properties: {
           image: 'rabbitmq:management'
-          command: ['tail', '-f', '/dev/null']
+          command: [ 'tail', '-f', '/dev/null' ]
           ports: [
             {
               port: 15672
@@ -150,10 +148,10 @@ resource dnsRecord 'Microsoft.Network/privateDnsZones/A@2020-06-01' = {
     ttl: 3600
     aRecords: [
       {
-        ipv4Address: auktionsHusetBackendGroup.properties.ipAddress.ip
+        ipv4Address: GOAuctionsBackendGroup.properties.ipAddress.ip
       }
     ]
   }
 }
 
-output containerIPAddressFqdn string = auktionsHusetBackendGroup.properties.ipAddress.ip
+output containerIPAddressFqdn string = GOAuctionsBackendGroup.properties.ipAddress.ip

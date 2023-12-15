@@ -1,5 +1,17 @@
 services:
- 
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - GOnet
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      
   mongodb:
     image: mongo:latest
     container_name: mongodb
@@ -8,23 +20,22 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: 1234
 
     ports:
-    - 27018:27017
+      - 27018:27017
     volumes:
-    - mongodb_data_container:/data/db
+      - mongodb_data_container:/data/db
 
     networks:
-    - GOnet
+      - GOnet
 
   loki:
     image: grafana/loki
     container_name: loki
     ports:
-    - "3100:3100"
+      - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
-    
-    networks:
-    - GOnet
 
+    networks:
+      - GOnet
 
 volumes:
   mongodb_data_container:

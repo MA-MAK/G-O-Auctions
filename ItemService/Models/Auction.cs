@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Text.Json.Serialization;
 
-namespace BidService.Models;
+namespace ItemService.Models;
 
 public class Auction
 {

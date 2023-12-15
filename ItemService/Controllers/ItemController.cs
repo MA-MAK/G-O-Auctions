@@ -19,7 +19,12 @@ namespace ItemService.Controllers
 
         private readonly ICustomerRepository _customerRepository;
 
-        public ItemController(IItemRepository itemRepository, ICustomerRepository customerRepository, ILogger<ItemController> logger, IConfiguration configuration)
+        public ItemController(
+            IItemRepository itemRepository,
+            ICustomerRepository customerRepository,
+            ILogger<ItemController> logger,
+            IConfiguration configuration
+        )
         {
             _itemRepository = itemRepository;
             _logger = logger;
@@ -32,7 +37,7 @@ namespace ItemService.Controllers
         {
             _logger.LogInformation($"ItemController.GetItemById - id: {id}");
             var item = await _itemRepository.GetItemById(id);
-            _logger.LogInformation($"ItemController.GetItemById - item: {item}");
+            _logger.LogInformation($"ItemController.GetItemById - item > customer: {item.Customer.Id}");
             item.Customer = _customerRepository.GetCustomerById(item.Customer.Id).Result;
 
             if (item == null)
@@ -49,6 +54,10 @@ namespace ItemService.Controllers
             try
             {
                 var allItems = await _itemRepository.GetAllItems();
+                foreach (var item in allItems)
+                {
+                    item.Customer = _customerRepository.GetCustomerById(item.Customer.Id).Result;
+                }
                 return Ok(allItems);
             }
             catch (Exception ex)
@@ -101,10 +110,14 @@ namespace ItemService.Controllers
                 {
                     return BadRequest("Invalid item data");
                 }
-                _logger.LogInformation($"### ItemController.PostItem - Item.Customer: {Item.Customer.Id}");
+                _logger.LogInformation(
+                    $"### ItemController.PostItem - Item.Customer: {Item.Customer.Id}"
+                );
                 _logger.LogInformation($"### ItemController.PostItem - Item:  {Item.Title}");
                 Item.Customer = _customerRepository.GetCustomerById(Item.Customer.Id).Result;
-                _logger.LogInformation($"### ItemController.PostItem - Customer: {Item.Customer.Name}");
+                _logger.LogInformation(
+                    $"### ItemController.PostItem - Customer: {Item.Customer.Name}"
+                );
                 var success = await _itemRepository.PostItem(Item);
                 _logger.LogInformation($"### ItemController.PostItem - response: {success}");
 
@@ -123,4 +136,3 @@ namespace ItemService.Controllers
         }
     }
 }
-
