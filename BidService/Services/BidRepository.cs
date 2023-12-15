@@ -33,7 +33,7 @@ public class BidRepository : IBidRepository
             // Check if the new bid amount is higher than existing bids for the same auction
             var existingBids = await _bids.Find(a => a.AuctionId == newBid.AuctionId).ToListAsync();
 
-            if (existingBids.Any() && newBid.Amount < existingBids.Max(b => b.Amount))
+            if (newBid.Amount < existingBids.Max(b => b.Amount))
             {
                 _logger.LogWarning("Bid amount must be higher than existing bids for the same auction.");
                 return false; // Bid amount is not higher, post failed
