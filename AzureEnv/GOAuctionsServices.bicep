@@ -58,13 +58,13 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           ]
           resources: {
             requests: {
-              memoryInGB: json('0.5')
-              cpu: json('0.5')
+              memoryInGB: json('0.2')
+              cpu: json('0.2')
             }
           }
         }
       }
-      /*{
+      {
         name: 'bidservice'
         properties: {
           image: BidServiceImage
@@ -90,8 +90,8 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           ]
           resources: {
             requests: {
-              memoryInGB: json('0.5')
-              cpu: json('0.5')
+              memoryInGB: json('0.2')
+              cpu: json('0.2')
             }
           }
         }
@@ -122,8 +122,8 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           ]
           resources: {
             requests: {
-              memoryInGB: json('0.5')
-              cpu: json('0.5')
+              memoryInGB: json('0.2')
+              cpu: json('0.2')
             }
           }
         }
@@ -154,8 +154,8 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           ]
           resources: {
             requests: {
-              memoryInGB: json('0.5')
-              cpu: json('0.5')
+              memoryInGB: json('0.2')
+              cpu: json('0.2')
             }
           }
         }
@@ -186,8 +186,8 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           ]
           resources: {
             requests: {
-              memoryInGB: json('0.5')
-              cpu: json('0.5')
+              memoryInGB: json('0.2')
+              cpu: json('0.2')
             }
           }
         }
@@ -218,12 +218,12 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           ]
           resources: {
             requests: {
-              memoryInGB: json('0.5')
-              cpu: json('0.5')
+              memoryInGB: json('0.2')
+              cpu: json('0.2')
             }
           }
         }
-      }*/
+      }
     ]
     osType: 'Linux'
     volumes: [
@@ -243,7 +243,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
         {
           port: 5001
         }
-        /*{
+        {
           port: 5002
         }
         {
@@ -257,7 +257,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
         }
         {
           port: 5006
-        }*/
+        }
       ]
     }
   }
