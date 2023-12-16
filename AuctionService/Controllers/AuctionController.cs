@@ -2,6 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using AuctionService.Models;
 using AuctionService.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using System.Diagnostics;
 
 namespace AuctionService.Controllers
 {
@@ -44,6 +49,7 @@ namespace AuctionService.Controllers
 
         // GET: api/auction
         [HttpGet]
+        [Authorize]
         public IActionResult Get()
         {
             return Ok(_auctions);
@@ -51,6 +57,7 @@ namespace AuctionService.Controllers
 
         // GET: api/auction/all
         [HttpGet("all")]
+        [Authorize]
         public IActionResult GetAllAuctions()
         {
             var auctions = _auctionRepository.GetAllAuctions().Result;
@@ -64,6 +71,7 @@ namespace AuctionService.Controllers
 
         // GET: api/auction/{id}
         [HttpGet("{id}")]
+        [Authorize]
         public IActionResult GetAuctionById(string id)
         {
             Auction auction = _auctionRepository.GetAuctionById(id).Result;
@@ -76,6 +84,7 @@ namespace AuctionService.Controllers
 
         // POST: api/auction
         [HttpPost]
+        [Authorize]
         public Task<IActionResult> PostAuction([FromBody] Auction auction)
         {
             _logger.LogInformation($"PostAuction: {auction.Title}");
@@ -90,6 +99,7 @@ namespace AuctionService.Controllers
 
         // PUT: api/auction/{id}
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<ActionResult> PutAuction(string id, [FromBody] Auction auction)
         {
             var existingAuction = await _auctionRepository.GetAuctionById(id);
@@ -124,6 +134,7 @@ namespace AuctionService.Controllers
 
         // DELETE: api/auction/{id}
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(string id)
         {
             var auction = _auctions.Find(a => a.Id == id);
@@ -133,6 +144,25 @@ namespace AuctionService.Controllers
             }
             _auctions.Remove(auction);
             return NoContent();
+        }
+
+        [HttpGet("version")]
+        [Authorize]
+        public async Task<Dictionary<string, string>> GetVersion()
+        {
+            _logger.LogInformation("posting..");
+            var properties = new Dictionary<string, string>();
+            var assembly = typeof(Program).Assembly;
+            properties.Add("service", "GOAuctions");
+            var ver =
+                FileVersionInfo.GetVersionInfo(typeof(Program).Assembly.Location).ProductVersion
+                ?? "N/A";
+            properties.Add("version", ver);
+            var hostName = System.Net.Dns.GetHostName();
+            var ips = await System.Net.Dns.GetHostAddressesAsync(hostName);
+            var ipa = ips.First().MapToIPv4().ToString() ?? "N/A";
+            properties.Add("ip-address", ipa);
+            return properties;
         }
     }
 }
