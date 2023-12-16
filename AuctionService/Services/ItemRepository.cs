@@ -29,28 +29,28 @@ namespace AuctionService.Services
 
             try
             {
-            // Make a GET request to the API endpoint with the item ID
-            HttpResponseMessage response = await _httpClient.GetAsync($"/api/item/{itemId}");
+                // Make a GET request to the API endpoint with the item ID
+                HttpResponseMessage response = await _httpClient.GetAsync($"/api/item/{itemId}");
 
-            if (response.IsSuccessStatusCode)
-            {
-                _logger.LogInformation($"### ItemRepository.GetItemById - response: {response}");
-                // Deserialize the response content to an Item object
-                //Item item = await response.Content.ReadAsAsync<Item>();
+                if (response.IsSuccessStatusCode)
+                {
+                    _logger.LogInformation($"### ItemRepository.GetItemById - response: {response}");
+                    // Deserialize the response content to an Item object
+                    //Item item = await response.Content.ReadAsAsync<Item>();
 
-                string jsonString = await response.Content.ReadAsStringAsync();
-                _logger.LogInformation($"### ItemRepository.GetItemById - jsonString: {jsonString}");
-                //Item item = JsonSerializer.Deserialize<Item>(jsonString);
-                Item item = JsonSerializer.Deserialize<Item>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                _logger.LogInformation($"### ItemRepository.GetItemById - item: {item.Id}");
-                return item;
-            }
-            else
-            {
-                _logger.LogError($"### Failed to get item with ID {itemId}. Status code: {response.StatusCode}");
-                // Handle the error response
-                throw new Exception($"Failed to get item with ID {itemId}. Status code: {response.StatusCode}");
-            }
+                    string jsonString = await response.Content.ReadAsStringAsync();
+                    _logger.LogInformation($"### ItemRepository.GetItemById - jsonString: {jsonString}");
+                    //Item item = JsonSerializer.Deserialize<Item>(jsonString);
+                    Item item = JsonSerializer.Deserialize<Item>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    _logger.LogInformation($"### ItemRepository.GetItemById - item: {item.Id}");
+                    return item;
+                }
+                else
+                {
+                    _logger.LogError($"### Failed to get item with ID {itemId}. Status code: {response.StatusCode}");
+                    // Handle the error response
+                    throw new Exception($"Failed to get item with ID {itemId}. Status code: {response.StatusCode}");
+                }
             }
             catch (Exception ex)
             {
@@ -62,16 +62,21 @@ namespace AuctionService.Services
 
 
         // Get all Items ready for auction
-         public async Task<IEnumerable<Item>> GetAllItemsReadyForAuction()
+        public async Task<IEnumerable<Item>> GetAllItemsReadyForAuction()
         {
 
             try
             {
                 // Make a GET request to the ItemService API endpoint to get all items
-                HttpResponseMessage response = await _httpClient.GetAsync("/api/items");
+                var requestUri = new Uri(_httpClient.BaseAddress, "/api/item/all");
+                _logger.LogInformation($"### ItemRepository.GetAllItemsReadyForAuction - Request URI: {requestUri}");
+
+                HttpResponseMessage response = await _httpClient.GetAsync(requestUri);
+                // Make a GET request to the ItemService API endpoint to get all items
+               /* HttpResponseMessage response = await _httpClient.GetAsync("/api/items");
                 _logger.LogInformation($"### ItemRepository - _httpClient: {_httpClient.BaseAddress}");
                 _logger.LogInformation($"### ItemRepository.GetAllItemsReadyForAuction - response: {response}");
-                
+*/
                 if (response.IsSuccessStatusCode)
                 {
                     // Deserialize the response content to a list of Item objects
@@ -82,7 +87,7 @@ namespace AuctionService.Services
                     // Filter the items to get only the "ReadyForAuction" ones
                     var itemsReadyForAuction = allItems.Where(i => i.Status == Status.ReadyForAuction);
                     return itemsReadyForAuction;
-                }   
+                }
                 else
                 {
                     _logger.LogError($"### Failed to get all ready items. Status code: {response.StatusCode}");

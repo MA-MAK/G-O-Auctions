@@ -35,17 +35,32 @@ namespace ItemService.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetItemById(string id)
         {
-            _logger.LogInformation($"ItemController.GetItemById - id: {id}");
-            var item = await _itemRepository.GetItemById(id);
-            _logger.LogInformation($"ItemController.GetItemById - item > customer: {item.Customer.Id}");
-            item.Customer = _customerRepository.GetCustomerById(item.Customer.Id).Result;
-
-            if (item == null)
+            try
             {
-                return NotFound();
-            }
+                _logger.LogInformation($"ItemController.GetItemById - id: {id}");
 
-            return Ok(item);
+                var item = await _itemRepository.GetItemById(id);
+
+                // Check if the item is null
+                if (item == null)
+                {
+                    return NotFound();
+                }
+
+                // Check if the Customer property is not null before accessing its Id
+                if (item.Customer != null)
+                {
+                    _logger.LogInformation($"ItemController.GetItemById - item > customer: {item.Customer.Id}");
+                    item.Customer = _customerRepository.GetCustomerById(item.Customer.Id).Result;
+                }
+
+                return Ok(item);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error occurred while getting item by Id: {ex.Message}");
+                return StatusCode(500, "Internal Server Error");
+            }
         }
 
         [HttpGet("all")]
@@ -54,10 +69,15 @@ namespace ItemService.Controllers
             try
             {
                 var allItems = await _itemRepository.GetAllItems();
+
                 foreach (var item in allItems)
                 {
-                    item.Customer = _customerRepository.GetCustomerById(item.Customer.Id).Result;
+                    if (item.Customer != null)
+                    {
+                        item.Customer = _customerRepository.GetCustomerById(item.Customer.Id).Result;
+                    }
                 }
+
                 return Ok(allItems);
             }
             catch (Exception ex)
@@ -66,6 +86,7 @@ namespace ItemService.Controllers
                 return StatusCode(500, "Internal Server Error");
             }
         }
+
 
         [HttpPut]
         public async Task<IActionResult> UpdateItem(Item updatedItem)
@@ -101,29 +122,31 @@ namespace ItemService.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostItem(Item Item)
+        public async Task<IActionResult> PostItem(Item item)
         {
             _logger.LogInformation($"### ItemController.PostItem - Posting item...");
             try
             {
-                if (Item == null)
+                if (item == null)
                 {
                     return BadRequest("Invalid item data");
                 }
-                _logger.LogInformation(
-                    $"### ItemController.PostItem - Item.Customer: {Item.Customer.Id}"
-                );
-                _logger.LogInformation($"### ItemController.PostItem - Item:  {Item.Title}");
-                Item.Customer = _customerRepository.GetCustomerById(Item.Customer.Id).Result;
-                _logger.LogInformation(
-                    $"### ItemController.PostItem - Customer: {Item.Customer.Name}"
-                );
-                var success = await _itemRepository.PostItem(Item);
+
+                // Check if the Customer property is not null before accessing its Id
+                if (item.Customer != null)
+                {
+                    _logger.LogInformation($"### ItemController.PostItem - Item.Customer: {item.Customer.Id}");
+                    _logger.LogInformation($"### ItemController.PostItem - Item:  {item.Title}");
+                    item.Customer = _customerRepository.GetCustomerById(item.Customer.Id).Result;
+                    _logger.LogInformation($"### ItemController.PostItem - Customer: {item.Customer.Name}");
+                }
+
+                var success = await _itemRepository.PostItem(item);
                 _logger.LogInformation($"### ItemController.PostItem - response: {success}");
 
                 if (success)
                 {
-                    return CreatedAtAction(nameof(GetItemById), new { id = Item.Id }, Item);
+                    return CreatedAtAction(nameof(GetItemById), new { id = item.Id }, item);
                 }
 
                 return StatusCode(500, "Failed to post item");
@@ -134,5 +157,6 @@ namespace ItemService.Controllers
                 return StatusCode(500, "Internal Server Error");
             }
         }
+
     }
 }

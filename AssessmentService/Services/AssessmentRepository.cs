@@ -68,13 +68,13 @@ namespace AssessmentService.Services
         }
 
         // Get method to get all items marked as registred via ItemService
+        // Get method to get all items marked as registered via ItemService
         public async Task<IEnumerable<Item>> GetAllRegistredItems()
         {
-
             try
             {
                 // Make a GET request to the ItemService API endpoint to get all items
-                HttpResponseMessage response = await _httpClient.GetAsync("/api/items");
+                HttpResponseMessage response = await _httpClient.GetAsync("/api/item/all");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -98,8 +98,9 @@ namespace AssessmentService.Services
                 _logger.LogError(ex, $"### Error in GetAllRegistredItems: {ex.Message}");
                 throw new Exception($"Error in GetAllRegistredItems: {ex.Message}", ex);
             }
-
         }
+
+
 
         // Put method to update item on certain attributes via ItemService
         public async Task UpdateItem(Item item)
@@ -107,18 +108,18 @@ namespace AssessmentService.Services
             try
             {
                 // Make a GET request to the ItemService API endpoint to get the item by ID
-               /* HttpResponseMessage getItemResponse = await _httpClient.GetAsync($"/api/item/{item.Id}");
+                /* HttpResponseMessage getItemResponse = await _httpClient.GetAsync($"/api/item/{item.Id}");
 
-                if (!getItemResponse.IsSuccessStatusCode)
-                {
-                    _logger.LogError($"### Failed to get item with ID {item.Id}. Status code: {getItemResponse.StatusCode}");
-                    throw new Exception($"Failed to get item with ID {item.Id}. Status code: {getItemResponse.StatusCode}");
-                }
+                 if (!getItemResponse.IsSuccessStatusCode)
+                 {
+                     _logger.LogError($"### Failed to get item with ID {item.Id}. Status code: {getItemResponse.StatusCode}");
+                     throw new Exception($"Failed to get item with ID {item.Id}. Status code: {getItemResponse.StatusCode}");
+                 }
 
-                // Deserialize the response content to an Item object
-                string getItemJsonString = await getItemResponse.Content.ReadAsStringAsync();
-                var existingItem = JsonSerializer.Deserialize<Item>(getItemJsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-*/
+                 // Deserialize the response content to an Item object
+                 string getItemJsonString = await getItemResponse.Content.ReadAsStringAsync();
+                 var existingItem = JsonSerializer.Deserialize<Item>(getItemJsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+ */
                 // Set Status to ReadyForAuction or NotSellable
                 if (item.Status != 0)
                 {
