@@ -22,16 +22,21 @@ public class MongoDBContext
     /// </summary>
     /// <param name="logger">Global logging facility.</param>
     /// <param name="config">System configuration instance.</param>
-    public MongoDBContext(ILogger<MongoDBContext> logger, IConfiguration config)
+    public MongoDBContext(ILogger<MongoDBContext> logger)//, IConfiguration config)
     {
         _logger = logger;
-        _config = config;
+        //_config = config;
         
         BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
+        /*
         var client = new MongoClient(_config["MongoDBSettings:MongoConnectionString"]);
         GODatabase = client.GetDatabase(_config["MongoDBSettings:DatabaseName"]);
         customers = GODatabase.GetCollection<Customer>(_config["MongoDBSettings:CustomerCollection"]);
+        */
+        var client = new MongoClient(Environment.GetEnvironmentVariable("MongoDBConnection"));
+        GODatabase = client.GetDatabase(Environment.GetEnvironmentVariable("DatabaseName"));
+        customers = GODatabase.GetCollection<Customer>(Environment.GetEnvironmentVariable("CustomerCollection"));
     }
 
     public IMongoCollection<Customer> Customers => GODatabase.GetCollection<Customer>("Customers");

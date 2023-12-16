@@ -89,9 +89,9 @@ resource GOAuctionsBackendGroup 'Microsoft.ContainerInstance/containerGroups@202
     restartPolicy: 'Always'
     ipAddress: {
       ports: [
-        // {
-        //   port: 27017
-        // }
+        {
+          port: 27017
+        }
         {
           port: 15672
         }

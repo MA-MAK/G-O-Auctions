@@ -32,7 +32,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
   location: location
   properties: {
     containers: [
-      {
+      /*{
         name: 'auctionservice'
         properties: {
           image: AuctionServiceImage
@@ -64,7 +64,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           }
         }
       }
-      {
+      /*{
         name: 'bidservice'
         properties: {
           image: BidServiceImage
@@ -127,7 +127,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             }
           }
         }
-      }
+      }*/
       {
         name: 'customerservice'
         properties: {
@@ -139,7 +139,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             }
             {
               name: 'databaseName'
-              value: 'GODB'
+              value: 'GODatabase'
             }
             {
               name: 'collectionName'
@@ -160,7 +160,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           }
         }
       }
-      {
+      /*{
         name: 'saleservice'
         properties: {
           image: SaleServiceImage
@@ -192,7 +192,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           }
         }
       }
-      {
+      /*{
         name: 'assessmentservice'
         properties: {
           image: AssessmentServiceImage
@@ -223,7 +223,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             }
           }
         }
-      }
+      }*/
     ]
     osType: 'Linux'
     volumes: [
@@ -239,25 +239,26 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
     restartPolicy: 'Always'
     ipAddress: {
       type: 'Public'
+      ip: '10.0.3.4'
       ports: [
-        {
+        /*{
           port: 5001
         }
-        {
+        /*{
           port: 5002
         }
         {
           port: 5003
-        }
+        }*/
         {
           port: 5004
         }
-        {
+        /*{
           port: 5005
         }
-        {
+        /*{
           port: 5006
-        }
+        }*/
       ]
     }
   }
