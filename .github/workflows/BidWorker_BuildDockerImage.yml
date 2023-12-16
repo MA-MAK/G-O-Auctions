@@ -1,0 +1,32 @@
+name: Docker Image CI
+
+on:
+  pull_request:
+    branches: 
+      - "main"
+    paths:
+      - BidWorker/**
+  push:
+    branches: 
+      - "develop"
+    paths:
+      - .github/workflows/BidWorker_BuildDockerImage.yml
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Login to Docker Hub
+      run: |
+        docker login --username ${{secrets.DOCKER_USER}} --password ${{secrets.DOCKER_PASSWORD}}
+    - name: Build the Docker image for BidWorker
+      run: |
+        docker build . --file BidWorker/Dockerfile --tag asnielsen789/BidWorker:latest
+    - name: Push the Docker image for BidWorker
+      run: |
+        docker push asnielsen789/BidWorker:latest
