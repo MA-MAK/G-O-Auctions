@@ -13,7 +13,7 @@ param vnetname string = 'goauctionsVNet'
 param subnetName string = 'goServicesSubnet'
 param dnsRecordName string = 'SERVICES'
 param dnszonename string = 'goauctions.dk'
-param storageAccountName string = 'nostorage'
+param storageAccountName string = 'storage23bame2qqs4ac'
 
 resource VNET 'Microsoft.Network/virtualNetworks@2020-11-01' existing = {
   name: vnetname
@@ -64,7 +64,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           }
         }
       }
-      {
+      /*{
         name: 'customerservice'
         properties: {
           image: CustomerServiceImage
@@ -94,15 +94,15 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             }
           }
         }
-      }
+      }*/
     ]
     initContainers: []
     restartPolicy: 'Always'
     ipAddress: {
       ports: [
-        {
+        /*{
           port: 5004
-        }
+        }*/
         {
           port: 5164
         }

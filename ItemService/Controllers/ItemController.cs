@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ItemService.Models;
 using ItemService.Services;
-using System.Diagnostics;
+//using System.Diagnostics;
 
 namespace ItemService.Controllers
 {
@@ -31,6 +31,12 @@ namespace ItemService.Controllers
             _logger = logger;
             _configuration = configuration;
             _customerRepository = customerRepository;
+        }
+
+        [HttpGet]
+        public Task<ActionResult> GetTest()
+        {
+            return Task.FromResult<ActionResult>(Ok("ItemService is running..."));
         }
 
         [HttpGet("{id}")]
@@ -158,7 +164,7 @@ namespace ItemService.Controllers
                 return StatusCode(500, "Internal Server Error");
             }
         }
-        [HttpGet("version")]
+        /*[HttpGet("version")]
         public async Task<Dictionary<string, string>> GetVersion()
         {
             _logger.LogInformation("posting..");
@@ -174,6 +180,6 @@ namespace ItemService.Controllers
             var ipa = ips.First().MapToIPv4().ToString() ?? "N/A";
             properties.Add("ip-address", ipa);
             return properties;
-        }
+        }*/
     }
 }
