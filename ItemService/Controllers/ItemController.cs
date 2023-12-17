@@ -37,7 +37,7 @@ namespace ItemService.Controllers
         {
             return Task.FromResult<ActionResult>(Ok("ItemService is running..."));
         }
-
+/*
         [HttpGet("{id}")]
         public async Task<IActionResult> GetItemById(string id)
         {
@@ -110,7 +110,7 @@ namespace ItemService.Controllers
                 {
                     return NotFound();
                 }
-*/
+*//*
                 var success = await _itemRepository.UpdateItem(updatedItem);
                 _logger.LogInformation($"### ItemController: updateItem - response: {success}");
                 if (success)
@@ -126,7 +126,7 @@ namespace ItemService.Controllers
                 return StatusCode(500, "Internal Server Error");
             }
         }
-
+/*
         [HttpPost]
         public async Task<IActionResult> PostItem(Item item)
         {
@@ -162,7 +162,7 @@ namespace ItemService.Controllers
                 _logger.LogError($"Error occurred while posting item: {ex.Message}");
                 return StatusCode(500, "Internal Server Error");
             }
-        }
+        }*/
         /*[HttpGet("version")]
         public async Task<Dictionary<string, string>> GetVersion()
         {
