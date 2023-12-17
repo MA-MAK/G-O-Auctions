@@ -9,6 +9,7 @@ using RabbitMQ.Client;
 using BidService;
 using MongoDB.Driver;
 using MongoDB.Bson;
+using System.Diagnostics;
 
 namespace BidService.Controllers
 {
@@ -87,6 +88,24 @@ namespace BidService.Controllers
             }
             _logger.LogInformation($"OK: bid posted");
             return Ok(bid);
+        }
+
+        [HttpGet("version")]
+        public async Task<Dictionary<string, string>> GetVersion()
+        {
+            _logger.LogInformation("posting..");
+            var properties = new Dictionary<string, string>();
+            var assembly = typeof(Program).Assembly;
+            properties.Add("service", "GOAuctions");
+            var ver =
+                FileVersionInfo.GetVersionInfo(typeof(Program).Assembly.Location).ProductVersion
+                ?? "N/A";
+            properties.Add("version", ver);
+            var hostName = System.Net.Dns.GetHostName();
+            var ips = await System.Net.Dns.GetHostAddressesAsync(hostName);
+            var ipa = ips.First().MapToIPv4().ToString() ?? "N/A";
+            properties.Add("ip-address", ipa);
+            return properties;
         }
     }
 }

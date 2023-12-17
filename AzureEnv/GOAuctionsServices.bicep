@@ -3,9 +3,9 @@ param location string = resourceGroup().location
 
 param vnetname string = 'goauctionsVNet'
 param subnetName string = 'goServicesSubnet'
-param storageAccountName string = 'storage23bame2qqs4ac'
 param dnsRecordName string = 'SERVICES'
 param dnszonename string = 'goauctions.dk'
+param storageAccountName string = 'storage23bame2qqs4ac'
 
 @description('Container images to deploy. Should be of the form repoName/imagename:tag for images stored in public Docker Hub, or a fully qualified URI for other registries. Images from private registries require additional registry credentials.')
 param AuctionServiceImage string = 'asnielsen789/auctionservice:latest'
@@ -31,6 +31,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
   name: 'GOAuctionsServicesGroup'
   location: location
   properties: {
+    sku: 'Standard'
     containers: [
       /*{
         name: 'auctionservice'
@@ -63,7 +64,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             }
           }
         }
-      }
+      }*/
       /*{
         name: 'bidservice'
         properties: {
@@ -84,40 +85,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           ]
           ports: [
             {
-              port: 5002
-              protocol: 'TCP'
-            }
-          ]
-          resources: {
-            requests: {
-              memoryInGB: json('0.2')
-              cpu: json('0.2')
-            }
-          }
-        }
-      }
-      {
-        name: 'itemservice'
-        properties: {
-          image: ItemServiceImage
-          environmentVariables: [
-            {
-              name: 'connectionString'
-              value: 'mongodb://admin:1234@mongodb-dev:27017'
-            }
-            {
-              name: 'databaseName'
-              value: 'GODB'
-            }
-            {
-              name: 'collectionName'
-              value: 'items'
-            }
-          ]
-          ports: [
-            {
-              port: 5003
-              protocol: 'TCP'
+              port: 5223
             }
           ]
           resources: {
@@ -129,13 +97,44 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
         }
       }*/
       {
+        name: 'itemservice'
+        properties: {
+          image: ItemServiceImage
+          environmentVariables: [
+            {
+              name: 'connectionString'
+              value: 'mongodb://admin:qwer1234@mongodb:27017'
+            }
+            {
+              name: 'databaseName'
+              value: 'GODatabase'
+            }
+            {
+              name: 'collectionName'
+              value: 'items'
+            }
+          ]
+          ports: [
+            {
+              port: 5164
+            }
+          ]
+          resources: {
+            requests: {
+              memoryInGB: json('0.2')
+              cpu: json('0.2')
+            }
+          }
+        }
+      }
+      /*{
         name: 'customerservice'
         properties: {
           image: CustomerServiceImage
           environmentVariables: [
             {
               name: 'connectionString'
-              value: 'mongodb://admin:1234@mongodb-dev:27017'
+              value: 'mongodb://GOUser:qwer1234@mongodb:27017'
             }
             {
               name: 'databaseName'
@@ -148,7 +147,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           ]
           ports: [
             {
-              port: 5004
+              port: 80
               protocol: 'TCP'
             }
           ]
@@ -159,7 +158,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             }
           }
         }
-      }
+      }*/
       /*{
         name: 'saleservice'
         properties: {
@@ -192,7 +191,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           }
         }
       }
-      /*{
+      {
         name: 'assessmentservice'
         properties: {
           image: AssessmentServiceImage
@@ -236,23 +235,18 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
         }
       }
     ]
+    initContainers: []
     restartPolicy: 'Always'
     ipAddress: {
-      type: 'Public'
+      type: 'private'
       ip: '10.0.3.4'
       ports: [
+        {
+          port: 5164
+        }
         /*{
           port: 5001
-        }
-        /*{
-          port: 5002
-        }
-        {
-          port: 5003
         }*/
-        {
-          port: 5004
-        }
         /*{
           port: 5005
         }
@@ -260,6 +254,18 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           port: 5006
         }*/
       ]
+    }
+    subnetIds: [
+      {
+        id: VNET::subnet.id
+      }
+    ]
+    dnsConfig: {
+      nameServers: [
+        '10.0.0.10'
+        '10.0.0.11'
+      ]
+      searchDomains: dnszonename
     }
   }
 }

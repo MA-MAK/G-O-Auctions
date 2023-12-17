@@ -1,29 +1,29 @@
 services:
-  AuctionService:
-    image: asnielsen789/auctionservice:latest
-    environment:
-    - connectionString=mongodb://admin:1234@mongodb-dev:27017
-    - databaseName=GODB
-    - collectionName=auctions
-    expose:
-    - "80"
-    volumes:
-    - mongodb_data_container:/data/db
-    networks:
-    - GOnet
+#  AuctionService:
+#    image: asnielsen789/auctionservice:latest
+#    environment:
+#    - connectionString=mongodb://admin:1234@mongodb-dev:27017
+#    - databaseName=GODB
+#    - collectionName=auctions
+#    expose:
+#    - "80"
+##    volumes:
+##    - mongodb_data_container:/data/db
+#    networks:
+#    - GOnet
 
-  BidService:
-    image: asnielsen789/bidservice:latest
-    environment:
-    - connectionString=mongodb://admin:1234@mongodb-dev:27017
-    - databaseName=GODB
-    - collectionName=bids
-    expose:
-    - "80"
-    volumes:
-    - mongodb_data_container:/data/db
-    networks:
-    - GOnet
+#  BidService:
+#    image: asnielsen789/bidservice:latest
+#    environment:
+#    - connectionString=mongodb://admin:1234@mongodb-dev:27017
+#    - databaseName=GODB
+#    - collectionName=bids
+#    expose:
+#    - "80"
+##    volumes:
+##    - mongodb_data_container:/data/db
+#    networks:
+#    - GOnet
 
   ItemService:
     image: asnielsen789/itemservice:latest
@@ -33,23 +33,23 @@ services:
     - collectionName=items
     expose:
     - "80"
-    volumes:
-    - mongodb_data_container:/data/db
+#    volumes:
+#    - mongodb_data_container:/data/db
     networks:
     - GOnet
 
-  CustomerService:
-    image: asnielsen789/customerservice:latest
-    environment:
-    - connectionString=mongodb://admin:1234@mongodb-dev:27017
-    - databaseName=GODB
-    - collectionName=customer
-    expose:
-    - "80"
-    volumes:
-    - mongodb_data_container:/data/db
-    networks:
-    - GOnet
+#  CustomerService:
+#    image: asnielsen789/customerservice:latest
+#    environment:
+#    - connectionString=mongodb://admin:1234@mongodb-dev:27017
+#    - databaseName=GODB
+#    - collectionName=customer
+#    expose:
+#    - "80"
+##    volumes:
+##    - mongodb_data_container:/data/db
+#    networks:
+#    - GOnet
 
 #  SaleService:
 #    image: asnielsen789/saleservice:latest
@@ -64,12 +64,12 @@ services:
 #    networks:
 #    - GOnet
 
-  AssessmentService:
-    image: asnielsen789/assessmentservice:latest
-    expose:
-    - "80"
-    networks:
-    - GOnet
+#  AssessmentService:
+#    image: asnielsen789/assessmentservice:latest
+#    expose:
+#    - "80"
+#    networks:
+#    - GOnet
 
 networks:
   GOnet:
