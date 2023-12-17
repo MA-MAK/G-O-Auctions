@@ -38,8 +38,8 @@ resource GOAuctionsDevOpsGroup 'Microsoft.ContainerInstance/containerGroups@2023
           environmentVariables: []
           resources: {
             requests: {
-              memoryInGB: json('1.0')
-              cpu: json('0.5')
+              memoryInGB: json('0.2')
+              cpu: json('0.2')
             }
           }
         }
@@ -56,8 +56,8 @@ resource GOAuctionsDevOpsGroup 'Microsoft.ContainerInstance/containerGroups@2023
           environmentVariables: []
           resources: {
             requests: {
-              memoryInGB: json('1.0')
-              cpu: json('0.5')
+              memoryInGB: json('0.2')
+              cpu: json('0.2')
             }
           }
           volumeMounts: [

@@ -7,6 +7,6 @@ ResourceGroup=GOAuctionsProdRG
 
 az group create --name $ResourceGroup --location eastus --verbose
 
-az deployment group create --resource-group $ResourceGroup --template-file GOAuctions.bicep --verbose
+az deployment group create --resource-group $ResourceGroup --template-file GOAuctions.bicep --debug
 #az deployment group create --resource-group $ResourceGroup --template-file GOAuctionsServices.bicep --verbose
 #az resource list --resource-group $ResourceGroup
