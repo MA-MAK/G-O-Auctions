@@ -1,11 +1,49 @@
 @description('Location for all resources.')
 param location string = resourceGroup().location
 
+@description('The name of the key vault to be created.')
+param vaultName string = 'goauctionsVault'
+
+@description('The name of the key to be created.')
+param keyName string = 'goauctionsKey'
+
 param vnetname string = 'goauctionsVNet'
 param subnetName string = 'goDevopsSubnet'
 param storageAccountName string = 'storageAccount'
 param dnsRecordName string = 'backendhostname'
 param dnszonename string = 'goauctions.dk'
+
+@description('The SKU of the vault to be created.')
+@allowed([
+  'standard'
+  'premium'
+])
+param skuName string = 'standard'
+
+@description('The JsonWebKeyType of the key to be created.')
+@allowed([
+  'EC'
+  'EC-HSM'
+  'RSA'
+  'RSA-HSM'
+])
+param keyType string = 'RSA'
+
+@description('The permitted JSON web key operations of the key to be created.')
+param keyOps array = []
+
+@description('The size in bits of the key to be created.')
+param keySize int = 2048
+
+@description('The JsonWebKeyCurveName of the key to be created.')
+@allowed([
+  ''
+  'P-256'
+  'P-256K'
+  'P-384'
+  'P-521'
+])
+param curveName string = ''
 
 resource VNET 'Microsoft.Network/virtualNetworks@2020-11-01' existing = {
   name: vnetname
@@ -153,5 +191,41 @@ resource dnsRecord 'Microsoft.Network/privateDnsZones/A@2020-06-01' = {
     ]
   }
 }
+
+resource vault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
+  name: vaultName
+  location: location
+  properties: {
+    accessPolicies:[]
+    enableRbacAuthorization: true
+    enableSoftDelete: true
+    softDeleteRetentionInDays: 90
+    enabledForDeployment: false
+    enabledForDiskEncryption: false
+    enabledForTemplateDeployment: false
+    tenantId: subscription().tenantId
+    sku: {
+      name: skuName
+      family: 'A'
+    }
+    networkAcls: {
+      defaultAction: 'Allow'
+      bypass: 'AzureServices'
+    }
+  }
+}
+
+resource key 'Microsoft.KeyVault/vaults/keys@2021-11-01-preview' = {
+  parent: vault
+  name: keyName
+  properties: {
+    kty: keyType
+    keyOps: keyOps
+    keySize: keySize
+    curveName: curveName
+  }
+}
+
+output proxyKey object = key.properties
 
 output containerIPAddressFqdn string = GOAuctionsBackendGroup.properties.ipAddress.ip

@@ -1,9 +1,9 @@
 @description('Location for all resources.')
 param location string = resourceGroup().location
 
-param vnetname string = 'theVNet'
+param vnetname string = 'goauctionsVNet'
 param subnetName string = 'goDevopsSubnet'
-param dnsRecordName string ='devopshostname'
+param dnsRecordName string ='DEVOPS'
 param dnszonename string='goauctions.dk'
 param storageAccountName string='nostorage'
 
@@ -21,13 +21,10 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-09-01' existing 
 
 @description('GOAuctions DevOps Container Group')
 resource GOAuctionsDevOpsGroup 'Microsoft.ContainerInstance/containerGroups@2023-05-01' = {
-
   name: 'GOAuctionsDevOpsGroup'
   location: location
-
   properties: {
     sku: 'Standard'
-
     containers: [
       {
         name: 'loki'
