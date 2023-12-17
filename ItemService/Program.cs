@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLogging();
-builder.Services.AddSingleton<IItemRepository, ItemRepository>();
+/*builder.Services.AddSingleton<IItemRepository, ItemRepository>();
 
     builder.Services.AddHttpClient("CustomerService", client =>
     {
@@ -30,7 +30,7 @@ var connectionString = builder.Configuration.GetConnectionString("MongoDBConnect
 var databaseName = builder.Configuration.GetSection("MongoDBSettings:DatabaseName").Value;
 var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<MongoDBContext>>();
 builder.Services.AddSingleton<MongoDBContext>(provider => new MongoDBContext(logger, builder.Configuration));
-
+*/
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

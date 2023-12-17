@@ -6,6 +6,8 @@ on:
       - "main"
     paths:
       - AssessmentService/**
+    types:
+      - closed
   push:
     branches: 
       - "develop"
