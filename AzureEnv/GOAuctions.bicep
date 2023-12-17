@@ -132,7 +132,7 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
       {
         name: 'ServicesFrontPort'
         properties: {
-          port: 5164
+          port: 80
         }
       }
     ]
@@ -258,7 +258,7 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
         name: 'ServicesRule'
         properties: {
           ruleType: 'Basic'
-          priority: 12000
+          priority: 13000
           httpListener: {
             id: resourceId('Microsoft.Network/applicationGateways/httpListeners', applicationGateWayName, 'ServicesHttpListener')
           }

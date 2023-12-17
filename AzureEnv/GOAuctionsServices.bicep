@@ -27,7 +27,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-09-01' existing 
   name: storageAccountName
 }
 
-resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@2023-05-01' = {
+resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@2021-09-01' = {
   name: 'GOAuctionsServicesGroup'
   location: location
   properties: {
@@ -39,11 +39,11 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           image: ItemServiceImage
           ports: [
             {
-              port: 5164
+              port: 80
             }
           ]
           environmentVariables: [
-            {
+            /*{
               name: 'connectionString'
               value: 'mongodb://GOUser:qwer1234@mongodb:27017'
             }
@@ -54,7 +54,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             {
               name: 'collectionName'
               value: 'items'
-            }
+            }*/
           ]
           resources: {
             requests: {
@@ -100,11 +100,8 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
     restartPolicy: 'Always'
     ipAddress: {
       ports: [
-        /*{
-          port: 5004
-        }*/
         {
-          port: 5164
+          port: 80
         }
       ]
       type: 'private'
