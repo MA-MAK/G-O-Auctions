@@ -7,7 +7,7 @@ on:
     paths:
       - ItemService/**
     types:
-      - [closed]
+      - closed
   push:
     branches: 
       - "develop"

@@ -7,7 +7,7 @@ on:
     paths:
       - SaleService/**
     types:
-      - [closed]
+      - closed
   push:
     branches: 
       - "develop"

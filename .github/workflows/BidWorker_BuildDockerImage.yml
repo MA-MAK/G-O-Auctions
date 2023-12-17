@@ -7,7 +7,7 @@ on:
     paths:
       - BidWorker/**
     types:
-      - [closed]
+      - closed
   push:
     branches: 
       - "develop"
