@@ -13,7 +13,7 @@ namespace CustomerService.Models;
 public class MongoDBContext 
 {
     private ILogger<MongoDBContext> _logger;
-    private IConfiguration _config;
+    //private IConfiguration _config;
     public IMongoDatabase GODatabase { get; set; }
     public IMongoCollection<Customer> customers { get; set; }
 
