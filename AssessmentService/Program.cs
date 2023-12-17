@@ -15,7 +15,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddHttpClient("AssessmentService", client =>
+/*builder.Services.AddHttpClient("AssessmentService", client =>
     {
         client.BaseAddress = new Uri("http://localhost:5164");
         // Add any additional configuration for HttpClient as needed
@@ -24,8 +24,8 @@ builder.Services.AddSingleton<IAssessmentRepository, AssessmentRepository>(
        b => new AssessmentRepository(b.GetService<IHttpClientFactory>()
        .CreateClient("AssessmentService"),
        builder.Services.BuildServiceProvider().GetRequiredService<ILogger<AssessmentRepository>>()));
+*/
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

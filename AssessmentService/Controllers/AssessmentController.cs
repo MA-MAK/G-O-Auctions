@@ -11,19 +11,26 @@ namespace AssessmentService.Controllers
     [Route("api/[controller]")]
     public class AssessmentController : ControllerBase
     {
-        
-        private readonly IAssessmentRepository _assessmentRepository;
+
+        //private readonly IAssessmentRepository _assessmentRepository;
         private readonly ILogger<AssessmentController> _logger;
-       
+
         private readonly IConfiguration _configuration;
 
-        public AssessmentController(IAssessmentRepository assessmentRepository, ILogger<AssessmentController> logger, IConfiguration configuration)
+        public AssessmentController(ILogger<AssessmentController> logger, IConfiguration configuration)//, IAssessmentRepository assessmentRepository)
         {
-            _assessmentRepository = assessmentRepository;
+            //_assessmentRepository = assessmentRepository;
             _logger = logger;
             _configuration = configuration;
         }
 
+        [HttpGet]
+        public Task<ActionResult> GetTest()
+        {
+            return Task.FromResult<ActionResult>(Ok("ItemService is running..."));
+        }
+
+/*
         [HttpGet("{itemId}")]
         public async Task<IActionResult> GetItemById(string itemId)
         {
@@ -94,6 +101,6 @@ namespace AssessmentService.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
-
+*/
     }
 }

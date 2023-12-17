@@ -2,13 +2,23 @@
 param location string = resourceGroup().location
 
 @description('Container images to deploy. Should be of the form repoName/imagename:tag for images stored in public Docker Hub, or a fully qualified URI for other registries. Images from private registries require additional registry credentials.')
+param AssessmentServiceImage string = 'asnielsen789/assessmentservice:latest'
 param AuctionServiceImage string = 'asnielsen789/auctionservice:latest'
-param ItemServiceImage string = 'asnielsen789/itemservice:latest'
 param BidServiceImage string = 'asnielsen789/bidservice:latest'
 param CustomerServiceImage string = 'asnielsen789/customerservice:latest'
-param AssessmentServiceImage string = 'asnielsen789/assessmentservice:latest'
+param ItemServiceImage string = 'asnielsen789/itemservice:latest'
+param LegalServiceImage string = 'asnielsen789/legalservice:latest'
 param SaleServiceImage string = 'asnielsen789/saleservice:latest'
-
+param BidWorkerImage string = 'asnielsen789/bidworker:latest'
+/*
+param LokiEndpoint string='http://backend:3100'
+param ConnectionString string='mongodb://admin:1234@backend:27017/?authSource=admin'
+param DatabaseName string='Auction'
+param jwtSecret string='fwnhy8423HBgbirfffwefefwefwefwedqwsad6q3wfrhgedr32etsg7u'
+param jwtIssuer string='MLSAuction'
+param Salt string='$2a$11$NnQ3D9KHpPr1UOjTo/2fXO'
+param MqHost string='backend'
+*/
 param vnetname string = 'goauctionsVNet'
 param subnetName string = 'goServicesSubnet'
 param dnsRecordName string = 'SERVICES'
@@ -27,35 +37,22 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-09-01' existing 
   name: storageAccountName
 }
 
-resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@2021-09-01' = {
+resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@2023-05-01' = {
   name: 'GOAuctionsServicesGroup'
   location: location
   properties: {
     sku: 'Standard'
     containers: [
       {
-        name: 'itemservice'
+        name: 'assessmentservice'
         properties: {
-          image: ItemServiceImage
+          image: AssessmentServiceImage
           ports: [
             {
-              port: 5164
+              port: 5000
             }
           ]
-          environmentVariables: [
-            /*{
-              name: 'connectionString'
-              value: 'mongodb://GOUser:qwer1234@mongodb:27017'
-            }
-            {
-              name: 'databaseName'
-              value: 'GODatabase'
-            }
-            {
-              name: 'collectionName'
-              value: 'items'
-            }*/
-          ]
+          environmentVariables: []
           resources: {
             requests: {
               memoryInGB: json('0.2')
@@ -65,9 +62,102 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
         }
       }
       /*{
+        name: 'auctionservice'
+        properties: {
+          image: AuctionServiceImage
+          ports: [
+            {
+              port: 5001
+            }
+          ]
+          environmentVariables: [
+            {
+              name: 'connectionString'
+              value: 'mongodb://GOUser:qwer1234@mongodb:27017'
+            }
+            {
+              name: 'databaseName'
+              value: 'GODatabase'
+            }
+            {
+              name: 'collectionName'
+              value: 'Auctions'
+            }
+          ]
+          resources: {
+            requests: {
+              memoryInGB: json('0.2')
+              cpu: json('0.2')
+            }
+          }
+        }
+      }
+      {
+        name: 'bidservice'
+        properties: {
+          image: BidServiceImage
+          ports: [
+            {
+              port: 5002
+            }
+          ]
+          environmentVariables: [
+            {
+              name: 'connectionString'
+              value: 'mongodb://GOUser:qwer1234@mongodb:27017'
+            }
+            {
+              name: 'databaseName'
+              value: 'GODatabase'
+            }
+            {
+              name: 'collectionName'
+              value: 'bids'
+            }
+          ]
+          resources: {
+            requests: {
+              memoryInGB: json('0.2')
+              cpu: json('0.2')
+            }
+          }
+        }
+      }
+      {
         name: 'customerservice'
         properties: {
           image: CustomerServiceImage
+          ports: [
+            {
+              port: 5003
+            }
+          ]
+          environmentVariables: [
+            {
+              name: 'connectionString'
+              value: 'mongodb://GOUser:qwer1234@mongodb:27017'
+            }
+            {
+              name: 'databaseName'
+              value: 'GODatabase'
+            }
+            {
+              name: 'collectionName'
+              value: 'Customers'
+            }
+          ]
+          resources: {
+            requests: {
+              memoryInGB: json('0.2')
+              cpu: json('0.2')
+            }
+          }
+        }
+      }
+      {
+        name: 'itemservice'
+        properties: {
+          image: ItemServiceImage
           ports: [
             {
               port: 5004
@@ -84,7 +174,87 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             }
             {
               name: 'collectionName'
-              value: 'customers'
+              value: 'items'
+            }
+          ]
+          resources: {
+            requests: {
+              memoryInGB: json('0.2')
+              cpu: json('0.2')
+            }
+          }
+        }
+      }
+      {
+        name: 'legalservice'
+        properties: {
+          image: LegalServiceImage
+          ports: [
+            {
+              port: 5005
+            }
+          ]
+          environmentVariables: []
+          resources: {
+            requests: {
+              memoryInGB: json('0.2')
+              cpu: json('0.2')
+            }
+          }
+        }
+      }
+      {
+        name: 'saleservice'
+        properties: {
+          image: SaleServiceImage
+          ports: [
+            {
+              port: 5006
+            }
+          ]
+          environmentVariables: [
+            {
+              name: 'connectionString'
+              value: 'mongodb://GOUser:qwer1234@mongodb:27017'
+            }
+            {
+              name: 'databaseName'
+              value: 'GODatabase'
+            }
+            {
+              name: 'collectionName'
+              value: 'sales'
+            }
+          ]
+          resources: {
+            requests: {
+              memoryInGB: json('0.2')
+              cpu: json('0.2')
+            }
+          }
+        }
+      }
+      {
+        name: 'bidworker'
+        properties: {
+          image: BidWorkerImage
+          ports: [
+            {
+              port: 5050
+            }
+          ]
+          environmentVariables: [
+            {
+              name: 'connectionString'
+              value: 'mongodb://GOUser:qwer1234@mongodb:27017'
+            }
+            {
+              name: 'databaseName'
+              value: 'GODatabase'
+            }
+            {
+              name: 'collectionName'
+              value: 'bids'
             }
           ]
           resources: {
@@ -95,13 +265,37 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           }
         }
       }*/
+      {
+        name: 'nginx'
+        properties: {
+          image: 'nginx:latest'
+          ports: [
+            {
+              port: 80
+            }
+          ]
+          environmentVariables: []
+          resources: {
+            requests: {
+              memoryInGB: json('0.5')
+              cpu: json('0.5')
+            }
+          }
+          volumeMounts: [
+            {
+              name: 'nginx-config'
+              mountPath: '/etc/nginx/'
+            }
+          ]
+        }
+      }
     ]
     initContainers: []
     restartPolicy: 'Always'
     ipAddress: {
       ports: [
         {
-          port: 5164
+          port: 80
         }
       ]
       type: 'private'
@@ -110,7 +304,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
     osType: 'Linux'
     volumes: [
       {
-        name: 'services-storage'
+        name: 'nginx-config'
         azureFile: {
           shareName: 'storageservices'
           storageAccountName: storageAccount.name

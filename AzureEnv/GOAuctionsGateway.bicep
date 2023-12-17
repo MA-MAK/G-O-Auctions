@@ -1,10 +1,11 @@
+@description('Specifies the location for resources.')
+param location string = 'eastus'
 
-@description('Generated from /subscriptions/69871a8a-fe89-416a-aa8e-e2bd525fd3ce/resourceGroups/GOAuctionsProdRG/providers/Microsoft.Network/publicIPAddresses/goauctions-public_ip')
 resource goauctionspublicip 'Microsoft.Network/publicIPAddresses@2022-11-01' = {
   name: 'goauctions-public_ip'
-  location: 'eastus'
+  location: location
   properties: {
-    ipAddress: '20.119.63.165'
+    ipAddress: '20.119.63.169'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4

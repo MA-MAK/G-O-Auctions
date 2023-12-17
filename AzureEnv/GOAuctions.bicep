@@ -64,8 +64,8 @@ module devops 'GOAuctionsDevops.bicep' = {
 module backend 'GOAuctionsBackend.bicep' = {
   name: 'backendModule'
   params: {
-    keyName: 'goauctionsKey'
-    vaultName: 'goauctionsVault'
+    //keyName: 'goauctionsKey'
+    //vaultName: 'goauctionsVault'
     location: location
     vnetname: virtualNetworkName
     subnetName: 'goBackendSubnet'
@@ -132,27 +132,27 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
       {
         name: 'ServicesFrontPort'
         properties: {
-          port: 5164
+          port: 80
         }
       }
     ]
     backendAddressPools: [
-      {
-        name: 'goAuctionsBackendPool'
-        properties: {
-          backendAddresses: [
-            {
-              ipAddress: backend.outputs.containerIPAddressFqdn
-            }
-          ]
-        }
-      }
       {
         name: 'goAuctionsDevopsPool'
         properties: {
           backendAddresses: [
             {
               ipAddress: devops.outputs.containerIPAddressFqdn
+            }
+          ]
+        }
+      }
+      {
+        name: 'goAuctionsBackendPool'
+        properties: {
+          backendAddresses: [
+            {
+              ipAddress: backend.outputs.containerIPAddressFqdn
             }
           ]
         }
@@ -169,20 +169,6 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
       }
     ]
     backendHttpSettingsCollection: [
-      {
-        name: 'ServicesHttpSettings'
-        properties: {
-          port: 5164
-          protocol: 'Http'
-          cookieBasedAffinity: 'Disabled'
-          connectionDraining: {
-            enabled: false
-            drainTimeoutInSec: 1
-          }
-          pickHostNameFromBackendAddress: false
-          requestTimeout: 30
-        }
-      }
       {
         name: 'GrafanaHttpSettings'
         properties: {
@@ -211,21 +197,22 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
           requestTimeout: 30
         }
       }
-    ]
-    httpListeners: [
       {
-        name: 'ServicesHttpListener'
+        name: 'ServicesHttpSettings'
         properties: {
-          frontendIPConfiguration: {
-            id: resourceId('Microsoft.Network/applicationGateways/frontendIPConfigurations', applicationGateWayName, 'appGwPublicFrontendIp')
-          }
-          frontendPort: {
-            id: resourceId('Microsoft.Network/applicationGateways/frontendPorts', applicationGateWayName, 'ServicesFrontPort')
-          }
+          port: 80
           protocol: 'Http'
-          requireServerNameIndication: false
+          cookieBasedAffinity: 'Disabled'
+          connectionDraining: {
+            enabled: false
+            drainTimeoutInSec: 1
+          }
+          pickHostNameFromBackendAddress: false
+          requestTimeout: 30
         }
       }
+    ]
+    httpListeners: [
       {
         name: 'GrafanaHttpListener'
         properties: {
@@ -252,29 +239,26 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
           requireServerNameIndication: false
         }
       }
-    ]
-    requestRoutingRules: [
       {
-        name: 'ServicesRule'
+        name: 'ServicesHttpListener'
         properties: {
-          ruleType: 'Basic'
-          priority: 13000
-          httpListener: {
-            id: resourceId('Microsoft.Network/applicationGateways/httpListeners', applicationGateWayName, 'ServicesHttpListener')
+          frontendIPConfiguration: {
+            id: resourceId('Microsoft.Network/applicationGateways/frontendIPConfigurations', applicationGateWayName, 'appGwPublicFrontendIp')
           }
-          backendAddressPool: {
-            id: resourceId('Microsoft.Network/applicationGateways/backendAddressPools', applicationGateWayName, 'goAuctionsServicesPool')
+          frontendPort: {
+            id: resourceId('Microsoft.Network/applicationGateways/frontendPorts', applicationGateWayName, 'ServicesFrontPort')
           }
-          backendHttpSettings: {
-            id: resourceId('Microsoft.Network/applicationGateways/backendHttpSettingsCollection', applicationGateWayName, 'ServicesHttpSettings')
-          }
+          protocol: 'Http'
+          requireServerNameIndication: false
         }
       }
+    ]
+    requestRoutingRules: [
       {
         name: 'GrafanaRule'
         properties: {
           ruleType: 'Basic'
-          priority: 12000
+          priority: 11000
           httpListener: {
             id: resourceId('Microsoft.Network/applicationGateways/httpListeners', applicationGateWayName, 'GrafanaHttpListener')
           }
@@ -290,7 +274,7 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
         name: 'RabbitMqRule'
         properties: {
           ruleType: 'Basic'
-          priority: 11000
+          priority: 12000
           httpListener: {
             id: resourceId('Microsoft.Network/applicationGateways/httpListeners', applicationGateWayName, 'RabbitMQHttpListener')
           }
@@ -299,6 +283,22 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
           }
           backendHttpSettings: {
             id: resourceId('Microsoft.Network/applicationGateways/backendHttpSettingsCollection', applicationGateWayName, 'rabbitMQHttpSettings')
+          }
+        }
+      }
+      {
+        name: 'ServicesRule'
+        properties: {
+          ruleType: 'Basic'
+          priority: 13000
+          httpListener: {
+            id: resourceId('Microsoft.Network/applicationGateways/httpListeners', applicationGateWayName, 'ServicesHttpListener')
+          }
+          backendAddressPool: {
+            id: resourceId('Microsoft.Network/applicationGateways/backendAddressPools', applicationGateWayName, 'goAuctionsServicesPool')
+          }
+          backendHttpSettings: {
+            id: resourceId('Microsoft.Network/applicationGateways/backendHttpSettingsCollection', applicationGateWayName, 'ServicesHttpSettings')
           }
         }
       }
