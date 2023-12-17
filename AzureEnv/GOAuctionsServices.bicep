@@ -39,7 +39,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           image: ItemServiceImage
           ports: [
             {
-              port: 80
+              port: 5164
             }
           ]
           environmentVariables: [
@@ -101,7 +101,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
     ipAddress: {
       ports: [
         {
-          port: 80
+          port: 5164
         }
       ]
       type: 'private'

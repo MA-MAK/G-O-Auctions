@@ -132,7 +132,7 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
       {
         name: 'ServicesFrontPort'
         properties: {
-          port: 80
+          port: 5164
         }
       }
     ]

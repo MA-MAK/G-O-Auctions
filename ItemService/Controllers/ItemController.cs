@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ItemService.Models;
 using ItemService.Services;
-//using System.Diagnostics;
 
 namespace ItemService.Controllers
 {
@@ -18,11 +17,11 @@ namespace ItemService.Controllers
         private readonly ILogger<ItemController> _logger;
         private readonly IConfiguration _configuration;
 
-        private readonly ICustomerRepository _customerRepository;
+        //private readonly ICustomerRepository _customerRepository;
 
         public ItemController(
             IItemRepository itemRepository,
-            ICustomerRepository customerRepository,
+            //ICustomerRepository customerRepository,
             ILogger<ItemController> logger,
             IConfiguration configuration
         )
@@ -30,7 +29,7 @@ namespace ItemService.Controllers
             _itemRepository = itemRepository;
             _logger = logger;
             _configuration = configuration;
-            _customerRepository = customerRepository;
+            //_customerRepository = customerRepository;
         }
 
         [HttpGet]
