@@ -132,15 +132,10 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
               port: 5003
             }
           ]
-          command: [
-            'tail'
-            '-f'
-            '/dev/null'
-          ]
           environmentVariables: [
             {
               name: 'connectionString'
-              value: 'mongodb://GOUser:qwer1234@mongodb:27017'
+              value: 'mongodb://GOUser:qwer1234@backend:27017'
             }
             {
               name: 'databaseName'
@@ -152,7 +147,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             }
             {
               name: 'ASPNETCORE_URLS'
-              value: 'http://localhost:5004'
+              value: 'http://localhost:5003'
             }
           ]
           resources: {
@@ -163,7 +158,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           }
         }
       }
-      /*{
+      {
         name: 'itemservice'
         properties: {
           image: ItemServiceImage
@@ -172,15 +167,10 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
               port: 5004
             }
           ]
-          command: [
-            'tail'
-            '-f'
-            '/dev/null'
-          ]
           environmentVariables: [
             {
               name: 'connectionString'
-              value: 'mongodb://GOUser:qwer1234@mongodb:27017'
+              value: 'mongodb://GOUser:qwer1234@backend:27017'
             }
             {
               name: 'databaseName'
@@ -206,7 +196,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             }
           }
         }
-      }*/
+      }
       /*{
         name: 'legalservice'
         properties: {

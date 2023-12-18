@@ -17,19 +17,19 @@ namespace ItemService.Controllers
         private readonly ILogger<ItemController> _logger;
         private readonly IConfiguration _configuration;
 
-        //private readonly ICustomerRepository _customerRepository;
+        private readonly ICustomerRepository _customerRepository;
 
         public ItemController(
-            //IItemRepository itemRepository,
-            //ICustomerRepository customerRepository,
+            IItemRepository itemRepository,
+            ICustomerRepository customerRepository,
             ILogger<ItemController> logger,
             IConfiguration configuration
         )
         {
-            //_itemRepository = itemRepository;
+            _itemRepository = itemRepository;
             _logger = logger;
             _configuration = configuration;
-            //_customerRepository = customerRepository;
+            _customerRepository = customerRepository;
         }
 
         [HttpGet]
@@ -104,13 +104,6 @@ namespace ItemService.Controllers
                     return BadRequest("Invalid item data");
                 }
 
-                /* var existingItem = await _itemRepository.GetItemById(id);
-
-                if (existingItem == null)
-                {
-                    return NotFound();
-                }
-                */
                 var success = await _itemRepository.UpdateItem(updatedItem);
                 _logger.LogInformation($"### ItemController: updateItem - response: {success}");
                 if (success)
