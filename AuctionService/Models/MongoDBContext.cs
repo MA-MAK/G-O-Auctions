@@ -9,39 +9,28 @@ using NLog;
 namespace AuctionService.Models
 {
 
-/// <summary>
-/// MongoDB database context class.
-/// </summary>
-public class MongoDBContext 
-{
-    private ILogger<MongoDBContext> _logger;
-    private IConfiguration _config;
-    public IMongoDatabase GODatabase { get; set; }
-    public IMongoCollection<Auction> auctions { get; set; }
-
     /// <summary>
-    /// Create an instance of the context class.
+    /// MongoDB database context class.
     /// </summary>
-    /// <param name="logger">Global logging facility.</param>
-    /// <param name="config">System configuration instance.</param>
-    public MongoDBContext(ILogger<MongoDBContext> logger, IConfiguration config)
+    public class MongoDBContext
     {
-        _logger = logger;
-        _config = config;
-        
-        BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+        private ILogger<MongoDBContext> _logger;
+        public IMongoDatabase _goDatabase { get; set; }
 
-        var client = new MongoClient(_config["MongoDBSettings:MongoConnectionString"]);
-        GODatabase = client.GetDatabase(_config["MongoDBSettings:DatabaseName"]);
-        auctions = GODatabase.GetCollection<Auction>(_config["MongoDBSettings:AuctionCollection"]);
+        /// <summary>
+        /// Create an instance of the context class.
+        /// </summary>
+        /// <param name="logger">Global logging facility.</param>
+        public MongoDBContext(ILogger<MongoDBContext> logger)
+        {
+            _logger = logger;
 
-        //_logger.Debug($"Connected to database {_config["MongoDBSettings:DatabaseName"]}");
-        //_logger.Debug($"Using collection {_config["MongoDBSettings:AuctionCollection"]}");
+            BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
+            var client = new MongoClient(Environment.GetEnvironmentVariable("connectionString"));
+            _goDatabase = client.GetDatabase(Environment.GetEnvironmentVariable("databaseName"));
+        }
+
+        public IMongoCollection<Auction> Auctions => _goDatabase.GetCollection<Auction>(Environment.GetEnvironmentVariable("collectionName"));
     }
-
-    public IMongoCollection<Auction> Auctions => GODatabase.GetCollection<Auction>("Auctions");
-
-}
-
 }

@@ -31,7 +31,7 @@ try
         "ItemService",
         client =>
         {
-            client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("ItemService") ?? "http://localhost:5164");
+            client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("ItemService") ?? "http://localhost:5004");
         }
     );
 
@@ -39,7 +39,7 @@ try
         "BidService",
         client =>
         {
-            client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("BidService") ?? "http://localhost:5223");
+            client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("BidService") ?? "http://localhost:5003");
         }
     );
 
@@ -64,13 +64,11 @@ try
     );
 
     // MongoDB configuration
-    var connectionString = builder.Configuration.GetConnectionString("MongoDBConnection");
-    var databaseName = builder.Configuration.GetSection("MongoDBSettings:DatabaseName").Value;
     var logger = builder.Services
         .BuildServiceProvider()
         .GetRequiredService<ILogger<MongoDBContext>>();
     builder.Services.AddSingleton<MongoDBContext>(
-        provider => new MongoDBContext(logger, builder.Configuration)
+        provider => new MongoDBContext(logger)
     );
     var app = builder.Build();
 

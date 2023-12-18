@@ -49,15 +49,13 @@ namespace AuctionService.Controllers
 
         // GET: api/auction
         [HttpGet]
-        [Authorize]
-        public IActionResult Get()
+        public Task<ActionResult> GetTest()
         {
-            return Ok(_auctions);
+            return Task.FromResult<ActionResult>(Ok("AuctionService is running..."));
         }
 
         // GET: api/auction/all
         [HttpGet("all")]
-        [Authorize]
         public IActionResult GetAllAuctions()
         {
             var auctions = _auctionRepository.GetAllAuctions().Result;
@@ -116,22 +114,6 @@ namespace AuctionService.Controllers
             return NoContent(); // Returnerer NoContent uanset hvad
         }
 
-        /*
-                [HttpPut("{id}")]
-                public IActionResult PutAuction(int id, [FromBody] Auction auction)
-                {
-                    var existingAuction = _auctions.Find(a => a.Id == id);
-                    if (existingAuction == null)
-                    {
-                        return NotFound();
-                    }
-                    existingAuction.Title = auction.Title;
-                    existingAuction.Description = auction.Description;
-                    return NoContent();
-                }
-                */
-
-
         // DELETE: api/auction/{id}
         [HttpDelete("{id}")]
         [Authorize]
@@ -146,8 +128,7 @@ namespace AuctionService.Controllers
             return NoContent();
         }
 
-
-          [HttpGet("GetAllItemsReadyForAuction")]
+        [HttpGet("GetAllItemsReadyForAuction")]
         public async Task<IActionResult> GetAllItemsReadyForAuction()
         {
             try
