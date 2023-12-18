@@ -56,7 +56,10 @@ namespace BidService.Controllers
             _logger.LogInformation("posting..");
             try
             {
-                var factory = new ConnectionFactory { HostName = _mqHost };
+                _logger.LogInformation($"### PostBid: {_mqHost}");
+                //var factory = new ConnectionFactory { HostName = _mqHost };
+                var factory = new ConnectionFactory();
+                factory.Uri = new Uri(_mqHost);
                 using var connection = factory.CreateConnection();
                 using var channel = connection.CreateModel();
 
