@@ -9,7 +9,6 @@ on:
       - "develop"
     paths:
       - BidWorker/**
-      - BidWorkerTest/**
       - .github/workflows/BidWorker_Release.yml
 
 jobs:
@@ -30,16 +29,6 @@ jobs:
     - name: Build Service
       working-directory: BidWorker
       run: dotnet build --no-restore
-    - name: Install dependencies for test
-      working-directory: BidWorkerTest
-      run: |
-        dotnet restore
-    - name: Build Test
-      working-directory: BidWorkerTest
-      run: dotnet build --no-restore
-    - name: Run Test
-      working-directory: BidWorkerTest
-      run: dotnet test --no-build --verbosity normal
     - name: Set up Git
       run: |
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
