@@ -18,7 +18,7 @@ builder.Services.AddSingleton<IBidRepository, BidRepository>();
 
 builder.Services.AddHttpClient("CustomerService", client =>
 {
-    client.BaseAddress = new Uri(Environtment.GetEnvironmentVariable("CustomerService")"http://localhost:5003");
+    client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("CustomerService") ?? "http://localhost:5003");
 });
 
 builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>(

@@ -5,7 +5,7 @@ using MongoDB.Driver;
 
 namespace BidWorker.Services
 {
-    public class BidRepository
+    public class BidRepository : IBidRepository
     {
         private readonly IMongoCollection<Bid> _bids;
         private readonly ILogger<BidRepository> _logger;
