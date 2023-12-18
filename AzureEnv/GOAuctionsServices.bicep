@@ -132,6 +132,11 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
               port: 5003
             }
           ]
+          command: [
+            'tail'
+            '-f'
+            '/dev/null'
+          ]
           environmentVariables: [
             {
               name: 'connectionString'
@@ -144,6 +149,10 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             {
               name: 'collectionName'
               value: 'Customers'
+            }
+            {
+              name: 'ASPNETCORE_URLS'
+              value: 'http://localhost:5004'
             }
           ]
           resources: {
@@ -163,7 +172,11 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
               port: 5004
             }
           ]
-          
+          command: [
+            'tail'
+            '-f'
+            '/dev/null'
+          ]
           environmentVariables: [
             {
               name: 'connectionString'
@@ -176,6 +189,10 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             {
               name: 'collectionName'
               value: 'items'
+            }
+            {
+              name: 'CustomerService'
+              value: 'http://localhost:5003'
             }
             {
               name: 'ASPNETCORE_URLS'
