@@ -15,17 +15,14 @@ namespace BidWorker;
 public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _logger;
-    private string _bidPath = string.Empty;
     private string _mqHost = string.Empty;
-    private readonly BidRepository _bidRepository;
-    public Worker(ILogger<Worker> logger, IConfiguration configuration, BidRepository bidRepository)
+    private readonly IBidRepository _bidRepository;
+    public Worker(ILogger<Worker> logger, IBidRepository bidRepository)
     {
         _logger = logger;
-        _bidPath = configuration["BidPath"] ?? string.Empty;
-        _mqHost = configuration["rabbitmqHost"] ?? "localhost";
+        _mqHost = Environment.GetEnvironmentVariable("rabbitmq");
         _logger.LogInformation($"Connecting to host: {_mqHost}");
-        _bidRepository = bidRepository ?? throw new ArgumentNullException(nameof(bidRepository));
-
+        _bidRepository = bidRepository;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -48,7 +45,6 @@ public class Worker : BackgroundService
          _logger.LogInformation($"listening to: {channel.ToString()}");
         bidConsumer.Received += (model, ea) =>
         {
-
             var body = ea.Body.ToArray();
              _logger.LogInformation($"received body: {body}");
             var message = Encoding.UTF8.GetString(body);

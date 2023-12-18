@@ -19,17 +19,15 @@ namespace BidService.Controllers
     {
         private readonly IBidRepository _BidRepository;
         private readonly ILogger<BidController> _logger;
-        private readonly IConfiguration _configuration;
         private readonly ICustomerRepository _customerRepository;
         private string _mqHost = string.Empty;
 
-        public BidController(IBidRepository BidRepository, ICustomerRepository customerRepository, ILogger<BidController> logger, IConfiguration configuration)
+        public BidController(IBidRepository BidRepository, ICustomerRepository customerRepository, ILogger<BidController> logger)
         {
             _BidRepository = BidRepository;
             _customerRepository = customerRepository;
             _logger = logger;
-            _configuration = configuration;
-            _mqHost = configuration["rabbitmqHost"] ?? "localhost";
+            _mqHost = Environment.GetEnvironmentVariable("rabbitmq") ?? "localhost";
         }
 
         [HttpGet]
@@ -59,8 +57,6 @@ namespace BidService.Controllers
             _logger.LogInformation("posting..");
             try
             {
-                //Bid Bid = JsonSerializer.Deserialize<Bid>(jsonString);
-
                 var factory = new ConnectionFactory { HostName = _mqHost };
                 using var connection = factory.CreateConnection();
                 using var channel = connection.CreateModel();

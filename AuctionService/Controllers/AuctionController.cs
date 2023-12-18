@@ -69,7 +69,6 @@ namespace AuctionService.Controllers
 
         // GET: api/auction/{id}
         [HttpGet("{id}")]
-        [Authorize]
         public IActionResult GetAuctionById(string id)
         {
             Auction auction = _auctionRepository.GetAuctionById(id).Result;
@@ -82,7 +81,6 @@ namespace AuctionService.Controllers
 
         // POST: api/auction
         [HttpPost]
-        [Authorize]
         public Task<IActionResult> PostAuction([FromBody] Auction auction)
         {
             _logger.LogInformation($"PostAuction: {auction.Title}");
@@ -97,7 +95,6 @@ namespace AuctionService.Controllers
 
         // PUT: api/auction/{id}
         [HttpPut("{id}")]
-        [Authorize]
         public async Task<ActionResult> PutAuction(string id, [FromBody] Auction auction)
         {
             var existingAuction = await _auctionRepository.GetAuctionById(id);
@@ -116,7 +113,6 @@ namespace AuctionService.Controllers
 
         // DELETE: api/auction/{id}
         [HttpDelete("{id}")]
-        [Authorize]
         public IActionResult Delete(string id)
         {
             var auction = _auctions.Find(a => a.Id == id);

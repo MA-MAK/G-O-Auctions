@@ -22,16 +22,5 @@ namespace BidWorker.Models
         [JsonIgnore]
         [BsonIgnore]
         public bool Premium { get; set; }
-
-        // Constructor
-        /*
-        public Customer(int id, string name, string email)
-        {
-            Id = id;
-            Name = name;
-            Email = email;
-        }
-        */
-
     }
 }

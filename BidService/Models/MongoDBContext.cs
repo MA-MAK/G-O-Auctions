@@ -13,7 +13,7 @@ namespace BidService.Models;
 public class MongoDBContext
 {
     private ILogger<MongoDBContext> _logger;
-    public IMongoDatabase GODatabase { get; set; }
+    public IMongoDatabase _goDatabase { get; set; }
 
     /// <summary>
     /// Create an instance of the context class.
@@ -23,7 +23,6 @@ public class MongoDBContext
     public MongoDBContext(ILogger<MongoDBContext> logger)
     {
         _logger = logger;
-        _config = config;
 
         BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
@@ -31,5 +30,5 @@ public class MongoDBContext
         _goDatabase = client.GetDatabase(Environment.GetEnvironmentVariable("databaseName"));
     }
 
-    public IMongoCollection<Customer> Bids => _goDatabase.GetCollection<Customer>(Environment.GetEnvironmentVariable("collectionName"));
+    public IMongoCollection<Bid> Bids => _goDatabase.GetCollection<Bid>(Environment.GetEnvironmentVariable("collectionName"));
 }
