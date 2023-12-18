@@ -1,0 +1,35 @@
+name: Docker Image CI
+
+on:
+  pull_request:
+    branches: 
+      - "main"
+    paths:
+      - LegalService/**
+    types:
+      - closed
+  push:
+    branches: 
+      - "develop"
+    paths:
+      - .github/workflows/LegalService_BuildDockerImage.yml
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Login to Docker Hub
+      run: |
+        docker login --username ${{secrets.DOCKER_USER}} --password ${{secrets.DOCKER_PASSWORD}}
+    - name: Build the Docker image for LegalService
+      working-directory: LegalService
+      run: |
+        docker build . --file Dockerfile --tag asnielsen789/legalservice:latest
+    - name: Push the Docker image for LegalService
+      run: |
+        docker push asnielsen789/legalservice:latest
