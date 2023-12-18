@@ -13,33 +13,25 @@ namespace CustomerService.Models;
 public class MongoDBContext 
 {
     private ILogger<MongoDBContext> _logger;
-    //private IConfiguration _config;
-    public IMongoDatabase GODatabase { get; set; }
-    public IMongoCollection<Customer> customers { get; set; }
+    private IMongoDatabase _goDatabase { get; set; }
+    private IMongoCollection<Customer> _customers { get; set; }
 
     /// <summary>
     /// Create an instance of the context class.
     /// </summary>
     /// <param name="logger">Global logging facility.</param>
-    /// <param name="config">System configuration instance.</param>
-    public MongoDBContext(ILogger<MongoDBContext> logger)//, IConfiguration config)
+    public MongoDBContext(ILogger<MongoDBContext> logger)
     {
         _logger = logger;
-        //_config = config;
         
         BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
-        /*
-        var client = new MongoClient(_config["MongoDBSettings:MongoConnectionString"]);
-        GODatabase = client.GetDatabase(_config["MongoDBSettings:DatabaseName"]);
-        customers = GODatabase.GetCollection<Customer>(_config["MongoDBSettings:CustomerCollection"]);
-        */
         var client = new MongoClient(Environment.GetEnvironmentVariable("MongoDBConnection"));
-        GODatabase = client.GetDatabase(Environment.GetEnvironmentVariable("DatabaseName"));
-        customers = GODatabase.GetCollection<Customer>(Environment.GetEnvironmentVariable("CustomerCollection"));
+        _goDatabase = client.GetDatabase(Environment.GetEnvironmentVariable("DatabaseName"));
+        _customers = _goDatabase.GetCollection<Customer>(Environment.GetEnvironmentVariable("CustomerCollection"));
     }
 
-    public IMongoCollection<Customer> Customers => GODatabase.GetCollection<Customer>("Customers");
+    public IMongoCollection<Customer> Customers => _goDatabase.GetCollection<Customer>("Customers");
 
 }
 

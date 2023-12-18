@@ -22,5 +22,22 @@ namespace CustomerService.Services
             _logger.LogInformation($"### CustomerRepository.GetCustomerById - customerId: {customer.Id}");
             return Task.FromResult<Customer>(customer);
         }
+
+        public async Task<bool> PostCustomer(Customer Customer)
+        {
+            try
+            {
+                // Insert the new item
+                await _customers.InsertOneAsync(Customer);
+
+                return true; // Item posted successfully
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error occurred while posting customer: {ex.Message}");
+                return false;
+            }
+        }
+
     }
 }

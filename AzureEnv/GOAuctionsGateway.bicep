@@ -5,7 +5,7 @@ resource goauctionspublicip 'Microsoft.Network/publicIPAddresses@2022-11-01' = {
   name: 'goauctions-public_ip'
   location: location
   properties: {
-    ipAddress: '20.119.63.169'
+    ipAddress: '20.119.63.165'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4

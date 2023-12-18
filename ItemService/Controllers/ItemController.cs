@@ -20,13 +20,13 @@ namespace ItemService.Controllers
         //private readonly ICustomerRepository _customerRepository;
 
         public ItemController(
-            IItemRepository itemRepository,
+            //IItemRepository itemRepository,
             //ICustomerRepository customerRepository,
             ILogger<ItemController> logger,
             IConfiguration configuration
         )
         {
-            _itemRepository = itemRepository;
+            //_itemRepository = itemRepository;
             _logger = logger;
             _configuration = configuration;
             //_customerRepository = customerRepository;

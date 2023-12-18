@@ -11,10 +11,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using System.Text;
-using VaultSharp;
-using VaultSharp.V1.AuthMethods.Token;
-using VaultSharp.V1.AuthMethods;
-using VaultSharp.V1.Commons;
 
 //var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
 //logger.Debug("init main");
@@ -35,7 +31,7 @@ try
         "ItemService",
         client =>
         {
-            client.BaseAddress = new Uri("http://localhost:5164");
+            client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("ItemService") ?? "http://localhost:5164");
         }
     );
 
@@ -43,7 +39,7 @@ try
         "BidService",
         client =>
         {
-            client.BaseAddress = new Uri("http://localhost:5223");
+            client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("BidService") ?? "http://localhost:5223");
         }
     );
 

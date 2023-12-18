@@ -23,7 +23,7 @@ param vnetname string = 'goauctionsVNet'
 param subnetName string = 'goServicesSubnet'
 param dnsRecordName string = 'SERVICES'
 param dnszonename string = 'goauctions.dk'
-param storageAccountName string = 'storage23bame2qqs4ac'
+param storageAccountName string = 'storage2cwvexx63utd4'
 
 resource VNET 'Microsoft.Network/virtualNetworks@2020-11-01' existing = {
   name: vnetname
@@ -43,7 +43,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
   properties: {
     sku: 'Standard'
     containers: [
-      {
+      /*{
         name: 'assessmentservice'
         properties: {
           image: AssessmentServiceImage
@@ -60,7 +60,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             }
           }
         }
-      }
+      }*/
       /*{
         name: 'auctionservice'
         properties: {
@@ -122,7 +122,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             }
           }
         }
-      }
+      }*/
       {
         name: 'customerservice'
         properties: {
@@ -154,7 +154,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           }
         }
       }
-      {
+      /*{
         name: 'itemservice'
         properties: {
           image: ItemServiceImage
@@ -163,6 +163,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
               port: 5004
             }
           ]
+          
           environmentVariables: [
             {
               name: 'connectionString'
@@ -176,6 +177,10 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
               name: 'collectionName'
               value: 'items'
             }
+            {
+              name: 'ASPNETCORE_URLS'
+              value: 'http://localhost:5004'
+            }
           ]
           resources: {
             requests: {
@@ -184,8 +189,8 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             }
           }
         }
-      }
-      {
+      }*/
+      /*{
         name: 'legalservice'
         properties: {
           image: LegalServiceImage
@@ -300,13 +305,14 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
       ]
       type: 'private'
       ip: '10.0.3.4'
+
     }
     osType: 'Linux'
     volumes: [
       {
         name: 'nginx-config'
         azureFile: {
-          shareName: 'storageservices'
+          shareName: 'storageconfig'
           storageAccountName: storageAccount.name
           storageAccountKey: storageAccount.listKeys().keys[0].value
         }
@@ -345,3 +351,10 @@ resource dnsRecord 'Microsoft.Network/privateDnsZones/A@2020-06-01' = {
 }
 
 output containerIPAddressFqdn string = GOAuctionsServicesGroup.properties.ipAddress.ip
+
+
+/*command: [
+            'tail'
+            '-f'
+            '/dev/null'
+          ]*/

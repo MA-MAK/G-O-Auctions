@@ -30,22 +30,25 @@ namespace CustomerService.Controllers
             return Task.FromResult<IActionResult>(Ok(customer));
         }
 
-        [HttpGet("version")]
-        public async Task<Dictionary<string, string>> GetVersion()
+        [HttpPost]
+        public async Task<IActionResult> PostCustomer(Customer customer)
         {
-            _logger.LogInformation("posting..");
-            var properties = new Dictionary<string, string>();
-            var assembly = typeof(Program).Assembly;
-            properties.Add("service", "GOAuctions");
-            var ver =
-                FileVersionInfo.GetVersionInfo(typeof(Program).Assembly.Location).ProductVersion
-                ?? "N/A";
-            properties.Add("version", ver);
-            var hostName = System.Net.Dns.GetHostName();
-            var ips = await System.Net.Dns.GetHostAddressesAsync(hostName);
-            var ipa = ips.First().MapToIPv4().ToString() ?? "N/A";
-            properties.Add("ip-address", ipa);
-            return properties;
+            try
+            {
+                var success = await _customerRepository.PostCustomer(customer);
+
+                if (success)
+                {
+                    return CreatedAtAction(nameof(GetCustomerById), new { id = customer.Id }, customer);
+                }
+
+                return StatusCode(500, "Failed to post item");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error occurred while posting item: {ex.Message}");
+                return StatusCode(500, "Internal Server Error");
+            }
         }
     }
 }
