@@ -27,8 +27,9 @@ jobs:
       run: |
         docker login --username ${{secrets.DOCKER_USER}} --password ${{secrets.DOCKER_PASSWORD}}
     - name: Build the Docker image for AuctionService
+      working-directory: AuctionService
       run: |
-        docker build . --file AuctionService/Dockerfile --tag asnielsen789/auctionservice:latest
+        docker build . --file Dockerfile --tag asnielsen789/auctionservice:latest
     - name: Push the Docker image for AuctionService
       run: |
         docker push asnielsen789/auctionservice:latest
