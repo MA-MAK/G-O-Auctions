@@ -16,12 +16,8 @@ builder.Services.AddLogging();
 builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>();
 
 // MongoDB configuration
-//var connectionString = Environment.GetEnvironmentVariable("MongoDBConnection");
-//var databaseName = Environment.GetEnvironmentVariable("DatabaseName");
-//var connectionString = builder.Configuration.GetConnectionString("MongoDBConnection");
-//var databaseName = builder.Configuration.GetSection("MongoDBSettings:DatabaseName").Value;
 var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<MongoDBContext>>();
-builder.Services.AddSingleton<MongoDBContext>(provider => new MongoDBContext(logger));//, builder.Configuration));
+builder.Services.AddSingleton<MongoDBContext>(provider => new MongoDBContext(logger));
 
 var app = builder.Build();
 
