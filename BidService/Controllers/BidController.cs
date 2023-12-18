@@ -19,11 +19,10 @@ namespace BidService.Controllers
     {
         private readonly IBidRepository _BidRepository;
         private readonly ILogger<BidController> _logger;
-        private readonly IConfiguration _configuration;
         private readonly ICustomerRepository _customerRepository;
         private string _mqHost = string.Empty;
 
-        public BidController(IBidRepository BidRepository, ICustomerRepository customerRepository, ILogger<BidController> logger, IConfiguration configuration)
+        public BidController(IBidRepository BidRepository, ICustomerRepository customerRepository, ILogger<BidController> logger)
         {
             _BidRepository = BidRepository;
             _customerRepository = customerRepository;
