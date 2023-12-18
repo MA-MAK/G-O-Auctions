@@ -27,8 +27,7 @@ namespace BidService.Controllers
             _BidRepository = BidRepository;
             _customerRepository = customerRepository;
             _logger = logger;
-            _configuration = configuration;
-            _mqHost = configuration["rabbitmqHost"] ?? "localhost";
+            _mqHost = Environment.GetEnvironmentVariable("rabbitmq") ?? "localhost";
         }
 
         [HttpGet]
@@ -58,8 +57,6 @@ namespace BidService.Controllers
             _logger.LogInformation("posting..");
             try
             {
-                //Bid Bid = JsonSerializer.Deserialize<Bid>(jsonString);
-
                 var factory = new ConnectionFactory { HostName = _mqHost };
                 using var connection = factory.CreateConnection();
                 using var channel = connection.CreateModel();

@@ -15,13 +15,11 @@ namespace BidWorker;
 public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _logger;
-    private string _bidPath = string.Empty;
     private string _mqHost = string.Empty;
     private readonly BidRepository _bidRepository;
-    public Worker(ILogger<Worker> logger, IConfiguration configuration, BidRepository bidRepository)
+    public Worker(ILogger<Worker> logger, IBidRepository bidRepository)
     {
         _logger = logger;
-        _bidPath = configuration["BidPath"] ?? string.Empty;
         _mqHost = configuration["rabbitmqHost"] ?? "localhost";
         _logger.LogInformation($"Connecting to host: {_mqHost}");
         _bidRepository = bidRepository ?? throw new ArgumentNullException(nameof(bidRepository));
