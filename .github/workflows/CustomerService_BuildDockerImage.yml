@@ -27,8 +27,9 @@ jobs:
       run: |
         docker login --username ${{secrets.DOCKER_USER}} --password ${{secrets.DOCKER_PASSWORD}}
     - name: Build the Docker image for CustomerService
+      working-directory: CustomerService
       run: |
-        docker build . --file CustomerService/Dockerfile --tag asnielsen789/customerservice:latest
+        docker build . --file Dockerfile --tag asnielsen789/customerservice:latest
     - name: Push the Docker image for CustomerService
       run: |
         docker push asnielsen789/customerservice:latest

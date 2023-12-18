@@ -27,8 +27,9 @@ jobs:
       run: |
         docker login --username ${{secrets.DOCKER_USER}} --password ${{secrets.DOCKER_PASSWORD}}
     - name: Build the Docker image for ItemService
+      working-directory: ItemService
       run: |
-        docker build . --file ItemService/Dockerfile --tag asnielsen789/itemservice:latest
+        docker build . --file Dockerfile --tag asnielsen789/itemservice:latest
     - name: Push the Docker image for ItemService
       run: |
         docker push asnielsen789/itemservice:latest

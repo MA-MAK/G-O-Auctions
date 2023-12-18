@@ -27,8 +27,9 @@ jobs:
       run: |
         docker login --username ${{secrets.DOCKER_USER}} --password ${{secrets.DOCKER_PASSWORD}}
     - name: Build the Docker image for BidWorker
+      working-directory: BidWorker
       run: |
-        docker build . --file BidWorker/Dockerfile --tag asnielsen789/BidWorker:latest
+        docker build . --file Dockerfile --tag asnielsen789/BidWorker:latest
     - name: Push the Docker image for BidWorker
       run: |
         docker push asnielsen789/BidWorker:latest

@@ -27,8 +27,9 @@ jobs:
       run: |
         docker login --username ${{secrets.DOCKER_USER}} --password ${{secrets.DOCKER_PASSWORD}}
     - name: Build the Docker image for SaleService
+      working-directory: SaleService
       run: |
-        docker build . --file SaleService/Dockerfile --tag asnielsen789/saleservice:latest
+        docker build . --file Dockerfile --tag asnielsen789/saleservice:latest
     - name: Push the Docker image for SaleService
       run: |
         docker push asnielsen789/saleservice:latest

@@ -27,8 +27,9 @@ jobs:
       run: |
         docker login --username ${{secrets.DOCKER_USER}} --password ${{secrets.DOCKER_PASSWORD}}
     - name: Build the Docker image for AssessmentService
+      working-directory: AssessmentService
       run: |
-        docker build . --file AssessmentService/Dockerfile --tag asnielsen789/assessmentservice:latest
+        docker build . --file Dockerfile --tag asnielsen789/assessmentservice:latest
     - name: Push the Docker image for AssessmentService
       run: |
         docker push asnielsen789/assessmentservice:latest
