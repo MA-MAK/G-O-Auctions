@@ -20,6 +20,12 @@ namespace CustomerService.Controllers
             _logger = logger;
             _configuration = configuration;
         }
+
+        [HttpGet]
+        public Task<ActionResult> GetTest()
+        {
+            return Task.FromResult<ActionResult>(Ok("CustomerService is running..."));
+        }
         
         [HttpGet("{id}")]
         public Task<IActionResult> GetCustomerById(string id)
