@@ -1,29 +1,29 @@
 services:
-  AuctionService:
-    image: asnielsen789/auctionservice:latest
-    environment:
-    - connectionString=mongodb://admin:1234@mongodb-dev:27017
-    - databaseName=GODB
-    - collectionName=auctions
-    expose:
-    - "80"
-    volumes:
-    - mongodb_data_container:/data/db
-    networks:
-    - GOnet
+#  AuctionService:
+#    image: asnielsen789/auctionservice:latest
+#    environment:
+#    - connectionString=mongodb://admin:1234@mongodb-dev:27017
+#    - databaseName=GODB
+#    - collectionName=auctions
+#    expose:
+#    - "80"
+#    volumes:
+#    - mongodb_data_container:/data/db
+#    networks:
+#    - GOnet
 
-  BidService:
-    image: asnielsen789/bidservice:latest
-    environment:
-    - connectionString=mongodb://admin:1234@mongodb-dev:27017
-    - databaseName=GODB
-    - collectionName=bids
-    expose:
-    - "80"
-    volumes:
-    - mongodb_data_container:/data/db
-    networks:
-    - GOnet
+#  BidService:
+#    image: asnielsen789/bidservice:latest
+#    environment:
+#    - connectionString=mongodb://admin:1234@mongodb-dev:27017
+#    - databaseName=GODB
+#    - collectionName=bids
+#    expose:
+#    - "80"
+#    volumes:
+#    - mongodb_data_container:/data/db
+#    networks:
+#    - GOnet
 
   ItemService:
     image: asnielsen789/itemservice:latest
@@ -51,80 +51,79 @@ services:
     networks:
     - GOnet
 
-  SaleService:
-    image: asnielsen789/saleservice:latest
-    environment:
-    - connectionString=mongodb://admin:1234@mongodb-dev:27017
-    - databaseName=GODB
-    - collectionName=sales
-    expose:
-    - "80"
-    volumes:
-    - mongodb_data_container:/data/db
-    networks:
-    - GOnet
+#  SaleService:
+#    image: asnielsen789/saleservice:latest
+#    environment:
+#    - connectionString=mongodb://admin:1234@mongodb-dev:27017
+#    - databaseName=GODB
+#    - collectionName=sales
+#    expose:
+#    - "80"
+#    volumes:
+#    - mongodb_data_container:/data/db
+#    networks:
+#    - GOnet
 
-  AssessmentService:
-    image: asnielsen789/assessmentservice:latest
-    environment:
-    expose:
-    - "80"
-    networks:
-    - GOnet
+#  AssessmentService:
+#    image: asnielsen789/assessmentservice:latest
+#    environment:
+#    expose:
+#    - "80"
+#    networks:
+#    - GOnet
 
-  loki:
-    image: grafana/loki
-    container_name: loki
-    ports:
-    - "3100:3100"
-    command: -config.file=/etc/loki/local-config.yaml
-    networks:
-    - GOnet
+#  loki:
+#    image: grafana/loki
+#    container_name: loki
+#    ports:
+#    - "3100:3100"
+#    command: -config.file=/etc/loki/local-config.yaml
+#    networks:
+#    - GOnet
+#  grafana:
+#    image: grafana/grafana:latest
+#    ports:
+#    - "3000:3000"
+#    networks:
+#    - GOnet
+#    volumes:
+#    - grafana_data:/var/lib/grafana
 
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-    - "3000:3000"
-    networks:
-    - GOnet
-    volumes:
-    - grafana_data:/var/lib/grafana
+#  mongodb#:
+#    image: mongo:latest
+#    container_name: mongodb
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: admin
+#      MONGO_INITDB_ROOT_PASSWORD: 1234
+#    ports:
+#    - 27018:27017
+#    volumes:
+#    - mongodb_data_container:/data/db
+#    networks:
+#    - GOnet
 
-  mongodb:
-    image: mongo:latest
-    container_name: mongodb
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: 1234
-    ports:
-    - 27018:27017
-    volumes:
-    - mongodb_data_container:/data/db
-    networks:
-    - GOnet
+#  nginx:
+#    image: nginx:latest
+#    volumes:
+#      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+#    depends_on:
+#    - AuctionService
+#    ports:
+#      - "4000:4000"
+#    networks:
+#      - GOnet
 
-  nginx:
-    image: nginx:latest
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - AuctionService
-    ports:
-      - "4000:4000"
-    networks:
-      - GOnet
-
-  rabbitmq:
-    image: "rabbitmq:3-management"
-    container_name: rabbitmq
-    ports:
-      - 5672:5672
-      - 15672:15672
-    networks:
-      - GOnet
-    environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
+# rabbitmq:
+#    image: "rabbitmq:3-management"
+#    container_name: rabbitmq
+#    ports:
+#      - 5672:5672
+#      - 15672:15672
+#  networks:
+#      - GOnet
+#    environment:
+#      RABBITMQ_DEFAULT_USER: guest
+#      RABBITMQ_DEFAULT_PASS: guest
 
 volumes:
   mongodb_data_container:
