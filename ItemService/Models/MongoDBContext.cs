@@ -13,28 +13,22 @@ namespace ItemService.Models;
 public class MongoDBContext 
 {
     private ILogger<MongoDBContext> _logger;
-    private IConfiguration _config;
-    public IMongoDatabase GODatabase { get; set; }
-    public IMongoCollection<Item> items { get; set; }
+    public IMongoDatabase _goDatabase { get; set; }
 
     /// <summary>
     /// Create an instance of the context class.
     /// </summary>
     /// <param name="logger">Global logging facility.</param>
-    /// <param name="config">System configuration instance.</param>
-    public MongoDBContext(ILogger<MongoDBContext> logger, IConfiguration config)
+    public MongoDBContext(ILogger<MongoDBContext> logger)
     {
         _logger = logger;
-        _config = config;
         
         BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
-        var client = new MongoClient(_config["MongoDBSettings:MongoConnectionString"]);
-        GODatabase = client.GetDatabase(_config["MongoDBSettings:DatabaseName"]);
-        items = GODatabase.GetCollection<Item>(_config["MongoDBSettings:ItemCollection"]);
+        var client = new MongoClient(Environment.GetEnvironmentVariable("connectionString"));
+        _goDatabase = client.GetDatabase(Environment.GetEnvironmentVariable("databaseName"));
     }
 
-    public IMongoCollection<Item> Items => GODatabase.GetCollection<Item>("Items");
-
+    public IMongoCollection<Item> Items => _goDatabase.GetCollection<Item>(Environment.GetEnvironmentVariable("collectionName"));
 }
 

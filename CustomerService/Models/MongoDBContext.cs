@@ -26,12 +26,10 @@ public class MongoDBContext
         
         BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
-        var client = new MongoClient(Environment.GetEnvironmentVariable("MongoDBConnection"));
-        _goDatabase = client.GetDatabase(Environment.GetEnvironmentVariable("DatabaseName"));
-        _customers = _goDatabase.GetCollection<Customer>(Environment.GetEnvironmentVariable("CustomerCollection"));
+        var client = new MongoClient(Environment.GetEnvironmentVariable("connectionString"));
+        _goDatabase = client.GetDatabase(Environment.GetEnvironmentVariable("databaseName"));
     }
 
-    public IMongoCollection<Customer> Customers => _goDatabase.GetCollection<Customer>("Customers");
-
+    public IMongoCollection<Customer> Customers => _goDatabase.GetCollection<Customer>(Environment.GetEnvironmentVariable("collectionName"));
 }
 
