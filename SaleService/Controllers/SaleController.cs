@@ -14,23 +14,26 @@ namespace SaleService.Controllers
     {
         private readonly ISaleRepository _saleRepository;
         private readonly ILogger<SaleController> _logger;
-        private readonly IConfiguration _configuration;
         private readonly IAuctionRepository _auctionRepository;
         private readonly ICustomerRepository _customerRepository;
 
         public SaleController(
             ISaleRepository saleRepository,
             ILogger<SaleController> logger,
-            IConfiguration configuration,
             IAuctionRepository auctionRepository,
             ICustomerRepository customerRepository
         )
         {
             _saleRepository = saleRepository;
             _logger = logger;
-            _configuration = configuration;
             _auctionRepository = auctionRepository;
             _customerRepository = customerRepository;
+        }
+
+        [HttpGet]
+        public Task<ActionResult> GetTest()
+        {
+            return Task.FromResult<ActionResult>(Ok("SaleService is running..."));
         }
 
         [HttpGet("{saleId}")]
@@ -38,7 +41,6 @@ namespace SaleService.Controllers
         {
             try
             {
-                
                 var sale = await _saleRepository.GetSaleById(saleId);
                 _logger.LogInformation($"### Sale with ID {sale.Id} found.");
 

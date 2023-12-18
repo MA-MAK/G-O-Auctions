@@ -11,17 +11,13 @@ namespace AssessmentService.Controllers
     [Route("api/[controller]")]
     public class AssessmentController : ControllerBase
     {
-
-        //private readonly IAssessmentRepository _assessmentRepository;
         private readonly ILogger<AssessmentController> _logger;
+        private readonly IItemRepository _itemRepository;
 
-        private readonly IConfiguration _configuration;
-
-        public AssessmentController(ILogger<AssessmentController> logger, IConfiguration configuration)//, IAssessmentRepository assessmentRepository)
+        public AssessmentController(ILogger<AssessmentController> logger, IItemRepository itemRepository)
         {
-            //_assessmentRepository = assessmentRepository;
+            _itemRepository = itemRepository;
             _logger = logger;
-            _configuration = configuration;
         }
 
         [HttpGet]
@@ -30,18 +26,17 @@ namespace AssessmentService.Controllers
             return Task.FromResult<ActionResult>(Ok("ItemService is running..."));
         }
 
-/*
         [HttpGet("{itemId}")]
         public async Task<IActionResult> GetItemById(string itemId)
         {
             try
             {
-                _logger.LogInformation($"### ItemController.GetItemById - itemId: {itemId}");
-                var item = await _assessmentRepository.GetItemById(itemId);
+                _logger.LogInformation($"### AssessmentController.GetItemById - itemId: {itemId}");
+                var item = await _itemRepository.GetItemById(itemId);
 
                 if (item != null)
                 {
-                    _logger.LogInformation($"### ItemController.GetItemById - item: {item.Id}");
+                    _logger.LogInformation($"### AssessmentController.GetItemById - item: {item.Id}");
                     return Ok(item);
                 }
                 else
@@ -61,8 +56,8 @@ namespace AssessmentService.Controllers
         {
             try
             {
-                var items = await _assessmentRepository.GetAllRegistredItems();
-                _logger.LogInformation($"### ItemController.GetAllRegistredItems - items: {items.Count()}");
+                var items = await _itemRepository.GetAllRegistredItems();
+                _logger.LogInformation($"### AssessmentController.GetAllRegistredItems - items: {items.Count()}");
 
                 return Ok(items);
             }
@@ -81,7 +76,7 @@ namespace AssessmentService.Controllers
             try
             {
                 // Assuming there's a PUT function in ItemService to update items
-                await _assessmentRepository.UpdateItem(updatedItem);
+                await _itemRepository.UpdateItem(updatedItem);
                 _logger.LogInformation($"### AssessmentController.UpdateItem - item: {updatedItem.Id}");
 
                 // If the update is successful, return Ok
@@ -101,6 +96,5 @@ namespace AssessmentService.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
-*/
     }
 }

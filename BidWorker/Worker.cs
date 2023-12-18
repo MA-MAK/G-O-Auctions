@@ -28,7 +28,6 @@ public class Worker : BackgroundService
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         _logger.LogInformation($"Connecting to host: {_mqHost}", DateTimeOffset.Now);
-        //var factory = new ConnectionFactory { HostName = _mqHost }; // indsæt miljø varibel // noget alle 
         var factory = new ConnectionFactory();
         factory.Uri = new Uri(_mqHost);
         using var connection = factory.CreateConnection();

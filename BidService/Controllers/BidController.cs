@@ -36,7 +36,6 @@ namespace BidService.Controllers
             return Task.FromResult<ActionResult>(Ok("BidService is running..."));
         }
 
-
         [HttpGet("{id}")]
         public Task<IActionResult> GetBidsForAuction(string id)
         {
@@ -57,7 +56,6 @@ namespace BidService.Controllers
             try
             {
                 _logger.LogInformation($"### PostBid: {_mqHost}");
-                //var factory = new ConnectionFactory { HostName = _mqHost };
                 var factory = new ConnectionFactory();
                 factory.Uri = new Uri(_mqHost);
                 using var connection = factory.CreateConnection();

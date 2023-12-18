@@ -22,9 +22,6 @@ public class Tests
     {
         var loggerMock = new Mock<ILogger<BidController>>();
         _logger = loggerMock.Object;
-
-        var configurationMock = new Mock<IConfiguration>();
-        _configuration = configurationMock.Object;
     }
 
     [Test]
@@ -48,7 +45,7 @@ public class Tests
         CustomerRepositoryMock.Setup(svc => svc.GetCustomerById("1"))
             .Returns(Task.FromResult<Customer?>(bidder1));
 
-        var controller = new BidController(BidRepositoryMock.Object, CustomerRepositoryMock.Object, _logger, _configuration);
+        var controller = new BidController(BidRepositoryMock.Object, CustomerRepositoryMock.Object, _logger);
 
         var result = controller.GetBidsForAuction("1").Result;
         

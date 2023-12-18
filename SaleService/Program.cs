@@ -10,7 +10,6 @@ using SaleService.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -18,7 +17,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddHttpClient("AuctionService", client =>
     {
-        client.BaseAddress = new Uri("http://localhost:5064");
+        client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("AuctionService") ?? "http://localhost:5001");
         // Add any additional configuration for HttpClient as needed
     });
 builder.Services.AddSingleton<IAuctionRepository, AuctionRepository>(
@@ -28,7 +27,7 @@ builder.Services.AddSingleton<IAuctionRepository, AuctionRepository>(
 
 builder.Services.AddHttpClient("CustomerService", client =>
     {
-        client.BaseAddress = new Uri("http://localhost:5104");
+        client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("CustomerService") ?? "http://localhost:5003");
         // Add any additional configuration for HttpClient as needed
     });
 builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>(
@@ -36,18 +35,12 @@ builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>(
        .CreateClient("CustomerService"),
        builder.Services.BuildServiceProvider().GetRequiredService<ILogger<CustomerRepository>>()));
 
-var connectionString = builder.Configuration.GetConnectionString("MongoDBConnection");
-var databaseName = builder.Configuration.GetSection("MongoDBSettings:DatabaseName").Value;
 var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<MongoDBContext>>();
 builder.Services.AddSingleton<MongoDBContext>(provider => new MongoDBContext(logger, builder.Configuration));
 builder.Services.AddSingleton<ISaleRepository, SaleRepository>();
-/*builder.Services.AddSingleton<ISaleRepository, SaleRepository>(
-    a => new SaleRepository(builder.Services.BuildServiceProvider().GetRequiredService<MongoDBContext>(), 
-    builder.Services.BuildServiceProvider().GetRequiredService<ILogger<SaleRepository>>(),
-    builder.Services.BuildServiceProvider().GetRequiredService<IAuctionRepository>()));*/
+
 var app = builder.Build();
 
-// public SaleRepository(MongoDBContext dbContext, ILogger<SaleRepository> logger, IAuctionRepository auctionRepository)
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

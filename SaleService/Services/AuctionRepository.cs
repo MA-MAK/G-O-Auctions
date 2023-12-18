@@ -34,8 +34,6 @@ public class AuctionRepository : IAuctionRepository
             _logger.LogInformation($"### AuctionRepository.GetAuctionById - response: {response}");
             if (response.IsSuccessStatusCode)
             {
-                // _logger.LogInformation($"### AuctionRepository.GetAuctionById - response: {response}");
-
                 string jsonString = await response.Content.ReadAsStringAsync();
                 _logger.LogInformation($"### AuctionRepository.GetAuctionById - jsonString: {jsonString}");
 
