@@ -37,11 +37,6 @@ namespace BidWorker.Services
                 _logger.LogInformation($"Bid with ID {bid.Id} and a lower or equal amount already exists in the database.");
             }
         }
-
-
-
-
-
     }
 }
 

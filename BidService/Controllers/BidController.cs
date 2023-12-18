@@ -50,8 +50,7 @@ namespace BidService.Controllers
             return Task.FromResult<IActionResult>(Ok(Bids));
         }
 
-
-        [HttpPost("PostBid")]
+        [HttpPost]
         public ActionResult<Bid> PostBid(Bid bid)
         {
             _logger.LogInformation("posting..");
