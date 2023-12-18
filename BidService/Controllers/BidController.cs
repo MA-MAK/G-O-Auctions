@@ -36,7 +36,6 @@ namespace BidService.Controllers
             return Task.FromResult<ActionResult>(Ok("BidService is running..."));
         }
 
-
         [HttpGet("{id}")]
         public Task<IActionResult> GetBidsForAuction(string id)
         {
