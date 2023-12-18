@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RESGROUP=GOAuctionsProdRG
+RESGROUP=GOAuctionsRG
 GATEWAYNAME=goauctionsAppGateway
 
 az container stop --name goAuctionsServicesGroup --resource-group $RESGROUP

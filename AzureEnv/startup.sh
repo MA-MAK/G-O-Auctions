@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RESGROUP=GOAuctionsProdRG
+RESGROUP=GOAuctionsRG
 GATEWAYNAME=goauctionsAppGateway
 
 echo "Starting Azure container groups ..."

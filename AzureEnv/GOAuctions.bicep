@@ -74,7 +74,7 @@ module backend 'GOAuctionsBackend.bicep' = {
     storageAccountName: storage.outputs.storageAcountName
   }
 }
-
+/*
 module services 'GOAuctionsServices.bicep' = {
   name: 'servicesModule'
   params: {
@@ -86,7 +86,7 @@ module services 'GOAuctionsServices.bicep' = {
     storageAccountName: storage.outputs.storageAcountName
   }
 }
-
+*/
 resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' = {
   name: applicationGateWayName
   location: location
@@ -129,12 +129,12 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
           port: 15672
         }
       }
-      {
+      /*{
         name: 'ServicesFrontPort'
         properties: {
           port: 80
         }
-      }
+      }*/
     ]
     backendAddressPools: [
       {
@@ -157,7 +157,7 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
           ]
         }
       }
-      {
+      /*{
         name: 'goAuctionsServicesPool'
         properties: {
           backendAddresses: [
@@ -166,7 +166,7 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
             }
           ]
         }
-      }
+      }*/
     ]
     backendHttpSettingsCollection: [
       {
@@ -197,7 +197,7 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
           requestTimeout: 30
         }
       }
-      {
+      /*{
         name: 'ServicesHttpSettings'
         properties: {
           port: 80
@@ -210,7 +210,7 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
           pickHostNameFromBackendAddress: false
           requestTimeout: 30
         }
-      }
+      }*/
     ]
     httpListeners: [
       {
@@ -239,7 +239,7 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
           requireServerNameIndication: false
         }
       }
-      {
+      /*{
         name: 'ServicesHttpListener'
         properties: {
           frontendIPConfiguration: {
@@ -251,7 +251,7 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
           protocol: 'Http'
           requireServerNameIndication: false
         }
-      }
+      }*/
     ]
     requestRoutingRules: [
       {
@@ -286,7 +286,7 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
           }
         }
       }
-      {
+      /*{
         name: 'ServicesRule'
         properties: {
           ruleType: 'Basic'
@@ -301,7 +301,7 @@ resource applicationGateWay 'Microsoft.Network/applicationGateways@2022-11-01' =
             id: resourceId('Microsoft.Network/applicationGateways/backendHttpSettingsCollection', applicationGateWayName, 'ServicesHttpSettings')
           }
         }
-      }
+      }*/
     ]
     enableHttp2: false
     autoscaleConfiguration: {
