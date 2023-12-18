@@ -34,8 +34,6 @@ services:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
 
-<<<<<<< Updated upstream
-=======
   vault_dev:
     image: hashicorp/vault:latest
     container_name: GOvault
@@ -74,7 +72,6 @@ services:
     volumes:
       - ./vault-init/vault_init.sh:/app/vault_init.sh
 
->>>>>>> Stashed changes
     networks:
       - GOnet
 

@@ -29,7 +29,7 @@ jobs:
     - name: Build the Docker image for BidWorker
       working-directory: BidWorker
       run: |
-        docker build . --file Dockerfile --tag asnielsen789/BidWorker:latest
+        docker build . --file Dockerfile --tag asnielsen789/bidworker:latest
     - name: Push the Docker image for BidWorker
       run: |
-        docker push asnielsen789/BidWorker:latest
+        docker push asnielsen789/bidworker:latest
