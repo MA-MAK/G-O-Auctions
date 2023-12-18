@@ -26,7 +26,7 @@ public class MongoDBContext
 
         BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
-        var client = new MongoClient(Environment.GetEnvironmentVariable("connectionString"));
+        var client = new MongoClient(Environment.GetEnvironmentVariable("connectionString") ?? "mongodb://localhost:27017");
         _goDatabase = client.GetDatabase(Environment.GetEnvironmentVariable("databaseName"));
     }
 
