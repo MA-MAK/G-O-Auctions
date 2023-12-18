@@ -163,7 +163,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           }
         }
       }
-      {
+      /*{
         name: 'itemservice'
         properties: {
           image: ItemServiceImage
@@ -206,7 +206,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             }
           }
         }
-      }
+      }*/
       /*{
         name: 'legalservice'
         properties: {
