@@ -2,8 +2,8 @@
 param location string = resourceGroup().location
 
 param vnetname string = 'goauctionsVNet'
-param subnetName string = 'goDevopsSubnet'
-param storageAccountName string = 'storageAccount'
+param subnetName string = 'goBackendSubnet'
+param storageAccountName string = 'storage2cwvexx63utd4'
 param dnsRecordName string = 'backendhostname'
 param dnszonename string = 'goauctions.dk'
 /*
@@ -99,7 +99,7 @@ resource GOAuctionsBackendGroup 'Microsoft.ContainerInstance/containerGroups@202
         name: 'rabbitmq'
         properties: {
           image: 'rabbitmq:management'
-          command: [ 'tail', '-f', '/dev/null' ]
+          //command: [ 'tail', '-f', '/dev/null' ]
           ports: [
             {
               port: 15672
@@ -108,7 +108,16 @@ resource GOAuctionsBackendGroup 'Microsoft.ContainerInstance/containerGroups@202
               port: 5672
             }
           ]
-          environmentVariables: []
+          environmentVariables: [
+            {
+              name: 'RABBITMQ_DEFAULT_USER'
+              value: 'guest'
+            }
+            {
+              name: 'RABBITMQ_DEFAULT_PASS'
+              value: 'guest'
+            }
+          ]
           resources: {
             requests: {
               memoryInGB: json('1.0')
@@ -118,7 +127,7 @@ resource GOAuctionsBackendGroup 'Microsoft.ContainerInstance/containerGroups@202
           volumeMounts: [
             {
               name: 'msgqueue'
-              mountPath: '/var/lib/rabbitmq'
+              mountPath: '/var/lib/rabbitmq/mnesia/'
             }
           ]
         }

@@ -17,7 +17,6 @@ public class AuctionRepository : IAuctionRepository
         _httpClient = httpClient;
     }
  
-
     public async Task<Auction> GetAuctionById(string auctionId)
     {
         try
@@ -27,13 +26,11 @@ public class AuctionRepository : IAuctionRepository
             if (response.IsSuccessStatusCode)
             {
                 // Deserialize the response content to an Item object
-                //Item item = await response.Content.ReadAsAsync<Item>();
 
                 string jsonString = await response.Content.ReadAsStringAsync();
                 _logger.LogInformation(
                     $"### AuctionsRepository.GetAuctionById - jsonString: {jsonString}"
                 );
-                //Auction auction = JsonSerializer.Deserialize<Auction>(jsonString);
                 Auction auction = JsonSerializer.Deserialize<Auction>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 _logger.LogInformation($"### AuctionsRepository.GetAuctionById - auction: {auction.Id}");
                 return auction;
@@ -60,20 +57,17 @@ public class AuctionRepository : IAuctionRepository
             if (response.IsSuccessStatusCode)
             {
                 // Deserialize the response content to an Item object
-                //Item item = await response.Content.ReadAsAsync<Item>();
 
                 string jsonString = await response.Content.ReadAsStringAsync();
                 _logger.LogInformation(
-                    $"### BidRepository.GetBidsForAuction - jsonString: {jsonString}"
+                    $"### AuctionRepository.GetAllAuctions - jsonString: {jsonString}"
                 );
-                //Item item = JsonSerializer.Deserialize<Item>(jsonString);
                 List<Auction> auctions = JsonSerializer
                     .Deserialize<IEnumerable<Auction>>(
                         jsonString,
                         new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
                     )
                     .ToList();
-                //_logger.LogInformation($"### BidRepository.GetBidsForAuction - bid: {bid.Id}");
                 return auctions;
             }
             else

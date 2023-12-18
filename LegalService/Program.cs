@@ -18,12 +18,12 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddHttpClient("AuctionService", client =>
     {
-        client.BaseAddress = new Uri("http://localhost:5064");
+        client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("AuctionService") ?? "http://localhost:5001");
     });
 
 builder.Services.AddHttpClient("CustomerService", client =>
     {
-        client.BaseAddress = new Uri("http://localhost:5104");
+        client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("CustomerService") ?? "http://localhost:5003");
     });
 
 builder.Services.AddSingleton<IAuctionRepository, AuctionRepository>(
@@ -37,8 +37,6 @@ builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>(
         builder.Services.BuildServiceProvider().GetRequiredService<ILogger<CustomerRepository>>()));
        
 var app = builder.Build();
-
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

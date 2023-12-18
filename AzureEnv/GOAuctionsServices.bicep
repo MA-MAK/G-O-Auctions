@@ -43,7 +43,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
   properties: {
     sku: 'Standard'
     containers: [
-      /*{
+      {
         name: 'assessmentservice'
         properties: {
           image: AssessmentServiceImage
@@ -52,7 +52,28 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
               port: 5000
             }
           ]
-          environmentVariables: []
+          environmentVariables: [
+            {
+              name: 'connectionString'
+              value: 'mongodb://GOUser:qwer1234@backend:27017'
+            }
+            {
+              name: 'databaseName'
+              value: 'GODatabase'
+            }
+            {
+              name: 'collectionName'
+              value: 'assessments'
+            }
+            {
+              name: 'ItemService'
+              value: 'http://localhost:5004'
+            }
+            {
+              name: 'ASPNETCORE_URLS'
+              value: 'http://localhost:5000'
+            }
+          ]
           resources: {
             requests: {
               memoryInGB: json('0.2')
@@ -60,7 +81,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             }
           }
         }
-      }*/
+      }
       {
         name: 'auctionservice'
         properties: {
@@ -69,11 +90,6 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             {
               port: 5001
             }
-          ]
-          command: [
-            'tail'
-            '-f'
-            '/dev/null'
           ]
           environmentVariables: [
             {
@@ -109,7 +125,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           }
         }
       }
-      /*{
+      {
         name: 'bidservice'
         properties: {
           image: BidServiceImage
@@ -121,7 +137,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           environmentVariables: [
             {
               name: 'connectionString'
-              value: 'mongodb://GOUser:qwer1234@mongodb:27017'
+              value: 'mongodb://GOUser:qwer1234@backend:27017'
             }
             {
               name: 'databaseName'
@@ -131,6 +147,18 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
               name: 'collectionName'
               value: 'bids'
             }
+            {
+              name: 'CustomerService'
+              value: 'http://localhost:5003'
+            }
+            {
+              name: 'ASPNETCORE_URLS'
+              value: 'http://localhost:5002'
+            }
+            {
+              name: 'rabbitmq'
+              value: 'amqp://guest:guest@backend:5672'
+            }
           ]
           resources: {
             requests: {
@@ -139,7 +167,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             }
           }
         }
-      }*/
+      }
       {
         name: 'customerservice'
         properties: {
@@ -214,7 +242,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
           }
         }
       }
-      /*{
+      {
         name: 'legalservice'
         properties: {
           image: LegalServiceImage
@@ -223,7 +251,20 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
               port: 5005
             }
           ]
-          environmentVariables: []
+          environmentVariables: [
+            {
+              name: 'AuctionService'
+              value: 'http://localhost:5001'
+            }
+            {
+              name: 'CustomerService'
+              value: 'http://localhost:5003'
+            }
+            {
+              name: 'ASPNETCORE_URLS'
+              value: 'http://localhost:5005'
+            }
+          ]
           resources: {
             requests: {
               memoryInGB: json('0.2')
@@ -254,6 +295,18 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
               name: 'collectionName'
               value: 'sales'
             }
+            {
+              name: 'AuctionService'
+              value: 'http://localhost:5001'
+            }
+            {
+              name: 'CustomerService'
+              value: 'http://localhost:5003'
+            }
+            {
+              name: 'ASPNETCORE_URLS'
+              value: 'http://localhost:5006'
+            }
           ]
           resources: {
             requests: {
@@ -267,15 +320,16 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
         name: 'bidworker'
         properties: {
           image: BidWorkerImage
-          ports: [
-            {
-              port: 5050
-            }
+          ports: []
+          command: [
+            'tail'
+            '-f'
+            '/dev/null'
           ]
           environmentVariables: [
             {
               name: 'connectionString'
-              value: 'mongodb://GOUser:qwer1234@mongodb:27017'
+              value: 'mongodb://GOUser:qwer1234@backend:27017'
             }
             {
               name: 'databaseName'
@@ -285,6 +339,10 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
               name: 'collectionName'
               value: 'bids'
             }
+            {
+              name: 'rabbitmq'
+              value: 'amqp://guest:guest@backend:5672'
+            }
           ]
           resources: {
             requests: {
@@ -293,7 +351,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             }
           }
         }
-      }*/
+      }
       {
         name: 'nginx'
         properties: {

@@ -39,8 +39,6 @@ namespace SaleService.Services
 
             try
             {
-
-
                 // Add the sale to the sales collection
                 await _sales.InsertOneAsync(sale);
             }

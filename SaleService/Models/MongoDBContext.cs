@@ -6,8 +6,7 @@ using SaleService.Models;
 using SaleService.Services;
 using NLog;
 
-namespace SaleService.Models
-{
+namespace SaleService.Models;
 
 /// <summary>
 /// MongoDB database context class.
@@ -15,8 +14,7 @@ namespace SaleService.Models
 public class MongoDBContext 
 {
     private ILogger<MongoDBContext> _logger;
-    private IConfiguration _config;
-    public IMongoDatabase GODatabase { get; set; }
+    public IMongoDatabase _goDatabase { get; set; }
     public IMongoCollection<Sale> sales { get; set; }
 
     /// <summary>
@@ -27,21 +25,12 @@ public class MongoDBContext
     public MongoDBContext(ILogger<MongoDBContext> logger, IConfiguration config)
     {
         _logger = logger;
-        _config = config;
         
         BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 
-        var client = new MongoClient(_config["MongoDBSettings:MongoConnectionString"]);
-        GODatabase = client.GetDatabase(_config["MongoDBSettings:DatabaseName"]);
-        sales = GODatabase.GetCollection<Sale>(_config["MongoDBSettings:SaleCollection"]);
-
-        //_logger.Debug($"Connected to database {_config["MongoDBSettings:DatabaseName"]}");
-        //_logger.Debug($"Using collection {_config["MongoDBSettings:AuctionCollection"]}");
-
+        var client = new MongoClient(Environment.GetEnvironmentVariable("connectionString"));
+        _goDatabase = client.GetDatabase(Environment.GetEnvironmentVariable("databaseName"));
     }
 
-    public IMongoCollection<Sale> Sales => GODatabase.GetCollection<Sale>("Sales");
-
-}
-
+    public IMongoCollection<Sale> Sales => _goDatabase.GetCollection<Sale>(Environment.GetEnvironmentVariable("collectionName"));
 }

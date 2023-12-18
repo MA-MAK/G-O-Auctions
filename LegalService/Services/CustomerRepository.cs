@@ -30,12 +30,9 @@ namespace LegalService.Services
             if (response.IsSuccessStatusCode)
             {
                 _logger.LogInformation($"### CustomerRepository.GetCustomerById - response: {response}");
-                // Deserialize the response content to an Item object
-                //Item item = await response.Content.ReadAsAsync<Item>();
 
                 string jsonString = await response.Content.ReadAsStringAsync();
                 _logger.LogInformation($"### CustomerRepository.GetCustomerById - jsonString: {jsonString}");
-                //Item item = JsonSerializer.Deserialize<Item>(jsonString);
                 Customer customer = JsonSerializer.Deserialize<Customer>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 _logger.LogInformation($"### CustomerRepository.GetCustomerById - customer: {customer.Id}");
                 return customer;

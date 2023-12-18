@@ -10,16 +10,13 @@ using System.Text;
 
 namespace AssessmentService.Services
 {
-
-    public class AssessmentRepository : IAssessmentRepository
+    public class ItemRepository : IItemRepository
     {
-
         private List<Item> registeredItems;
         private readonly HttpClient _httpClient;
-        private readonly ILogger<AssessmentRepository> _logger;
+        private readonly ILogger<ItemRepository> _logger;
 
-
-        public AssessmentRepository(HttpClient httpClient, ILogger<AssessmentRepository> logger)
+        public ItemRepository(HttpClient httpClient, ILogger<ItemRepository> logger)
         {
             registeredItems = new List<Item>();
             _httpClient = httpClient;
@@ -43,11 +40,9 @@ namespace AssessmentService.Services
                 {
                     _logger.LogInformation($"### ItemRepository.GetItemById - response: {response}");
                     // Deserialize the response content to an Item object
-                    //Item item = await response.Content.ReadAsAsync<Item>();
 
                     string jsonString = await response.Content.ReadAsStringAsync();
                     _logger.LogInformation($"### ItemRepository.GetItemById - jsonString: {jsonString}");
-                    //Item item = JsonSerializer.Deserialize<Item>(jsonString);
                     Item item = JsonSerializer.Deserialize<Item>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                     _logger.LogInformation($"### ItemRepository.GetItemById - item: {item.Id}");
                     return item;
@@ -67,7 +62,6 @@ namespace AssessmentService.Services
             }
         }
 
-        // Get method to get all items marked as registred via ItemService
         // Get method to get all items marked as registered via ItemService
         public async Task<IEnumerable<Item>> GetAllRegistredItems()
         {
@@ -100,26 +94,11 @@ namespace AssessmentService.Services
             }
         }
 
-
-
         // Put method to update item on certain attributes via ItemService
         public async Task UpdateItem(Item item)
         {
             try
             {
-                // Make a GET request to the ItemService API endpoint to get the item by ID
-                /* HttpResponseMessage getItemResponse = await _httpClient.GetAsync($"/api/item/{item.Id}");
-
-                 if (!getItemResponse.IsSuccessStatusCode)
-                 {
-                     _logger.LogError($"### Failed to get item with ID {item.Id}. Status code: {getItemResponse.StatusCode}");
-                     throw new Exception($"Failed to get item with ID {item.Id}. Status code: {getItemResponse.StatusCode}");
-                 }
-
-                 // Deserialize the response content to an Item object
-                 string getItemJsonString = await getItemResponse.Content.ReadAsStringAsync();
-                 var existingItem = JsonSerializer.Deserialize<Item>(getItemJsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
- */
                 // Set Status to ReadyForAuction or NotSellable
                 if (item.Status != 0)
                 {
@@ -146,6 +125,5 @@ namespace AssessmentService.Services
                 throw new Exception($"Error in UpdateItem: {ex.Message}", ex);
             }
         }
-
     }
 }

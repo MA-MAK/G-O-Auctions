@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using LegalService.Models;
 using LegalService.Services;
 
-
-
 namespace LegalService.Controllers
 {
     [ApiController]
@@ -14,24 +12,18 @@ namespace LegalService.Controllers
     public class LegalController : ControllerBase
     {
         private readonly IAuctionRepository _auctionRepository;
-
         private readonly ILogger<LegalController> _logger;
-
-        private readonly IConfiguration _configuration;
-
         private readonly ICustomerRepository _customerRepository;
 
         public LegalController(
             IAuctionRepository auctionRepository,
             ICustomerRepository customerRepository,
-            ILogger<LegalController> logger,
-            IConfiguration configuration
+            ILogger<LegalController> logger
         )
         {
             _auctionRepository = auctionRepository;
             _customerRepository = customerRepository;
             _logger = logger;
-            _configuration = configuration;
         }
 
         // GET: api/auction/{auctionId}
@@ -39,7 +31,7 @@ namespace LegalService.Controllers
         [ActionName("auctions")]
         public async Task<IActionResult> GetAuctionById(string auctionId)
         {
-            _logger.LogInformation($"### AuctionController.GetAuctionById - auctionId: {auctionId}");
+            _logger.LogInformation($"### LegalController.GetAuctionById - auctionId: {auctionId}");
             try
             {
                 var auction = await _auctionRepository.GetAuctionById(auctionId);
@@ -47,7 +39,7 @@ namespace LegalService.Controllers
                 if (auction != null)
                 {
                     _logger.LogInformation(
-                        $"### AuctionController.GetAuctionById - auction: {auction.Id}"
+                        $"### LegalController.GetAuctionById - auction: {auction.Id}"
                     );
                     return Ok(auction);
                 }
@@ -66,27 +58,19 @@ namespace LegalService.Controllers
         // GET: api/auction/all
         [HttpGet]
         [ActionName("auctions")]
-        
         public IActionResult GetAllAuctions()
         {
-            _logger.LogInformation($"### AuctionController.GetAllAuctions");
+            _logger.LogInformation($"### LegalController.GetAllAuctions");
             var auctions = _auctionRepository.GetAllAuctions().Result;
-            /*
-            foreach (var auction in auctions)
-            {
-                auction.Item = _itemRepository.GetItemById(auction.Item.Id).Result;
-                auction.Bids = _bidRepository.GetBidsForAuction(auction.Id).Result.ToList();
-            }
-            */
-            return Ok(auctions);
             
+            return Ok(auctions);
         }
         // GET: api/user/{customerId}
         [HttpGet("{customerId}")]
         [ActionName("users")]
         public async Task<IActionResult> GetCustomerById(string customerId)
         {
-            _logger.LogInformation($"### CustomerController.GetCustomerById - customerId: {customerId}");
+            _logger.LogInformation($"### LegalController.GetCustomerById - customerId: {customerId}");
             try
             {
                 var customer = await _customerRepository.GetCustomerById(customerId);
@@ -94,7 +78,7 @@ namespace LegalService.Controllers
                 if (customer != null)
                 {
                     _logger.LogInformation(
-                        $"### CustomerController.GetCustomerById - customer: {customer.Id}"
+                        $"### LegalController.GetCustomerById - customer: {customer.Id}"
                     );
                     return Ok(customer);
                 }
