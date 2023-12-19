@@ -1,0 +1,35 @@
+name: Docker Image CI
+
+on:
+  pull_request:
+    branches: 
+      - "main"
+    paths:
+      - AuthService/**
+    types:
+      - closed
+  push:
+    branches: 
+      - "develop"
+    paths:
+      - .github/workflows/AuthService_BuildDockerImage.yml
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Login to Docker Hub
+      run: |
+        docker login --username ${{secrets.DOCKER_USER}} --password ${{secrets.DOCKER_PASSWORD}}
+    - name: Build the Docker image for AuthService
+      working-directory: AuthService
+      run: |
+        docker build . --file Dockerfile --tag asnielsen789/authservice:latest
+    - name: Push the Docker image for AuthService
+      run: |
+        docker push asnielsen789/authservice:latest

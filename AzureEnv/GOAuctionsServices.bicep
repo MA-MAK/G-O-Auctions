@@ -10,6 +10,7 @@ param ItemServiceImage string = 'asnielsen789/itemservice:latest'
 param LegalServiceImage string = 'asnielsen789/legalservice:latest'
 param SaleServiceImage string = 'asnielsen789/saleservice:latest'
 param BidWorkerImage string = 'asnielsen789/bidworker:latest'
+param AuthServiceImage string = 'asnielsen789/authservice:latest'
 /*
 param LokiEndpoint string='http://backend:3100'
 param ConnectionString string='mongodb://admin:1234@backend:27017/?authSource=admin'
@@ -347,6 +348,40 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
         }
       }
       {
+        name: 'authservice'
+        properties: {
+          image: AuthServiceImage
+          environmentVariables: [
+            {
+              name: 'connectionString'
+              value: 'mongodb://GOUser:qwer1234@backend:27017'
+            }
+            {
+              name: 'databaseName'
+              value: 'GODatabase'
+            }
+            {
+              name: 'collectionName'
+              value: 'users'
+            }
+            {
+              name: 'KEY_VAULT_NAME'
+              value: 'http://localhost:5004'
+            }
+            {
+              name: 'ASPNETCORE_URLS'
+              value: 'http://localhost:5020'
+            }
+          ]
+          resources: {
+            requests: {
+              memoryInGB: json('0.2')
+              cpu: json('0.2')
+            }
+          }
+        }
+      }
+      {
         name: 'nginx'
         properties: {
           image: 'nginx:latest'
@@ -430,7 +465,7 @@ output containerIPAddressFqdn string = GOAuctionsServicesGroup.properties.ipAddr
 
 
 /*command: [
-            'tail'
-            '-f'
-            '/dev/null'
-          ]*/
+  'tail'
+  '-f'
+  '/dev/null'
+]*/

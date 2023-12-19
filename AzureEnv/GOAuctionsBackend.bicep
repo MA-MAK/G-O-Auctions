@@ -6,9 +6,9 @@ param subnetName string = 'goBackendSubnet'
 param storageAccountName string = 'storage2cwvexx63utd4'
 param dnsRecordName string = 'backendhostname'
 param dnszonename string = 'goauctions.dk'
-/*
+
 @description('The name of the key vault to be created.')
-param vaultName string = 'goauctionsVault'
+param vaultName string = 'goauctionsKeyVault'
 
 @description('The name of the key to be created.')
 param keyName string = 'goauctionsKey'
@@ -44,7 +44,6 @@ param keySize int = 2048
   'P-521'
 ])
 param curveName string = ''
-*/
 
 resource VNET 'Microsoft.Network/virtualNetworks@2020-11-01' existing = {
   name: vnetname
@@ -201,7 +200,7 @@ resource dnsRecord 'Microsoft.Network/privateDnsZones/A@2020-06-01' = {
     ]
   }
 }
-/*
+
 resource vault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
   name: vaultName
   location: location
@@ -237,6 +236,5 @@ resource key 'Microsoft.KeyVault/vaults/keys@2021-11-01-preview' = {
 }
 
 output proxyKey object = key.properties
-*/
 
 output containerIPAddressFqdn string = GOAuctionsBackendGroup.properties.ipAddress.ip
