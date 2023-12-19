@@ -1,0 +1,517 @@
+{
+	"info": {
+		"_postman_id": "5a3e271c-f509-4be4-9947-7f6c7393927a",
+		"name": "GO-auctions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19623723",
+		"_collection_link": "https://warped-desert-82136.postman.co/workspace/Warped-desert~814bfb55-01d5-4393-8f78-5da9a1bfe764/collection/19624398-5a3e271c-f509-4be4-9947-7f6c7393927a?action=share&source=collection_link&creator=19623723"
+	},
+	"item": [
+		{
+			"name": "PostCustomer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Name\": \"Johnny Doey\",\r\n    \"Email\": \"john@example.com\",\r\n    \"Premium\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://goauctions.eastus.cloudapp.azure.com/api/customer",
+					"protocol": "http",
+					"host": [
+						"goauctions",
+						"eastus",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"api",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCustomer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n    \"Name\": \"Johnny Doey\",\r\n    \"Email\": \"john@example.com\",\r\n    \"Premium\": true\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://goauctions.eastus.cloudapp.azure.com/api/customer/65804001456c738c2e012246",
+					"protocol": "http",
+					"host": [
+						"goauctions",
+						"eastus",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"api",
+						"customer",
+						"65804001456c738c2e012246"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostItem",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"Title\": \"Table\",\n  \"StartPrice\": 500.99,\n  \"AssesmentPrice\": \"1500.99\",\n  \"Description\": \"Oak Coffee Table\",\n  \"Year\": 2010,\n  \"Location\": \"Aarhus\",\n  \"Customer\":{\n      \"Id\":\"65804001456c738c2e012246\"\n  },\n  \"Category\": 2,\n  \"Condition\": 1,\n  \"Status\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://goauctions.eastus.cloudapp.azure.com/api/item",
+					"protocol": "http",
+					"host": [
+						"goauctions",
+						"eastus",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"api",
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetItem",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://goauctions.eastus.cloudapp.azure.com/api/item/65804001456c738c2e012246",
+					"protocol": "http",
+					"host": [
+						"goauctions",
+						"eastus",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"api",
+						"item",
+						"65804001456c738c2e012246"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllItem",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5164/api/item/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5164",
+					"path": [
+						"api",
+						"item",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostAuction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"StartTime\": \"2022-01-01T09:00:00.000Z\",\n    \"EndTime\": \"2022-01-01T11:00:00.000Z\",\n    \"Status\": 1,\n    \"Title\": \"Its the real Mona Lisa!\",\n    \"Type\": 1,\n    \"Item\": {\n        \"Id\": \"6580492c2d2ca5a13f63c18f\"\n    },\n    \"Bids\": null,\n    \"Description\": \"The Mona Lisa is up for graps!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://goauctions.eastus.cloudapp.azure.com/api/auction",
+					"protocol": "http",
+					"host": [
+						"goauctions",
+						"eastus",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"api",
+						"auction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAuction",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "password=passwordCake",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://goauctions.eastus.cloudapp.azure.com/api/auction/658067fa237bc96a81d6f05d",
+					"protocol": "http",
+					"host": [
+						"goauctions",
+						"eastus",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"api",
+						"auction",
+						"658067fa237bc96a81d6f05d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllAuctions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://goauctions.eastus.cloudapp.azure.com/api/auction/all",
+					"protocol": "http",
+					"host": [
+						"goauctions",
+						"eastus",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"api",
+						"auction",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostBid",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n    \"Customer\":{\r\n        \"Id\":\"6571ce945f8840543c4e1511\"}, \r\n    \"Amount\": 1012,\r\n    \"Time\": \"2023-12-01T12:34:56\",  \r\n    \"AuctionId\": \"657994aa9043235beb26b2af\"  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://goauctions.eastus.cloudapp.azure.com/api/bid",
+					"protocol": "http",
+					"host": [
+						"goauctions",
+						"eastus",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"api",
+						"bid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5223/api/bid/656f1fb0bc3084133b2cb01b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5223",
+					"path": [
+						"api",
+						"bid",
+						"656f1fb0bc3084133b2cb01b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LegalAuction",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "LegalAuctions",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "LegalCustomer",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "PostSale",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Amount\": 200,\r\n    \"Auction\": {\r\n        \"Id\": \"658067fa237bc96a81d6f05d\"\r\n    },\r\n    \"Customer\": {\r\n        \"Id\": \"65804001456c738c2e012246\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://goauctions.eastus.cloudapp.azure.com/api/sale",
+					"protocol": "http",
+					"host": [
+						"goauctions",
+						"eastus",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"api",
+						"sale"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSale",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "AssessmentGetItem",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://goauctions.eastus.cloudapp.azure.com/api/",
+					"protocol": "http",
+					"host": [
+						"goauctions",
+						"eastus",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AssessmentGetAllRegistredItems",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://goauctions.eastus.cloudapp.azure.com/api/",
+					"protocol": "http",
+					"host": [
+						"goauctions",
+						"eastus",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AssessmentPutItem",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"6580492c2d2ca5a13f63c18f\",\r\n    \"Title\": \"Bike\",\r\n    \"StartPrice\": 1200.99,\r\n    \"AssesmentPrice\": \"2000.99\",\r\n    \"Description\": \"Old Mustang Bike, never used\",\r\n    \"Year\": 1989,\r\n    \"Location\": \"Berlin\",\r\n    \"Customer\": {\r\n        \"Id\": \"65804001456c738c2e012246\"\r\n    },\r\n    \"Category\": 3,\r\n    \"Condition\": 1,\r\n    \"Status\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://goauctions.eastus.cloudapp.azure.com/api/",
+					"protocol": "http",
+					"host": [
+						"goauctions",
+						"eastus",
+						"cloudapp",
+						"azure",
+						"com"
+					],
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UserName\": \"testuser\",\r\n    \"Password\": \"testpw\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5020",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5020"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ValidateToken",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0dXNlciIsImVtYWlsIjoidGVzdHVzZXIiLCJuYmYiOjE3MDI5ODA2NDIsImV4cCI6MTcwMjk4MTI0MiwiaWF0IjoxNzAyOTgwNjQyLCJpc3MiOiJHT0F1Y3Rpb25zSldUQXV0aFNlcnZpY2UiLCJhdWQiOiJHT0F1Y3Rpb25zVXNlcnMifQ.GIOKMAAk0d7trvmhVfewJzd7Z_ZWYykmZMc93MCeps0_96HwfITZzG0WWFvfHexhl2eWRuvwoBOvoWBtqVWV-A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6InVzZXJuYW1lIiwiZXhwIjoxNzAyNjQ0NDc5LCJhdWQiOiJodHRwOi8vbG9jYWxob3N0In0.RKb7j9Nz0GBFspvyD4nTZH7GD2QaSHNwUj58p0y4AiU",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5020/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5020",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

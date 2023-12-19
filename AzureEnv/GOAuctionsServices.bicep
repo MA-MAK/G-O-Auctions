@@ -366,7 +366,7 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
             }
             {
               name: 'KEY_VAULT_NAME'
-              value: 'http://localhost:5004'
+              value: 'goauctionsKeyVault'
             }
             {
               name: 'ASPNETCORE_URLS'
