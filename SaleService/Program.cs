@@ -36,7 +36,7 @@ builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>(
        builder.Services.BuildServiceProvider().GetRequiredService<ILogger<CustomerRepository>>()));
 
 var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<MongoDBContext>>();
-builder.Services.AddSingleton<MongoDBContext>(provider => new MongoDBContext(logger, builder.Configuration));
+builder.Services.AddSingleton<MongoDBContext>(provider => new MongoDBContext(logger));
 builder.Services.AddSingleton<ISaleRepository, SaleRepository>();
 
 var app = builder.Build();

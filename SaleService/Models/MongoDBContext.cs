@@ -22,12 +22,13 @@ public class MongoDBContext
     /// </summary>
     /// <param name="logger">Global logging facility.</param>
     /// <param name="config">System configuration instance.</param>
-    public MongoDBContext(ILogger<MongoDBContext> logger, IConfiguration config)
+    public MongoDBContext(ILogger<MongoDBContext> logger)
     {
         _logger = logger;
         
         BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
-
+        var connectionString = Environment.GetEnvironmentVariable("connectionString");
+        _logger.LogInformation($"### MongoDBContext.MongoDBContext - connectionString: {connectionString}");
         var client = new MongoClient(Environment.GetEnvironmentVariable("connectionString"));
         _goDatabase = client.GetDatabase(Environment.GetEnvironmentVariable("databaseName"));
     }
