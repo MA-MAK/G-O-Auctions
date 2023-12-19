@@ -23,7 +23,7 @@ var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<
 string keyVaultName = Environment.GetEnvironmentVariable("KEY_VAULT_NAME");
 var kvUri = "https://" + keyVaultName + ".vault.azure.net";
 logger.LogInformation("Key Vault URI: " + kvUri);
-
+/*
 var secretClient = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
 
 var secret = await secretClient.GetSecretAsync("Secret");
@@ -55,7 +55,7 @@ builder.Services.AddAuthorization();
 
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddEnvironmentVariables();
-
+*/
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
