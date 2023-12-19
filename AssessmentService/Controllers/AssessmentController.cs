@@ -23,7 +23,7 @@ namespace AssessmentService.Controllers
         [HttpGet]
         public Task<ActionResult> GetTest()
         {
-            return Task.FromResult<ActionResult>(Ok("ItemService is running..."));
+            return Task.FromResult<ActionResult>(Ok("AssessmentService is running..."));
         }
 
         [HttpGet("{itemId}")]

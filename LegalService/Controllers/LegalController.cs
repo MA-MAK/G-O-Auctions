@@ -26,9 +26,15 @@ namespace LegalService.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
+        public Task<ActionResult> GetTest()
+        {
+            return Task.FromResult<ActionResult>(Ok("LegalService is running..."));
+        }
+
         // GET: api/auction/{auctionId}
         [HttpGet("{auctionId}")]
-        [ActionName("auctions")]
+        [ActionName("auction")]
         public async Task<IActionResult> GetAuctionById(string auctionId)
         {
             _logger.LogInformation($"### LegalController.GetAuctionById - auctionId: {auctionId}");
@@ -67,7 +73,7 @@ namespace LegalService.Controllers
         }
         // GET: api/user/{customerId}
         [HttpGet("{customerId}")]
-        [ActionName("users")]
+        [ActionName("user")]
         public async Task<IActionResult> GetCustomerById(string customerId)
         {
             _logger.LogInformation($"### LegalController.GetCustomerById - customerId: {customerId}");

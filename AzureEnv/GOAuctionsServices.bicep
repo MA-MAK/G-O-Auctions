@@ -320,12 +320,6 @@ resource GOAuctionsServicesGroup 'Microsoft.ContainerInstance/containerGroups@20
         name: 'bidworker'
         properties: {
           image: BidWorkerImage
-          ports: []
-          command: [
-            'tail'
-            '-f'
-            '/dev/null'
-          ]
           environmentVariables: [
             {
               name: 'connectionString'
