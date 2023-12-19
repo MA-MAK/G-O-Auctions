@@ -63,7 +63,6 @@ namespace SaleService.Controllers
             }
         }
 
-
         [HttpPost]
         public async Task<IActionResult> PostSale([FromBody] Sale sale)
         {
